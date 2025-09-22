@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import '../models/category.dart';
+import '../models/reel.dart';
 import '../services/reel_service.dart';
 import '../theme/app_theme.dart';
 import '../widgets/category_section.dart';
+import '../widgets/featured_section.dart';
 import '../widgets/bottom_navigation_bar.dart';
 
 /// SHOTT Home Screen - Main content area after splash
@@ -18,6 +20,7 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   ReelData? _reelData;
+  List<Reel> _featuredReels = [];
   bool _isLoading = true;
   String? _error;
   int _currentNavIndex = 0;
@@ -30,9 +33,14 @@ class _HomeScreenState extends State<HomeScreen> {
 
   Future<void> _loadData() async {
     try {
-      final data = await ReelService.loadReelData();
+      final results = await Future.wait([
+        ReelService.loadReelData(),
+        ReelService.loadFeaturedReels(),
+      ]);
+      
       setState(() {
-        _reelData = data;
+        _reelData = results[0] as ReelData;
+        _featuredReels = results[1] as List<Reel>;
         _isLoading = false;
       });
     } catch (e) {
@@ -98,12 +106,12 @@ class _HomeScreenState extends State<HomeScreen> {
 
   Widget _buildAppBar() {
     return Container(
-      padding: const EdgeInsets.fromLTRB(20, 16, 20, 16),
+      padding: const EdgeInsets.fromLTRB(24, 16, 24, 16),
       decoration: BoxDecoration(
-        color: AppTheme.primaryBackground.withValues(alpha: 0.95),
+        color: AppTheme.primaryBackground.withValues(alpha: 0.98),
         border: Border(
           bottom: BorderSide(
-            color: AppTheme.shottGold.withValues(alpha: 0.1),
+            color: AppTheme.shottGold.withValues(alpha: 0.08),
             width: 0.5,
           ),
         ),
@@ -111,86 +119,184 @@ class _HomeScreenState extends State<HomeScreen> {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          // Logo and brand
-          Row(
-            children: [
-              Container(
-                width: 36,
-                height: 36,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(8),
-                  boxShadow: [
-                    BoxShadow(
-                      color: AppTheme.shottGold.withValues(alpha: 0.3),
-                      blurRadius: 8,
-                      spreadRadius: 1,
-                    ),
-                  ],
-                ),
-                child: ClipRRect(
-                  borderRadius: BorderRadius.circular(8),
-                  child: Image.asset(
-                    'assets/app/shott-icon.png',
-                    fit: BoxFit.cover,
+          // Light Creative Logo Section
+          _buildLightLogo(),
+          
+          // Action buttons
+          _buildActionButtons(),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildLightLogo() {
+    return Row(
+      children: [
+        // Light, Creative Logo Icon
+        Container(
+          width: 40,
+          height: 40,
+          decoration: BoxDecoration(
+            color: AppTheme.shottGold.withValues(alpha: 0.1),
+            borderRadius: BorderRadius.circular(10),
+            border: Border.all(
+              color: AppTheme.shottGold.withValues(alpha: 0.3),
+              width: 1.5,
+            ),
+          ),
+          child: Center(
+            child: _buildCreativeIcon(),
+          ),
+        ),
+        
+        const SizedBox(width: 14),
+        
+        // Clean Brand Text
+        Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            // Main brand name with subtle accent
+            Row(
+              children: [
+                const Text(
+                  'SH',
+                  style: TextStyle(
+                    fontSize: 24,
+                    fontWeight: FontWeight.w800,
+                    color: AppTheme.primaryText,
+                    letterSpacing: 1.0,
+                    height: 1.0,
                   ),
                 ),
+                Container(
+                  width: 6,
+                  height: 6,
+                  margin: const EdgeInsets.symmetric(horizontal: 2),
+                  decoration: const BoxDecoration(
+                    color: AppTheme.shottGold,
+                    shape: BoxShape.circle,
+                  ),
+                ),
+                const Text(
+                  'TT',
+                  style: TextStyle(
+                    fontSize: 24,
+                    fontWeight: FontWeight.w800,
+                    color: AppTheme.primaryText,
+                    letterSpacing: 1.0,
+                    height: 1.0,
+                  ),
+                ),
+              ],
+            ),
+            // Minimal tagline
+            Container(
+              padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
+              decoration: BoxDecoration(
+                color: AppTheme.shottGold.withValues(alpha: 0.15),
+                borderRadius: BorderRadius.circular(8),
               ),
-              const SizedBox(width: 12),
-              const Text(
-                'SHOTT',
+              child: Text(
+                'STREAM',
                 style: TextStyle(
-                  fontSize: 24,
-                  fontWeight: FontWeight.bold,
-                  color: AppTheme.primaryText,
+                  fontSize: 9,
+                  fontWeight: FontWeight.w600,
+                  color: AppTheme.shottGold,
                   letterSpacing: 1.5,
                 ),
               ),
-            ],
-          ),
-          
-          // Action buttons
-          Row(
-            children: [
-              // Notifications
-              Container(
-                width: 40,
-                height: 40,
-                decoration: BoxDecoration(
-                  color: AppTheme.surfaceBackground.withValues(alpha: 0.7),
-                  borderRadius: BorderRadius.circular(20),
-                  border: Border.all(
-                    color: AppTheme.shottGold.withValues(alpha: 0.2),
-                    width: 1,
-                  ),
-                ),
-                child: const Icon(
-                  Icons.notifications_outlined,
-                  color: AppTheme.primaryText,
-                  size: 20,
-                ),
-              ),
-              const SizedBox(width: 12),
-              // Profile
-              Container(
-                width: 40,
-                height: 40,
-                decoration: BoxDecoration(
-                  color: AppTheme.surfaceBackground.withValues(alpha: 0.7),
-                  borderRadius: BorderRadius.circular(20),
-                  border: Border.all(
-                    color: AppTheme.shottGold.withValues(alpha: 0.2),
-                    width: 1,
-                  ),
-                ),
-                child: const Icon(
-                  Icons.person_outline_rounded,
-                  color: AppTheme.primaryText,
-                  size: 20,
+            ),
+          ],
+        ),
+      ],
+    );
+  }
+
+  Widget _buildCreativeIcon() {
+    // Try to load the asset first, fallback to creative icon if not available
+    return Image.asset(
+      'assets/app/shott-icon.png',
+      width: 20,
+      height: 20,
+      fit: BoxFit.contain,
+      errorBuilder: (context, error, stackTrace) {
+        // Creative fallback icon
+        return Stack(
+          alignment: Alignment.center,
+          children: [
+            // Outer ring
+            Container(
+              width: 18,
+              height: 18,
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                border: Border.all(
+                  color: AppTheme.shottGold,
+                  width: 1.5,
                 ),
               ),
-            ],
+            ),
+            // Inner play triangle
+            Icon(
+              Icons.play_arrow_rounded,
+              color: AppTheme.shottGold,
+              size: 14,
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  Widget _buildActionButtons() {
+    return Row(
+      children: [
+        // Enhanced Notifications Button
+        _buildActionButton(
+          icon: Icons.notifications_outlined,
+          onTap: () {
+            // TODO: Handle notifications
+            debugPrint('Notifications tapped');
+          },
+        ),
+        
+        const SizedBox(width: 16),
+        
+        // Enhanced Profile Button
+        _buildActionButton(
+          icon: Icons.person_outline_rounded,
+          onTap: () {
+            // TODO: Handle profile
+            debugPrint('Profile tapped');
+          },
+        ),
+      ],
+    );
+  }
+
+  Widget _buildActionButton({
+    required IconData icon,
+    required VoidCallback onTap,
+  }) {
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+        width: 40,
+        height: 40,
+        decoration: BoxDecoration(
+          color: AppTheme.surfaceBackground.withValues(alpha: 0.4),
+          borderRadius: BorderRadius.circular(20),
+          border: Border.all(
+            color: AppTheme.shottGold.withValues(alpha: 0.2),
+            width: 0.8,
           ),
-        ],
+        ),
+        child: Icon(
+          icon,
+          color: AppTheme.primaryText.withValues(alpha: 0.9),
+          size: 20,
+        ),
       ),
     );
   }
@@ -290,10 +396,20 @@ class _HomeScreenState extends State<HomeScreen> {
       onRefresh: _loadData,
       child: ListView.separated(
         padding: const EdgeInsets.only(bottom: 20),
-        itemCount: _reelData!.categories.length,
+        itemCount: _reelData!.categories.length + (_featuredReels.isNotEmpty ? 1 : 0),
         separatorBuilder: (context, index) => const SizedBox(height: 32),
         itemBuilder: (context, index) {
-          final category = _reelData!.categories[index];
+          // Featured section at the top
+          if (index == 0 && _featuredReels.isNotEmpty) {
+            return FeaturedSection(
+              featuredReels: _featuredReels,
+              onReelTap: _onReelTap,
+            );
+          }
+          
+          // Regular category sections
+          final categoryIndex = _featuredReels.isNotEmpty ? index - 1 : index;
+          final category = _reelData!.categories[categoryIndex];
           return CategorySection(
             category: category,
             onReelTap: _onReelTap,
@@ -303,3 +419,4 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 }
+
