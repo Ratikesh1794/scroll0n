@@ -1,0 +1,384 @@
+{
+  "categories": [
+    {
+      "name": "New Releases",
+      "items": [
+        {
+          "id": "nr1",
+          "name": "The Last Signal",
+          "description": "A mysterious radio signal from space disrupts a small town.",
+          "thumbnail": "https://picsum.photos/300/500?random=1",
+          "videoUrl": "https://www.youtube.com/shorts/aqz-KE-bpKQ",
+          "releaseDate": "2025-09-10",
+          "duration": "2m 15s"
+        },
+        {
+          "id": "nr2",
+          "name": "Broken Frame",
+          "description": "A photographer finds strange things inside his camera lens.",
+          "thumbnail": "https://picsum.photos/300/500?random=2",
+          "videoUrl": "https://www.youtube.com/shorts/z0nWcWb7C5E",
+          "releaseDate": "2025-09-05",
+          "duration": "1m 42s"
+        },
+        {
+          "id": "nr3",
+          "name": "Midnight Echo",
+          "description": "A night security guard hears voices coming from old recordings.",
+          "thumbnail": "https://picsum.photos/300/500?random=9",
+          "videoUrl": "https://www.youtube.com/shorts/4jLIw-Wr5c0",
+          "releaseDate": "2025-09-01",
+          "duration": "2m 30s"
+        },
+        {
+          "id": "nr4",
+          "name": "Lost Time",
+          "description": "A woman discovers she's missing hours from her memory every day.",
+          "thumbnail": "https://picsum.photos/300/500?random=10",
+          "videoUrl": "https://www.youtube.com/shorts/K7XHy8nppf4",
+          "releaseDate": "2025-08-29",
+          "duration": "1m 55s"
+        },
+        {
+          "id": "nr5",
+          "name": "Digital Ghost",
+          "description": "Someone's deleted social media account keeps posting new content.",
+          "thumbnail": "https://picsum.photos/300/500?random=11",
+          "videoUrl": "https://www.youtube.com/shorts/Qw4w9WgXcQ",
+          "releaseDate": "2025-08-25",
+          "duration": "2m 10s"
+        },
+        {
+          "id": "nr6",
+          "name": "Shadow Play",
+          "description": "A child's shadow starts moving independently from them.",
+          "thumbnail": "https://picsum.photos/300/500?random=12",
+          "videoUrl": "https://www.youtube.com/shorts/uQHL6jGhCD4",
+          "releaseDate": "2025-08-20",
+          "duration": "1m 45s"
+        },
+        {
+          "id": "nr7",
+          "name": "Whispers in Static",
+          "description": "An old TV set picks up broadcasts from another dimension.",
+          "thumbnail": "https://picsum.photos/300/500?random=13",
+          "videoUrl": "https://www.youtube.com/shorts/aBkTkxKDduc",
+          "releaseDate": "2025-08-15",
+          "duration": "2m 20s"
+        },
+        {
+          "id": "nr8",
+          "name": "The Last Passenger",
+          "description": "A subway train arrives with only one person who shouldn't be there.",
+          "thumbnail": "https://picsum.photos/300/500?random=14",
+          "videoUrl": "https://www.youtube.com/shorts/fJ9rUzIMcZQ",
+          "releaseDate": "2025-08-10",
+          "duration": "2m 05s"
+        },
+        {
+          "id": "nr9",
+          "name": "Mirror Image",
+          "description": "A woman notices her reflection acting strangely in mirrors.",
+          "thumbnail": "https://picsum.photos/300/500?random=15",
+          "videoUrl": "https://www.youtube.com/shorts/JGwWNGJdvx8",
+          "releaseDate": "2025-08-05",
+          "duration": "1m 50s"
+        },
+        {
+          "id": "nr10",
+          "name": "Final Call",
+          "description": "A man receives phone calls from his deceased brother.",
+          "thumbnail": "https://picsum.photos/300/500?random=16",
+          "videoUrl": "https://www.youtube.com/shorts/ZaI2IlHwmgQ",
+          "releaseDate": "2025-08-01",
+          "duration": "2m 25s"
+        }
+      ]
+    },
+    {
+      "name": "Action",
+      "items": [
+        {
+          "id": "ac1",
+          "name": "Chase Down",
+          "description": "An undercover agent must escape a citywide manhunt.",
+          "thumbnail": "https://picsum.photos/300/500?random=3",
+          "videoUrl": "https://www.youtube.com/shorts/o-YBDTqX_ZU",
+          "releaseDate": "2025-08-28",
+          "duration": "2m 05s"
+        },
+        {
+          "id": "ac2",
+          "name": "Edge of Steel",
+          "description": "A rogue warrior battles in a futuristic arena.",
+          "thumbnail": "https://picsum.photos/300/500?random=4",
+          "videoUrl": "https://www.youtube.com/shorts/C0DPdy98e4c",
+          "releaseDate": "2025-08-20",
+          "duration": "1m 50s"
+        },
+        {
+          "id": "ac3",
+          "name": "Final Impact",
+          "description": "An elite fighter must win one last tournament to save his family.",
+          "thumbnail": "https://picsum.photos/300/500?random=17",
+          "videoUrl": "https://www.youtube.com/shorts/R7AXBOT8KzU",
+          "releaseDate": "2025-08-15",
+          "duration": "2m 15s"
+        },
+        {
+          "id": "ac4",
+          "name": "Night Runners",
+          "description": "Parkour athletes are hunted by a shadowy organization.",
+          "thumbnail": "https://picsum.photos/300/500?random=18",
+          "videoUrl": "https://www.youtube.com/shorts/9bZkp7q19f0",
+          "releaseDate": "2025-08-10",
+          "duration": "1m 55s"
+        },
+        {
+          "id": "ac5",
+          "name": "Urban Legend",
+          "description": "A street racer becomes a target after witnessing a crime.",
+          "thumbnail": "https://picsum.photos/300/500?random=19",
+          "videoUrl": "https://www.youtube.com/shorts/jGwWNGJdvx8",
+          "releaseDate": "2025-08-05",
+          "duration": "2m 10s"
+        },
+        {
+          "id": "ac6",
+          "name": "Breaking Point",
+          "description": "A special forces operator goes rogue to stop a terrorist attack.",
+          "thumbnail": "https://picsum.photos/300/500?random=20",
+          "videoUrl": "https://www.youtube.com/shorts/kJQP7kiw5Fk",
+          "releaseDate": "2025-07-30",
+          "duration": "2m 30s"
+        },
+        {
+          "id": "ac7",
+          "name": "Sky Heist",
+          "description": "Thieves plan to rob a secure vault during a flight.",
+          "thumbnail": "https://picsum.photos/300/500?random=21",
+          "videoUrl": "https://www.youtube.com/shorts/RgKAFK5djSk",
+          "releaseDate": "2025-07-25",
+          "duration": "2m 00s"
+        },
+        {
+          "id": "ac8",
+          "name": "Last Stand",
+          "description": "A small town sheriff faces off against a criminal gang.",
+          "thumbnail": "https://picsum.photos/300/500?random=22",
+          "videoUrl": "https://www.youtube.com/shorts/JGwWNGJdvx8",
+          "releaseDate": "2025-07-20",
+          "duration": "1m 45s"
+        },
+        {
+          "id": "ac9",
+          "name": "Rogue Protocol",
+          "description": "A hacker must fight through a secured facility to stop an AI system.",
+          "thumbnail": "https://picsum.photos/300/500?random=23",
+          "videoUrl": "https://www.youtube.com/shorts/YykjpeuMNEk",
+          "releaseDate": "2025-07-15",
+          "duration": "2m 20s"
+        },
+        {
+          "id": "ac10",
+          "name": "Combat Zone",
+          "description": "Soldiers trapped behind enemy lines must fight their way to extraction.",
+          "thumbnail": "https://picsum.photos/300/500?random=24",
+          "videoUrl": "https://www.youtube.com/shorts/papuvlVeZg8",
+          "releaseDate": "2025-07-10",
+          "duration": "2m 25s"
+        }
+      ]
+    },
+    {
+      "name": "Sci-Fi",
+      "items": [
+        {
+          "id": "sf1",
+          "name": "Neon Skies",
+          "description": "A hacker uncovers a secret AI controlling the city.",
+          "thumbnail": "https://picsum.photos/300/500?random=5",
+          "videoUrl": "https://www.youtube.com/shorts/ScMzIvxBSi4",
+          "releaseDate": "2025-07-30",
+          "duration": "2m 30s"
+        },
+        {
+          "id": "sf2",
+          "name": "Orbital Drift",
+          "description": "Astronauts lost in orbit find a hidden colony ship.",
+          "thumbnail": "https://picsum.photos/300/500?random=6",
+          "videoUrl": "https://www.youtube.com/shorts/2vjPBrBU-TM",
+          "releaseDate": "2025-07-12",
+          "duration": "1m 25s"
+        },
+        {
+          "id": "sf3",
+          "name": "Quantum Echo",
+          "description": "A physicist discovers she can communicate with alternate versions of herself.",
+          "thumbnail": "https://picsum.photos/300/500?random=25",
+          "videoUrl": "https://www.youtube.com/shorts/kXYiU_JCYtU",
+          "releaseDate": "2025-07-05",
+          "duration": "2m 15s"
+        },
+        {
+          "id": "sf4",
+          "name": "Deep Sim",
+          "description": "A man realizes his entire life might be a simulation.",
+          "thumbnail": "https://picsum.photos/300/500?random=26",
+          "videoUrl": "https://www.youtube.com/shorts/JRfuAukYTKg",
+          "releaseDate": "2025-06-28",
+          "duration": "1m 55s"
+        },
+        {
+          "id": "sf5",
+          "name": "Memory Market",
+          "description": "In a future where memories can be bought and sold, a dealer finds forbidden content.",
+          "thumbnail": "https://picsum.photos/300/500?random=27",
+          "videoUrl": "https://www.youtube.com/shorts/6Dh-RL__uN4",
+          "releaseDate": "2025-06-20",
+          "duration": "2m 05s"
+        },
+        {
+          "id": "sf6",
+          "name": "Last Human",
+          "description": "An android discovers what appears to be the last living human on Earth.",
+          "thumbnail": "https://picsum.photos/300/500?random=28",
+          "videoUrl": "https://www.youtube.com/shorts/QdK8U-VIH_o",
+          "releaseDate": "2025-06-15",
+          "duration": "2m 30s"
+        },
+        {
+          "id": "sf7",
+          "name": "Chronos Fault",
+          "description": "A time traveler finds themselves stuck in a 5-minute loop.",
+          "thumbnail": "https://picsum.photos/300/500?random=29",
+          "videoUrl": "https://www.youtube.com/shorts/Lm_GPkOfg4E",
+          "releaseDate": "2025-06-10",
+          "duration": "2m 00s"
+        },
+        {
+          "id": "sf8",
+          "name": "Neural Link",
+          "description": "A new brain implant allows a paralyzed woman to control advanced robotics.",
+          "thumbnail": "https://picsum.photos/300/500?random=30",
+          "videoUrl": "https://www.youtube.com/shorts/_7pty0y7HOo",
+          "releaseDate": "2025-06-05",
+          "duration": "1m 50s"
+        },
+        {
+          "id": "sf9",
+          "name": "Terra Nova",
+          "description": "Colonists on a new planet discover they're not the first humans to arrive.",
+          "thumbnail": "https://picsum.photos/300/500?random=31",
+          "videoUrl": "https://www.youtube.com/shorts/7wtfhZwyrcc",
+          "releaseDate": "2025-05-30",
+          "duration": "2m 20s"
+        },
+        {
+          "id": "sf10",
+          "name": "Ghost Protocol",
+          "description": "An AI therapist begins to develop emotions for a patient.",
+          "thumbnail": "https://picsum.photos/300/500?random=32",
+          "videoUrl": "https://www.youtube.com/shorts/PsO6ZnUZI0g",
+          "releaseDate": "2025-05-25",
+          "duration": "1m 45s"
+        }
+      ]
+    },
+    {
+      "name": "Drama",
+      "items": [
+        {
+          "id": "dr1",
+          "name": "Silent Notes",
+          "description": "A pianist rediscovers his passion after losing everything.",
+          "thumbnail": "https://picsum.photos/300/500?random=7",
+          "videoUrl": "https://www.youtube.com/shorts/dQw4w9WgXcQ",
+          "releaseDate": "2025-06-22",
+          "duration": "2m 00s"
+        },
+        {
+          "id": "dr2",
+          "name": "Fading Echo",
+          "description": "A girl tries to save her fading childhood memories.",
+          "thumbnail": "https://picsum.photos/300/500?random=8",
+          "videoUrl": "https://www.youtube.com/shorts/kXYiU_JCYtU",
+          "releaseDate": "2025-06-10",
+          "duration": "1m 55s"
+        },
+        {
+          "id": "dr3",
+          "name": "Last Letter",
+          "description": "A woman discovers a letter from her mother 10 years after her death.",
+          "thumbnail": "https://picsum.photos/300/500?random=33",
+          "videoUrl": "https://www.youtube.com/shorts/B7bqAsxee4I",
+          "releaseDate": "2025-06-05",
+          "duration": "2m 15s"
+        },
+        {
+          "id": "dr4",
+          "name": "Two Paths",
+          "description": "Former best friends reunite after taking very different life paths.",
+          "thumbnail": "https://picsum.photos/300/500?random=34",
+          "videoUrl": "https://www.youtube.com/shorts/3AtDnEC4zak",
+          "releaseDate": "2025-05-30",
+          "duration": "1m 50s"
+        },
+        {
+          "id": "dr5",
+          "name": "The Choice",
+          "description": "A doctor faces an impossible ethical dilemma that will change lives forever.",
+          "thumbnail": "https://picsum.photos/300/500?random=35",
+          "videoUrl": "https://www.youtube.com/shorts/yPYZpwSpKmA",
+          "releaseDate": "2025-05-25",
+          "duration": "2m 30s"
+        },
+        {
+          "id": "dr6",
+          "name": "Second Chance",
+          "description": "An ex-convict tries to rebuild his life and reconnect with his daughter.",
+          "thumbnail": "https://picsum.photos/300/500?random=36",
+          "videoUrl": "https://www.youtube.com/shorts/XqZsoesa55w",
+          "releaseDate": "2025-05-20",
+          "duration": "2m 10s"
+        },
+        {
+          "id": "dr7",
+          "name": "Unspoken Words",
+          "description": "A couple on the verge of divorce reflect on what brought them together.",
+          "thumbnail": "https://picsum.photos/300/500?random=37",
+          "videoUrl": "https://www.youtube.com/shorts/fJ9rUzIMcZQ",
+          "releaseDate": "2025-05-15",
+          "duration": "2m 05s"
+        },
+        {
+          "id": "dr8",
+          "name": "Broken Circle",
+          "description": "Siblings reunite for their father's funeral after years of estrangement.",
+          "thumbnail": "https://picsum.photos/300/500?random=38",
+          "videoUrl": "https://www.youtube.com/shorts/2vjPBrBU-TM",
+          "releaseDate": "2025-05-10",
+          "duration": "2m 25s"
+        },
+        {
+          "id": "dr9",
+          "name": "Last Dance",
+          "description": "An elderly couple face the reality of dementia and their final years together.",
+          "thumbnail": "https://picsum.photos/300/500?random=39",
+          "videoUrl": "https://www.youtube.com/shorts/CevxZvSJLk8",
+          "releaseDate": "2025-05-05",
+          "duration": "1m 45s"
+        },
+        {
+          "id": "dr10",
+          "name": "Finding Home",
+          "description": "A refugee family tries to build a new life in a foreign country.",
+          "thumbnail": "https://picsum.photos/300/500?random=40",
+          "videoUrl": "https://www.youtube.com/shorts/4NRXx6U8ABQ",
+          "releaseDate": "2025-04-30",
+          "duration": "2m 20s"
+        }
+      ]
+    }
+  ]
+}

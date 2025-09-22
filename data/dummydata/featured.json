@@ -1,0 +1,96 @@
+{
+  "categories": [
+    {
+      "name": "New Releases",
+      "items": [
+        {
+          "id": "nr1",
+          "name": "The Last Signal",
+          "description": "A mysterious radio signal from space disrupts a small town.",
+          "thumbnail": "https://picsum.photos/300/500?random=1",
+          "videoUrl": "https://www.youtube.com/shorts/aqz-KE-bpKQ",
+          "releaseDate": "2025-09-10",
+          "duration": "2m 15s"
+        },
+        {
+          "id": "nr2",
+          "name": "Broken Frame",
+          "description": "A photographer finds strange things inside his camera lens.",
+          "thumbnail": "https://picsum.photos/300/500?random=2",
+          "videoUrl": "https://www.youtube.com/shorts/z0nWcWb7C5E",
+          "releaseDate": "2025-09-05",
+          "duration": "1m 42s"
+        }
+      ]
+    },
+    {
+      "name": "Action",
+      "items": [
+        {
+          "id": "ac1",
+          "name": "Chase Down",
+          "description": "An undercover agent must escape a citywide manhunt.",
+          "thumbnail": "https://picsum.photos/300/500?random=3",
+          "videoUrl": "https://www.youtube.com/shorts/o-YBDTqX_ZU",
+          "releaseDate": "2025-08-28",
+          "duration": "2m 05s"
+        },
+        {
+          "id": "ac2",
+          "name": "Edge of Steel",
+          "description": "A rogue warrior battles in a futuristic arena.",
+          "thumbnail": "https://picsum.photos/300/500?random=4",
+          "videoUrl": "https://www.youtube.com/shorts/C0DPdy98e4c",
+          "releaseDate": "2025-08-20",
+          "duration": "1m 50s"
+        }
+      ]
+    },
+    {
+      "name": "Sci-Fi",
+      "items": [
+        {
+          "id": "sf1",
+          "name": "Neon Skies",
+          "description": "A hacker uncovers a secret AI controlling the city.",
+          "thumbnail": "https://picsum.photos/300/500?random=5",
+          "videoUrl": "https://www.youtube.com/shorts/ScMzIvxBSi4",
+          "releaseDate": "2025-07-30",
+          "duration": "2m 30s"
+        },
+        {
+          "id": "sf2",
+          "name": "Orbital Drift",
+          "description": "Astronauts lost in orbit find a hidden colony ship.",
+          "thumbnail": "https://picsum.photos/300/500?random=6",
+          "videoUrl": "https://www.youtube.com/shorts/2vjPBrBU-TM",
+          "releaseDate": "2025-07-12",
+          "duration": "1m 25s"
+        }
+      ]
+    },
+    {
+      "name": "Drama",
+      "items": [
+        {
+          "id": "dr1",
+          "name": "Silent Notes",
+          "description": "A pianist rediscovers his passion after losing everything.",
+          "thumbnail": "https://picsum.photos/300/500?random=7",
+          "videoUrl": "https://www.youtube.com/shorts/dQw4w9WgXcQ",
+          "releaseDate": "2025-06-22",
+          "duration": "2m 00s"
+        },
+        {
+          "id": "dr2",
+          "name": "Fading Echo",
+          "description": "A girl tries to save her fading childhood memories.",
+          "thumbnail": "https://picsum.photos/300/500?random=8",
+          "videoUrl": "https://www.youtube.com/shorts/kXYiU_JCYtU",
+          "releaseDate": "2025-06-10",
+          "duration": "1m 55s"
+        }
+      ]
+    }
+  ]
+}
