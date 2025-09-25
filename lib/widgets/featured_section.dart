@@ -150,8 +150,8 @@ class _FeaturedSectionState extends State<FeaturedSection>
               stops: const [0.0, 0.4, 0.8],
               colors: [
                 Colors.transparent,
-                Colors.black.withOpacity(0.3),
-                Colors.black.withOpacity(0.8),
+                Colors.black.withValues(alpha: 0.3),
+                Colors.black.withValues(alpha: 0.8),
               ],
             ),
           ),
@@ -210,7 +210,7 @@ class _FeaturedSectionState extends State<FeaturedSection>
         borderRadius: BorderRadius.circular(6),
         boxShadow: [
           BoxShadow(
-            color: AppTheme.accentRed.withOpacity(0.3),
+            color: AppTheme.accentRed.withValues(alpha: 0.3),
             blurRadius: 8,
             offset: const Offset(0, 2),
           ),
@@ -218,11 +218,9 @@ class _FeaturedSectionState extends State<FeaturedSection>
       ),
       child: Text(
         'FEATURED',
-        style: TextStyle(
+        style: AppTheme.badgeText.copyWith(
           color: Colors.white,
           fontSize: isTablet ? 12 : 10,
-          fontWeight: FontWeight.w700,
-          letterSpacing: 1.2,
         ),
       ),
     );
@@ -235,15 +233,12 @@ class _FeaturedSectionState extends State<FeaturedSection>
       ),
       child: Text(
         widget.featuredReels[index].name,
-        style: TextStyle(
+        style: AppTheme.heroTitle.copyWith(
           fontSize: isTablet ? 42 : 32,
-          fontWeight: FontWeight.w900,
           color: Colors.white,
-          height: 1.1,
-          letterSpacing: -0.5,
           shadows: [
             Shadow(
-              color: Colors.black.withOpacity(0.8),
+              color: Colors.black.withValues(alpha: 0.8),
               offset: const Offset(0, 2),
               blurRadius: 4,
             ),
@@ -285,10 +280,9 @@ class _FeaturedSectionState extends State<FeaturedSection>
         const SizedBox(width: 6),
         Text(
           text,
-          style: TextStyle(
+          style: AppTheme.metadataText.copyWith(
             fontSize: isTablet ? 16 : 14,
             color: AppTheme.secondaryText,
-            fontWeight: FontWeight.w500,
           ),
         ),
       ],
@@ -302,11 +296,9 @@ class _FeaturedSectionState extends State<FeaturedSection>
       ),
       child: Text(
         widget.featuredReels[index].description,
-        style: TextStyle(
+        style: AppTheme.descriptionText.copyWith(
           fontSize: isTablet ? 18 : 16,
           color: AppTheme.secondaryText,
-          height: 1.4,
-          fontWeight: FontWeight.w400,
         ),
         maxLines: 3,
         overflow: TextOverflow.ellipsis,
@@ -341,9 +333,9 @@ class _FeaturedSectionState extends State<FeaturedSection>
           ),
           label: Text(
             'Play',
-            style: TextStyle(
+            style: AppTheme.buttonText.copyWith(
               fontSize: isTablet ? 18 : 16,
-              fontWeight: FontWeight.w700,
+              color: Colors.black,
             ),
           ),
         ),
@@ -353,8 +345,8 @@ class _FeaturedSectionState extends State<FeaturedSection>
         // More Info Button
         OutlinedButton.icon(
           onPressed: () {
-            _restartAutoScroll();
-            // TODO: Show more info
+            _stopAutoScroll();
+            widget.onReelTap(widget.featuredReels[index].id);
           },
           style: OutlinedButton.styleFrom(
             foregroundColor: Colors.white,
@@ -366,7 +358,7 @@ class _FeaturedSectionState extends State<FeaturedSection>
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(8),
             ),
-            backgroundColor: Colors.black.withOpacity(0.3),
+            backgroundColor: Colors.black.withValues(alpha: 0.3),
           ),
           icon: Icon(
             Icons.info_outline,
@@ -374,9 +366,9 @@ class _FeaturedSectionState extends State<FeaturedSection>
           ),
           label: Text(
             'More Info',
-            style: TextStyle(
+            style: AppTheme.buttonTextSecondary.copyWith(
               fontSize: isTablet ? 18 : 16,
-              fontWeight: FontWeight.w600,
+              color: Colors.white,
             ),
           ),
         ),
@@ -409,7 +401,7 @@ class _FeaturedSectionState extends State<FeaturedSection>
               decoration: BoxDecoration(
                 color: index == _currentIndex
                     ? Colors.white
-                    : Colors.white.withOpacity(0.4),
+                    : Colors.white.withValues(alpha: 0.4),
                 borderRadius: BorderRadius.circular(2),
               ),
             ),

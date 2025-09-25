@@ -44,7 +44,6 @@ class _SplashScreenState extends State<SplashScreen>
   late Animation<double> _taglineFadeAnimation;
   
   // Refined Background Effects
-  late Animation<double> _backgroundShiftAnimation;
   late Animation<double> _particleAnimation;
   late Animation<double> _progressAnimation;
 
@@ -142,14 +141,6 @@ class _SplashScreenState extends State<SplashScreen>
       curve: const Interval(0.75, 0.95, curve: Curves.easeOut),
     ));
 
-    // Refined Background Effects
-    _backgroundShiftAnimation = Tween<double>(
-      begin: 0.0,
-      end: 1.0,
-    ).animate(CurvedAnimation(
-      parent: _backgroundController,
-      curve: Curves.easeInOutSine,
-    ));
 
     _particleAnimation = Tween<double>(
       begin: 0.0,
@@ -207,62 +198,40 @@ class _SplashScreenState extends State<SplashScreen>
     final isLargeScreen = screenSize.width > 600;
     
     return Scaffold(
-      body: Container(
-        decoration: _buildCleanBackground(),
-        child: Stack(
-          children: [
-            // Subtle particle background
-            _buildCleanParticleBackground(screenSize),
-            
-            // Main professional content
-            SafeArea(
-              child: Column(
-                children: [
-                  // Main content area
-                  Expanded(
-                    child: Center(
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          // Professional Logo
-                          _buildProfessionalLogo(isLargeScreen),
-                          
-                          SizedBox(height: isLargeScreen ? 60 : 48),
-                          
-                          // Clean Typography
-                          _buildCleanTypography(isLargeScreen),
-                        ],
-                      ),
+      backgroundColor: Colors.transparent,
+      body: Stack(
+        children: [
+          // Subtle particle background
+          _buildCleanParticleBackground(screenSize),
+          
+          // Main professional content
+          SafeArea(
+            child: Column(
+              children: [
+                // Main content area
+                Expanded(
+                  child: Center(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        // Professional Logo
+                        _buildProfessionalLogo(isLargeScreen),
+                        
+                        SizedBox(height: isLargeScreen ? 60 : 48),
+                        
+                        // Clean Typography
+                        _buildCleanTypography(isLargeScreen),
+                      ],
                     ),
                   ),
-                  
-                  // Professional Loading Section
-                  _buildProfessionalLoadingSection(),
-                ],
-              ),
+                ),
+                
+                // Professional Loading Section
+                _buildProfessionalLoadingSection(),
+              ],
             ),
-          ],
-        ),
-      ),
-    );
-  }
-
-  /// Builds clean professional background
-  BoxDecoration _buildCleanBackground() {
-    return BoxDecoration(
-      gradient: LinearGradient(
-        begin: Alignment.topCenter,
-        end: Alignment.bottomCenter,
-        colors: [
-          const Color(0xFF000000),
-          Color.lerp(
-            const Color(0xFF1A1A1A),
-            const Color(0xFF0D1B2A),
-            _backgroundShiftAnimation.value * 0.3,
-          ) ?? const Color(0xFF1A1A1A),
-          const Color(0xFF000000),
+          ),
         ],
-        stops: const [0.0, 0.5, 1.0],
       ),
     );
   }

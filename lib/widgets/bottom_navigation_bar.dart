@@ -15,18 +15,18 @@ class CustomBottomNavigationBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        color: AppTheme.surfaceBackground.withValues(alpha: 0.95),
+        color: Colors.transparent,
         border: Border(
           top: BorderSide(
-            color: AppTheme.shottGold.withValues(alpha: 0.2),
+            color: AppTheme.shottGold.withValues(alpha: 0.3),
             width: 0.5,
           ),
         ),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withValues(alpha: 0.3),
-            blurRadius: 20,
-            offset: const Offset(0, -5),
+            color: Colors.black.withValues(alpha: 0.2),
+            blurRadius: 10,
+            offset: const Offset(0, -2),
           ),
         ],
       ),
@@ -81,11 +81,8 @@ class CustomBottomNavigationBar extends StatelessWidget {
         duration: const Duration(milliseconds: 200),
         curve: Curves.easeInOut,
         padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
-        decoration: BoxDecoration(
-          color: isSelected 
-              ? AppTheme.shottGold.withValues(alpha: 0.1)
-              : Colors.transparent,
-          borderRadius: BorderRadius.circular(12),
+        decoration: const BoxDecoration(
+          color: Colors.transparent,
         ),
         child: Column(
           mainAxisSize: MainAxisSize.min,
@@ -105,13 +102,9 @@ class CustomBottomNavigationBar extends StatelessWidget {
             AnimatedDefaultTextStyle(
               duration: const Duration(milliseconds: 200),
               curve: Curves.easeInOut,
-              style: TextStyle(
-                fontSize: isSelected ? 10 : 9,
-                fontWeight: isSelected ? FontWeight.w600 : FontWeight.w500,
-                color: isSelected 
-                    ? AppTheme.shottGold
-                    : AppTheme.tertiaryText,
-              ),
+              style: isSelected 
+                  ? AppTheme.navigationLabelSelected
+                  : AppTheme.navigationLabel,
               child: Text(label),
             ),
           ],

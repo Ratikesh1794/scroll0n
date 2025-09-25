@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 /// SHOTT App Theme - Inspired by premium OTT platforms like Netflix, Prime Video, Disney+
 /// 
@@ -49,6 +50,16 @@ class AppTheme {
     colors: [
       Color(0xFF000000), // Black
       Color(0xFF1A1A1A), // Dark grey
+    ],
+  );
+  
+  // New vertical gradient with theme color at top and black at bottom
+  static const LinearGradient verticalThemeGradient = LinearGradient(
+    begin: Alignment.topCenter,
+    end: Alignment.bottomCenter,
+    colors: [
+      Color(0xFF2D1B00), // Dark gold/brown at top
+      Color(0xFF000000), // Pure black at bottom
     ],
   );
   
@@ -148,84 +159,8 @@ class AppTheme {
         labelStyle: const TextStyle(color: secondaryText),
       ),
       
-      // Text Theme
-      textTheme: const TextTheme(
-        displayLarge: TextStyle(
-          color: primaryText,
-          fontSize: 32,
-          fontWeight: FontWeight.bold,
-        ),
-        displayMedium: TextStyle(
-          color: primaryText,
-          fontSize: 28,
-          fontWeight: FontWeight.bold,
-        ),
-        displaySmall: TextStyle(
-          color: primaryText,
-          fontSize: 24,
-          fontWeight: FontWeight.w600,
-        ),
-        headlineLarge: TextStyle(
-          color: primaryText,
-          fontSize: 22,
-          fontWeight: FontWeight.w600,
-        ),
-        headlineMedium: TextStyle(
-          color: primaryText,
-          fontSize: 20,
-          fontWeight: FontWeight.w500,
-        ),
-        headlineSmall: TextStyle(
-          color: primaryText,
-          fontSize: 18,
-          fontWeight: FontWeight.w500,
-        ),
-        titleLarge: TextStyle(
-          color: primaryText,
-          fontSize: 16,
-          fontWeight: FontWeight.w500,
-        ),
-        titleMedium: TextStyle(
-          color: secondaryText,
-          fontSize: 14,
-          fontWeight: FontWeight.w500,
-        ),
-        titleSmall: TextStyle(
-          color: tertiaryText,
-          fontSize: 12,
-          fontWeight: FontWeight.w500,
-        ),
-        bodyLarge: TextStyle(
-          color: primaryText,
-          fontSize: 16,
-          fontWeight: FontWeight.normal,
-        ),
-        bodyMedium: TextStyle(
-          color: secondaryText,
-          fontSize: 14,
-          fontWeight: FontWeight.normal,
-        ),
-        bodySmall: TextStyle(
-          color: tertiaryText,
-          fontSize: 12,
-          fontWeight: FontWeight.normal,
-        ),
-        labelLarge: TextStyle(
-          color: primaryText,
-          fontSize: 14,
-          fontWeight: FontWeight.w500,
-        ),
-        labelMedium: TextStyle(
-          color: secondaryText,
-          fontSize: 12,
-          fontWeight: FontWeight.w500,
-        ),
-        labelSmall: TextStyle(
-          color: tertiaryText,
-          fontSize: 10,
-          fontWeight: FontWeight.w500,
-        ),
-      ),
+      // Professional Typography System
+      textTheme: _buildTypographySystem(),
       
       // Icon Theme
       iconTheme: const IconThemeData(
@@ -254,6 +189,12 @@ class AppTheme {
   static BoxDecoration get backgroundGradientDecoration {
     return const BoxDecoration(
       gradient: backgroundGradient,
+    );
+  }
+  
+  static BoxDecoration get verticalThemeGradientDecoration {
+    return const BoxDecoration(
+      gradient: verticalThemeGradient,
     );
   }
   
@@ -317,4 +258,265 @@ class AppTheme {
     letterSpacing: 1.2,
     height: 1.4,
   );
+
+  // Professional Typography System
+  static TextTheme _buildTypographySystem() {
+    return TextTheme(
+      // Display Styles - For large headlines and hero text
+      displayLarge: GoogleFonts.inter(
+        fontSize: 48,
+        fontWeight: FontWeight.w900,
+        color: primaryText,
+        letterSpacing: -1.2,
+        height: 1.1,
+      ),
+      displayMedium: GoogleFonts.inter(
+        fontSize: 40,
+        fontWeight: FontWeight.w800,
+        color: primaryText,
+        letterSpacing: -0.8,
+        height: 1.15,
+      ),
+      displaySmall: GoogleFonts.inter(
+        fontSize: 32,
+        fontWeight: FontWeight.w700,
+        color: primaryText,
+        letterSpacing: -0.5,
+        height: 1.2,
+      ),
+
+      // Headline Styles - For section headers and important titles
+      headlineLarge: GoogleFonts.inter(
+        fontSize: 28,
+        fontWeight: FontWeight.w700,
+        color: primaryText,
+        letterSpacing: -0.3,
+        height: 1.25,
+      ),
+      headlineMedium: GoogleFonts.inter(
+        fontSize: 24,
+        fontWeight: FontWeight.w600,
+        color: primaryText,
+        letterSpacing: -0.2,
+        height: 1.3,
+      ),
+      headlineSmall: GoogleFonts.inter(
+        fontSize: 20,
+        fontWeight: FontWeight.w600,
+        color: primaryText,
+        letterSpacing: 0,
+        height: 1.35,
+      ),
+
+      // Title Styles - For card titles and UI labels
+      titleLarge: GoogleFonts.inter(
+        fontSize: 18,
+        fontWeight: FontWeight.w600,
+        color: primaryText,
+        letterSpacing: 0,
+        height: 1.4,
+      ),
+      titleMedium: GoogleFonts.inter(
+        fontSize: 16,
+        fontWeight: FontWeight.w500,
+        color: secondaryText,
+        letterSpacing: 0.1,
+        height: 1.4,
+      ),
+      titleSmall: GoogleFonts.inter(
+        fontSize: 14,
+        fontWeight: FontWeight.w500,
+        color: tertiaryText,
+        letterSpacing: 0.2,
+        height: 1.4,
+      ),
+
+      // Body Styles - For content and descriptions
+      bodyLarge: GoogleFonts.inter(
+        fontSize: 16,
+        fontWeight: FontWeight.w400,
+        color: primaryText,
+        letterSpacing: 0.1,
+        height: 1.5,
+      ),
+      bodyMedium: GoogleFonts.inter(
+        fontSize: 14,
+        fontWeight: FontWeight.w400,
+        color: secondaryText,
+        letterSpacing: 0.2,
+        height: 1.5,
+      ),
+      bodySmall: GoogleFonts.inter(
+        fontSize: 12,
+        fontWeight: FontWeight.w400,
+        color: tertiaryText,
+        letterSpacing: 0.3,
+        height: 1.5,
+      ),
+
+      // Label Styles - For buttons and small UI elements
+      labelLarge: GoogleFonts.inter(
+        fontSize: 14,
+        fontWeight: FontWeight.w600,
+        color: primaryText,
+        letterSpacing: 0.2,
+        height: 1.4,
+      ),
+      labelMedium: GoogleFonts.inter(
+        fontSize: 12,
+        fontWeight: FontWeight.w500,
+        color: secondaryText,
+        letterSpacing: 0.3,
+        height: 1.4,
+      ),
+      labelSmall: GoogleFonts.inter(
+        fontSize: 10,
+        fontWeight: FontWeight.w500,
+        color: tertiaryText,
+        letterSpacing: 0.4,
+        height: 1.4,
+      ),
+    );
+  }
+
+  // Custom Professional Text Styles for specific use cases
+  static TextStyle get brandDisplay {
+    return GoogleFonts.inter(
+      fontSize: 56,
+      fontWeight: FontWeight.w900,
+      color: primaryText,
+      letterSpacing: -1.5,
+      height: 1.0,
+    );
+  }
+
+  static TextStyle get brandSubtitle {
+    return GoogleFonts.inter(
+      fontSize: 18,
+      fontWeight: FontWeight.w300,
+      color: secondaryText,
+      letterSpacing: 1.0,
+      height: 1.3,
+    );
+  }
+
+  static TextStyle get heroTitle {
+    return GoogleFonts.inter(
+      fontSize: 42,
+      fontWeight: FontWeight.w800,
+      color: primaryText,
+      letterSpacing: -1.0,
+      height: 1.1,
+    );
+  }
+
+  static TextStyle get sectionHeader {
+    return GoogleFonts.inter(
+      fontSize: 24,
+      fontWeight: FontWeight.w700,
+      color: primaryText,
+      letterSpacing: -0.3,
+      height: 1.2,
+    );
+  }
+
+  static TextStyle get cardTitle {
+    return GoogleFonts.inter(
+      fontSize: 18,
+      fontWeight: FontWeight.w600,
+      color: primaryText,
+      letterSpacing: 0,
+      height: 1.3,
+    );
+  }
+
+  static TextStyle get cardSubtitle {
+    return GoogleFonts.inter(
+      fontSize: 14,
+      fontWeight: FontWeight.w400,
+      color: secondaryText,
+      letterSpacing: 0.2,
+      height: 1.4,
+    );
+  }
+
+  static TextStyle get buttonText {
+    return GoogleFonts.inter(
+      fontSize: 16,
+      fontWeight: FontWeight.w600,
+      color: primaryBackground,
+      letterSpacing: 0.3,
+      height: 1.2,
+    );
+  }
+
+  static TextStyle get buttonTextSecondary {
+    return GoogleFonts.inter(
+      fontSize: 16,
+      fontWeight: FontWeight.w500,
+      color: shottGold,
+      letterSpacing: 0.3,
+      height: 1.2,
+    );
+  }
+
+  static TextStyle get navigationLabel {
+    return GoogleFonts.inter(
+      fontSize: 10,
+      fontWeight: FontWeight.w500,
+      color: tertiaryText,
+      letterSpacing: 0.4,
+      height: 1.2,
+    );
+  }
+
+  static TextStyle get navigationLabelSelected {
+    return GoogleFonts.inter(
+      fontSize: 10,
+      fontWeight: FontWeight.w600,
+      color: shottGold,
+      letterSpacing: 0.4,
+      height: 1.2,
+    );
+  }
+
+  static TextStyle get metadataText {
+    return GoogleFonts.inter(
+      fontSize: 12,
+      fontWeight: FontWeight.w400,
+      color: tertiaryText,
+      letterSpacing: 0.3,
+      height: 1.3,
+    );
+  }
+
+  static TextStyle get badgeText {
+    return GoogleFonts.inter(
+      fontSize: 10,
+      fontWeight: FontWeight.w700,
+      color: primaryText,
+      letterSpacing: 1.2,
+      height: 1.0,
+    );
+  }
+
+  static TextStyle get descriptionText {
+    return GoogleFonts.inter(
+      fontSize: 14,
+      fontWeight: FontWeight.w400,
+      color: secondaryText,
+      letterSpacing: 0.1,
+      height: 1.5,
+    );
+  }
+
+  static TextStyle get premiumText {
+    return GoogleFonts.inter(
+      fontSize: 16,
+      fontWeight: FontWeight.w500,
+      color: shottGold,
+      letterSpacing: 0.5,
+      height: 1.3,
+    );
+  }
 }

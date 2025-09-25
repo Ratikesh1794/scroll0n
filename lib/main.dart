@@ -50,13 +50,14 @@ class _AppNavigatorState extends State<AppNavigator> {
 
   @override
   Widget build(BuildContext context) {
-    if (_showSplash) {
-      return SplashScreen(
-        onComplete: _onSplashComplete,
-      );
-    }
-    
-    return const HomeScreen();
+    return Container(
+      decoration: AppTheme.verticalThemeGradientDecoration,
+      child: _showSplash
+          ? SplashScreen(
+              onComplete: _onSplashComplete,
+            )
+          : const HomeScreen(),
+    );
   }
 }
 

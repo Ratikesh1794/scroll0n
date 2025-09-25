@@ -30,22 +30,18 @@ class CategorySection extends StatelessWidget {
             children: [
               Text(
                 category.name,
-                style: const TextStyle(
-                  color: AppTheme.primaryText,
+                style: AppTheme.sectionHeader.copyWith(
                   fontSize: 20,
-                  fontWeight: FontWeight.bold,
                 ),
               ),
               TextButton(
                 onPressed: () {
                   // TODO: Navigate to category page with all items
                 },
-                child: const Text(
+                child: Text(
                   'See All',
-                  style: TextStyle(
-                    color: AppTheme.shottGold,
+                  style: AppTheme.premiumText.copyWith(
                     fontSize: 14,
-                    fontWeight: FontWeight.w500,
                   ),
                 ),
               ),

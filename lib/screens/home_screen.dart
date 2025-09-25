@@ -6,6 +6,7 @@ import '../theme/app_theme.dart';
 import '../widgets/category_section.dart';
 import '../widgets/featured_section.dart';
 import '../widgets/bottom_navigation_bar.dart';
+import 'reel_overview_screen.dart';
 
 /// SHOTT Home Screen - Main content area after splash
 /// 
@@ -52,8 +53,46 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   void _onReelTap(String reelId) {
-    // TODO: Navigate to reel player
-    debugPrint('Tapped reel: $reelId');
+    // Find the reel by ID from all categories and featured reels
+    Reel? selectedReel = _findReelById(reelId);
+    
+    if (selectedReel != null) {
+      Navigator.of(context).push(
+        MaterialPageRoute(
+          builder: (context) => ReelOverviewScreen(reel: selectedReel),
+        ),
+      );
+    } else {
+      debugPrint('Reel not found: $reelId');
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text('Reel not found'),
+          backgroundColor: AppTheme.errorColor,
+        ),
+      );
+    }
+  }
+
+  Reel? _findReelById(String reelId) {
+    // Check featured reels first
+    for (final reel in _featuredReels) {
+      if (reel.id == reelId) {
+        return reel;
+      }
+    }
+    
+    // Check all categories
+    if (_reelData != null) {
+      for (final category in _reelData!.categories) {
+        for (final reel in category.items) {
+          if (reel.id == reelId) {
+            return reel;
+          }
+        }
+      }
+    }
+    
+    return null;
   }
 
   void _onNavTap(int index) {
@@ -80,22 +119,20 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-        decoration: AppTheme.backgroundGradientDecoration,
-        child: Column(
-          children: [
-            // App Bar
-            SafeArea(
-              bottom: false,
-              child: _buildAppBar(),
-            ),
-            
-            // Main content
-            Expanded(
-              child: _buildContent(),
-            ),
-          ],
-        ),
+      backgroundColor: Colors.transparent,
+      body: Column(
+        children: [
+          // App Bar
+          SafeArea(
+            bottom: false,
+            child: _buildAppBar(),
+          ),
+          
+          // Main content
+          Expanded(
+            child: _buildContent(),
+          ),
+        ],
       ),
       bottomNavigationBar: CustomBottomNavigationBar(
         currentIndex: _currentNavIndex,
@@ -108,10 +145,10 @@ class _HomeScreenState extends State<HomeScreen> {
     return Container(
       padding: const EdgeInsets.fromLTRB(24, 16, 24, 16),
       decoration: BoxDecoration(
-        color: AppTheme.primaryBackground.withValues(alpha: 0.98),
+        color: Colors.transparent,
         border: Border(
           bottom: BorderSide(
-            color: AppTheme.shottGold.withValues(alpha: 0.08),
+            color: AppTheme.shottGold.withValues(alpha: 0.2),
             width: 0.5,
           ),
         ),
@@ -137,10 +174,10 @@ class _HomeScreenState extends State<HomeScreen> {
           width: 40,
           height: 40,
           decoration: BoxDecoration(
-            color: AppTheme.shottGold.withValues(alpha: 0.1),
+            color: Colors.transparent,
             borderRadius: BorderRadius.circular(10),
             border: Border.all(
-              color: AppTheme.shottGold.withValues(alpha: 0.3),
+              color: AppTheme.shottGold.withValues(alpha: 0.4),
               width: 1.5,
             ),
           ),
@@ -159,14 +196,11 @@ class _HomeScreenState extends State<HomeScreen> {
             // Main brand name with subtle accent
             Row(
               children: [
-                const Text(
+                Text(
                   'SH',
-                  style: TextStyle(
+                  style: AppTheme.brandDisplay.copyWith(
                     fontSize: 24,
                     fontWeight: FontWeight.w800,
-                    color: AppTheme.primaryText,
-                    letterSpacing: 1.0,
-                    height: 1.0,
                   ),
                 ),
                 Container(
@@ -178,14 +212,11 @@ class _HomeScreenState extends State<HomeScreen> {
                     shape: BoxShape.circle,
                   ),
                 ),
-                const Text(
+                Text(
                   'TT',
-                  style: TextStyle(
+                  style: AppTheme.brandDisplay.copyWith(
                     fontSize: 24,
                     fontWeight: FontWeight.w800,
-                    color: AppTheme.primaryText,
-                    letterSpacing: 1.0,
-                    height: 1.0,
                   ),
                 ),
               ],
@@ -194,16 +225,18 @@ class _HomeScreenState extends State<HomeScreen> {
             Container(
               padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
               decoration: BoxDecoration(
-                color: AppTheme.shottGold.withValues(alpha: 0.15),
+                color: Colors.transparent,
                 borderRadius: BorderRadius.circular(8),
+                border: Border.all(
+                  color: AppTheme.shottGold.withValues(alpha: 0.3),
+                  width: 0.5,
+                ),
               ),
               child: Text(
                 'STREAM',
-                style: TextStyle(
+                style: AppTheme.badgeText.copyWith(
                   fontSize: 9,
-                  fontWeight: FontWeight.w600,
                   color: AppTheme.shottGold,
-                  letterSpacing: 1.5,
                 ),
               ),
             ),
@@ -285,11 +318,11 @@ class _HomeScreenState extends State<HomeScreen> {
         width: 40,
         height: 40,
         decoration: BoxDecoration(
-          color: AppTheme.surfaceBackground.withValues(alpha: 0.4),
+          color: Colors.transparent,
           borderRadius: BorderRadius.circular(20),
           border: Border.all(
-            color: AppTheme.shottGold.withValues(alpha: 0.2),
-            width: 0.8,
+            color: AppTheme.shottGold.withValues(alpha: 0.3),
+            width: 1.0,
           ),
         ),
         child: Icon(
@@ -303,19 +336,18 @@ class _HomeScreenState extends State<HomeScreen> {
 
   Widget _buildContent() {
     if (_isLoading) {
-      return const Center(
+      return Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            CircularProgressIndicator(
+            const CircularProgressIndicator(
               color: AppTheme.shottGold,
             ),
-            SizedBox(height: 16),
+            const SizedBox(height: 16),
             Text(
               'Loading amazing content...',
-              style: TextStyle(
+              style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                 color: AppTheme.secondaryText,
-                fontSize: 16,
               ),
             ),
           ],
@@ -336,9 +368,8 @@ class _HomeScreenState extends State<HomeScreen> {
             const SizedBox(height: 16),
             Text(
               _error!,
-              style: const TextStyle(
+              style: Theme.of(context).textTheme.bodyLarge?.copyWith(
                 color: AppTheme.primaryText,
-                fontSize: 16,
               ),
               textAlign: TextAlign.center,
             ),
@@ -359,30 +390,27 @@ class _HomeScreenState extends State<HomeScreen> {
     }
 
     if (_reelData == null || _reelData!.categories.isEmpty) {
-      return const Center(
+      return Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Icon(
+            const Icon(
               Icons.movie_outlined,
               color: AppTheme.tertiaryText,
               size: 48,
             ),
-            SizedBox(height: 16),
+            const SizedBox(height: 16),
             Text(
               'No content available',
-              style: TextStyle(
+              style: Theme.of(context).textTheme.titleLarge?.copyWith(
                 color: AppTheme.primaryText,
-                fontSize: 18,
-                fontWeight: FontWeight.w600,
               ),
             ),
-            SizedBox(height: 8),
+            const SizedBox(height: 8),
             Text(
               'Check back later for new content',
-              style: TextStyle(
+              style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                 color: AppTheme.secondaryText,
-                fontSize: 14,
               ),
             ),
           ],
