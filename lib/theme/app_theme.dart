@@ -7,25 +7,31 @@ import 'package:google_fonts/google_fonts.dart';
 /// and vibrant accent colors for better video content visibility
 class AppTheme {
   // Primary Brand Colors
-  static const Color shottGold = Color(0xFFFFD700); // Golden accent like Prime Video
-  static const Color shottOrange = Color(0xFFFF6B35); // Vibrant orange for CTAs
+  static const Color primary = Color(0xFF033E4C); // Menu bar background color from Figma
+  static const Color background = Color(0xFF171717); // Main background color
+  static const Color accent = Color(0xFF33B5E5); // Accent blue
   
-  // Background Colors (Netflix-inspired dark theme)
-  static const Color primaryBackground = Color(0xFF000000); // Pure black like Netflix
-  static const Color secondaryBackground = Color(0xFF1A1A1A); // Dark grey for cards
-  static const Color surfaceBackground = Color(0xFF2D2D2D); // Lighter surface color
-  static const Color cardBackground = Color(0xFF333333); // Card backgrounds
+  // Legacy color names mapped to new scheme (for backward compatibility)
+  static const Color shottGold = accent; // Mapped to accent blue
+  static const Color shottOrange = Color(0xFF1A2C32); // Mapped to dark teal
+  static const Color accentRed = Color(0xFF33B5E5); // Mapped to accent blue
+  
+  // Background Colors
+  static const Color primaryBackground = Color(0xFF000000); // Pure black
+  static const Color secondaryBackground = Color(0xFF1A2C32); // Dark teal
+  static const Color surfaceBackground = Color(0xFF2D2D2D); // Surface color
+  static const Color cardBackground = Colors.white; // Card backgrounds
   
   // Text Colors
-  static const Color primaryText = Color(0xFFFFFFFF); // Pure white
-  static const Color secondaryText = Color(0xFFE5E5E5); // Light grey
+  static const Color primaryText = Color(0xFFEDEDED); // Main text color
+  static const Color secondaryText = Color(0xBFEDEDED); // 75% opacity text
   static const Color tertiaryText = Color(0xFFB3B3B3); // Medium grey
   static const Color disabledText = Color(0xFF737373); // Disabled grey
   
   // Accent Colors
-  static const Color accentRed = Color(0xFFE50914); // Netflix red
-  static const Color accentBlue = Color(0xFF00A8E1); // Prime blue
-  static const Color accentPurple = Color(0xFF8A2BE2); // Premium purple
+  static const Color accentLight = Color(0xFF33B5E5); // Light blue
+  static const Color accentDark = Color(0xFF1A2C32); // Dark teal
+  static const Color accentMuted = Color(0xFF4A5C62); // Muted teal
   static const Color accentGreen = Color(0xFF46D369); // Success green
   
   // System Colors
@@ -39,8 +45,8 @@ class AppTheme {
     begin: Alignment.topLeft,
     end: Alignment.bottomRight,
     colors: [
-      Color(0xFFFFD700), // Gold
-      Color(0xFFFF6B35), // Orange
+      Color(0xFF33B5E5), // Light blue
+      Color(0xFF1A2C32), // Dark teal
     ],
   );
   
@@ -49,7 +55,7 @@ class AppTheme {
     end: Alignment.bottomCenter,
     colors: [
       Color(0xFF000000), // Black
-      Color(0xFF1A1A1A), // Dark grey
+      Color(0xFF1A2C32), // Dark teal
     ],
   );
   
@@ -58,8 +64,8 @@ class AppTheme {
     begin: Alignment.topCenter,
     end: Alignment.bottomCenter,
     colors: [
-      Color(0xFF2D1B00), // Dark gold/brown at top
-      Color(0xFF000000), // Pure black at bottom
+      Color(0xFF000000), // Pure black
+      Color(0xFF1A2C32), // Dark teal
     ],
   );
   
@@ -68,7 +74,7 @@ class AppTheme {
     end: Alignment.bottomRight,
     colors: [
       Color(0xFF2D2D2D),
-      Color(0xFF1A1A1A),
+      Color(0xFF1A2C32),
     ],
   );
 
@@ -80,8 +86,8 @@ class AppTheme {
       
       // Color Scheme
       colorScheme: const ColorScheme.dark(
-        primary: shottGold,
-        secondary: shottOrange,
+        primary: accent,
+        secondary: accentMuted,
         surface: secondaryBackground,
         error: errorColor,
         onPrimary: primaryBackground,
@@ -118,7 +124,7 @@ class AppTheme {
       // Elevated Button Theme
       elevatedButtonTheme: ElevatedButtonThemeData(
         style: ElevatedButton.styleFrom(
-          backgroundColor: shottGold,
+          backgroundColor: accent,
           foregroundColor: primaryBackground,
           elevation: 4,
           padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 16),
@@ -135,7 +141,7 @@ class AppTheme {
       // Text Button Theme
       textButtonTheme: TextButtonThemeData(
         style: TextButton.styleFrom(
-          foregroundColor: shottGold,
+          foregroundColor: accent,
           textStyle: const TextStyle(
             fontSize: 16,
             fontWeight: FontWeight.w500,
@@ -153,7 +159,7 @@ class AppTheme {
         ),
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(12),
-          borderSide: const BorderSide(color: shottGold, width: 2),
+          borderSide: const BorderSide(color: accent, width: 2),
         ),
         hintStyle: const TextStyle(color: tertiaryText),
         labelStyle: const TextStyle(color: secondaryText),
@@ -170,11 +176,13 @@ class AppTheme {
       
       // Bottom Navigation Bar Theme
       bottomNavigationBarTheme: const BottomNavigationBarThemeData(
-        backgroundColor: secondaryBackground,
-        selectedItemColor: shottGold,
-        unselectedItemColor: tertiaryText,
+        backgroundColor: primary,
+        selectedItemColor: primaryText,
+        unselectedItemColor: primaryText,
         type: BottomNavigationBarType.fixed,
-        elevation: 8,
+        elevation: 0, // We'll handle shadow with decoration
+        showSelectedLabels: false,
+        showUnselectedLabels: false,
       ),
     );
   }
@@ -204,202 +212,15 @@ class AppTheme {
       borderRadius: BorderRadius.circular(borderRadius),
       boxShadow: [
         BoxShadow(
-          color: Colors.black.withValues(alpha: 0.3),
+          color: Colors.black.withValues(alpha: 77),
           blurRadius: 8,
           offset: const Offset(0, 4),
         ),
       ],
     );
   }
-  
+
   // Custom Text Styles for specific use cases
-  static const TextStyle splashTitle = TextStyle(
-    fontSize: 48,
-    fontWeight: FontWeight.bold,
-    color: primaryText,
-    letterSpacing: 2.0,
-  );
-  
-  static const TextStyle splashSubtitle = TextStyle(
-    fontSize: 18,
-    fontWeight: FontWeight.w300,
-    color: secondaryText,
-    letterSpacing: 1.2,
-  );
-  
-  static const TextStyle brandText = TextStyle(
-    fontSize: 24,
-    fontWeight: FontWeight.bold,
-    color: shottGold,
-    letterSpacing: 1.5,
-  );
-
-  // Enhanced splash screen text styles
-  static const TextStyle cinematicTitle = TextStyle(
-    fontSize: 56,
-    fontWeight: FontWeight.w900,
-    color: primaryText,
-    letterSpacing: 3.0,
-    height: 1.1,
-  );
-  
-  static const TextStyle premiumSubtitle = TextStyle(
-    fontSize: 20,
-    fontWeight: FontWeight.w400,
-    color: secondaryText,
-    letterSpacing: 1.5,
-    height: 1.3,
-  );
-  
-  static const TextStyle elegantTagline = TextStyle(
-    fontSize: 14,
-    fontWeight: FontWeight.w300,
-    color: shottGold,
-    letterSpacing: 1.2,
-    height: 1.4,
-  );
-
-  // Professional Typography System
-  static TextTheme _buildTypographySystem() {
-    return TextTheme(
-      // Display Styles - For large headlines and hero text
-      displayLarge: GoogleFonts.inter(
-        fontSize: 48,
-        fontWeight: FontWeight.w900,
-        color: primaryText,
-        letterSpacing: -1.2,
-        height: 1.1,
-      ),
-      displayMedium: GoogleFonts.inter(
-        fontSize: 40,
-        fontWeight: FontWeight.w800,
-        color: primaryText,
-        letterSpacing: -0.8,
-        height: 1.15,
-      ),
-      displaySmall: GoogleFonts.inter(
-        fontSize: 32,
-        fontWeight: FontWeight.w700,
-        color: primaryText,
-        letterSpacing: -0.5,
-        height: 1.2,
-      ),
-
-      // Headline Styles - For section headers and important titles
-      headlineLarge: GoogleFonts.inter(
-        fontSize: 28,
-        fontWeight: FontWeight.w700,
-        color: primaryText,
-        letterSpacing: -0.3,
-        height: 1.25,
-      ),
-      headlineMedium: GoogleFonts.inter(
-        fontSize: 24,
-        fontWeight: FontWeight.w600,
-        color: primaryText,
-        letterSpacing: -0.2,
-        height: 1.3,
-      ),
-      headlineSmall: GoogleFonts.inter(
-        fontSize: 20,
-        fontWeight: FontWeight.w600,
-        color: primaryText,
-        letterSpacing: 0,
-        height: 1.35,
-      ),
-
-      // Title Styles - For card titles and UI labels
-      titleLarge: GoogleFonts.inter(
-        fontSize: 18,
-        fontWeight: FontWeight.w600,
-        color: primaryText,
-        letterSpacing: 0,
-        height: 1.4,
-      ),
-      titleMedium: GoogleFonts.inter(
-        fontSize: 16,
-        fontWeight: FontWeight.w500,
-        color: secondaryText,
-        letterSpacing: 0.1,
-        height: 1.4,
-      ),
-      titleSmall: GoogleFonts.inter(
-        fontSize: 14,
-        fontWeight: FontWeight.w500,
-        color: tertiaryText,
-        letterSpacing: 0.2,
-        height: 1.4,
-      ),
-
-      // Body Styles - For content and descriptions
-      bodyLarge: GoogleFonts.inter(
-        fontSize: 16,
-        fontWeight: FontWeight.w400,
-        color: primaryText,
-        letterSpacing: 0.1,
-        height: 1.5,
-      ),
-      bodyMedium: GoogleFonts.inter(
-        fontSize: 14,
-        fontWeight: FontWeight.w400,
-        color: secondaryText,
-        letterSpacing: 0.2,
-        height: 1.5,
-      ),
-      bodySmall: GoogleFonts.inter(
-        fontSize: 12,
-        fontWeight: FontWeight.w400,
-        color: tertiaryText,
-        letterSpacing: 0.3,
-        height: 1.5,
-      ),
-
-      // Label Styles - For buttons and small UI elements
-      labelLarge: GoogleFonts.inter(
-        fontSize: 14,
-        fontWeight: FontWeight.w600,
-        color: primaryText,
-        letterSpacing: 0.2,
-        height: 1.4,
-      ),
-      labelMedium: GoogleFonts.inter(
-        fontSize: 12,
-        fontWeight: FontWeight.w500,
-        color: secondaryText,
-        letterSpacing: 0.3,
-        height: 1.4,
-      ),
-      labelSmall: GoogleFonts.inter(
-        fontSize: 10,
-        fontWeight: FontWeight.w500,
-        color: tertiaryText,
-        letterSpacing: 0.4,
-        height: 1.4,
-      ),
-    );
-  }
-
-  // Custom Professional Text Styles for specific use cases
-  static TextStyle get brandDisplay {
-    return GoogleFonts.inter(
-      fontSize: 56,
-      fontWeight: FontWeight.w900,
-      color: primaryText,
-      letterSpacing: -1.5,
-      height: 1.0,
-    );
-  }
-
-  static TextStyle get brandSubtitle {
-    return GoogleFonts.inter(
-      fontSize: 18,
-      fontWeight: FontWeight.w300,
-      color: secondaryText,
-      letterSpacing: 1.0,
-      height: 1.3,
-    );
-  }
-
   static TextStyle get heroTitle {
     return GoogleFonts.inter(
       fontSize: 42,
@@ -454,7 +275,7 @@ class AppTheme {
     return GoogleFonts.inter(
       fontSize: 16,
       fontWeight: FontWeight.w500,
-      color: shottGold,
+      color: accent,
       letterSpacing: 0.3,
       height: 1.2,
     );
@@ -474,7 +295,7 @@ class AppTheme {
     return GoogleFonts.inter(
       fontSize: 10,
       fontWeight: FontWeight.w600,
-      color: shottGold,
+      color: accent,
       letterSpacing: 0.4,
       height: 1.2,
     );
@@ -514,9 +335,128 @@ class AppTheme {
     return GoogleFonts.inter(
       fontSize: 16,
       fontWeight: FontWeight.w500,
-      color: shottGold,
+      color: accent,
       letterSpacing: 0.5,
       height: 1.3,
+    );
+  }
+  
+  // Professional Typography System
+  static TextTheme _buildTypographySystem() {
+    return TextTheme(
+      // Section Headers (Most Popular, Recent Release, Coming Soon)
+      headlineMedium: GoogleFonts.oswald(
+        fontSize: 24,
+        fontWeight: FontWeight.w700,
+        color: primaryText,
+        letterSpacing: -0.333333,
+      ),
+      // Movie titles in cards
+      titleLarge: GoogleFonts.oswald(
+        fontSize: 24,
+        fontWeight: FontWeight.w700,
+        color: primaryText,
+        letterSpacing: -0.333333,
+        shadows: [
+          Shadow(
+            offset: const Offset(0, 4),
+            blurRadius: 4,
+            color: Colors.black.withValues(alpha: 128),
+          ),
+        ],
+      ),
+      // Good Morning text
+      bodySmall: GoogleFonts.poppins(
+        fontSize: 12,
+        fontWeight: FontWeight.w400,
+        color: secondaryText,
+        letterSpacing: -0.333333,
+      ),
+      // Username text
+      titleMedium: GoogleFonts.poppins(
+        fontSize: 16,
+        fontWeight: FontWeight.w700,
+        color: accent,
+        letterSpacing: -0.333333,
+      ),
+      // Movie details, See more
+      labelMedium: GoogleFonts.poppins(
+        fontSize: 12,
+        fontWeight: FontWeight.w500,
+        color: primaryText,
+        letterSpacing: -0.333333,
+      ),
+      // Other styles inherited from base theme
+      displayLarge: GoogleFonts.inter(
+        fontSize: 48,
+        fontWeight: FontWeight.w900,
+        color: primaryText,
+        letterSpacing: -1.2,
+        height: 1.1,
+      ),
+      displayMedium: GoogleFonts.inter(
+        fontSize: 40,
+        fontWeight: FontWeight.w800,
+        color: primaryText,
+        letterSpacing: -0.8,
+        height: 1.15,
+      ),
+      displaySmall: GoogleFonts.inter(
+        fontSize: 32,
+        fontWeight: FontWeight.w700,
+        color: primaryText,
+        letterSpacing: -0.5,
+        height: 1.2,
+      ),
+      headlineLarge: GoogleFonts.inter(
+        fontSize: 28,
+        fontWeight: FontWeight.w700,
+        color: primaryText,
+        letterSpacing: -0.3,
+        height: 1.25,
+      ),
+      headlineSmall: GoogleFonts.inter(
+        fontSize: 20,
+        fontWeight: FontWeight.w600,
+        color: primaryText,
+        letterSpacing: 0,
+        height: 1.35,
+      ),
+      titleSmall: GoogleFonts.inter(
+        fontSize: 14,
+        fontWeight: FontWeight.w500,
+        color: tertiaryText,
+        letterSpacing: 0.2,
+        height: 1.4,
+      ),
+      bodyLarge: GoogleFonts.inter(
+        fontSize: 16,
+        fontWeight: FontWeight.w400,
+        color: primaryText,
+        letterSpacing: 0.1,
+        height: 1.5,
+      ),
+      bodyMedium: GoogleFonts.inter(
+        fontSize: 14,
+        fontWeight: FontWeight.w400,
+        color: secondaryText,
+        letterSpacing: 0.2,
+        height: 1.5,
+      ),
+      labelLarge: GoogleFonts.inter(
+        fontSize: 14,
+        fontWeight: FontWeight.w600,
+        color: primaryText,
+        letterSpacing: 0.2,
+        height: 1.4,
+      ),
+      labelSmall: GoogleFonts.inter(
+        fontSize: 10,
+        fontWeight: FontWeight.w500,
+        color: tertiaryText,
+        letterSpacing: 0.4,
+        height: 1.4,
+      ),
     );
   }
 }

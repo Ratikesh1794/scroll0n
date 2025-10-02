@@ -1,8 +1,49 @@
 import 'package:flutter/material.dart';
 import 'package:video_player/video_player.dart';
+import 'package:google_fonts/google_fonts.dart';
 import '../models/reel.dart';
 import '../theme/app_theme.dart';
 import 'video_player_screen.dart';
+import 'home_screen.dart';
+
+// Custom theme constants based on Figma design
+class ReelOverviewTheme {
+  static const backgroundColor = Color(0xFF171717);
+  static const primaryText = Color(0xFFEDEDED);
+  static const secondaryText = Color(0x80EDEDED);
+  static const accentColor = Color(0xFF033E4C);
+  static const goldColor = Color(0xFFFFFF00);
+  
+  static final titleStyle = GoogleFonts.oswald(
+    fontSize: 24,
+    fontWeight: FontWeight.w700,
+    color: primaryText,
+  );
+  
+  static final chapterTitleStyle = GoogleFonts.poppins(
+    fontSize: 16,
+    fontWeight: FontWeight.w700,
+    color: accentColor,
+  );
+  
+  static final chapterNumberStyle = GoogleFonts.poppins(
+    fontSize: 12,
+    fontWeight: FontWeight.w500,
+    color: primaryText,
+  );
+  
+  static final synopsisStyle = GoogleFonts.poppins(
+    fontSize: 11,
+    fontWeight: FontWeight.w500,
+    color: secondaryText,
+  );
+  
+  static final metadataStyle = GoogleFonts.poppins(
+    fontSize: 12,
+    fontWeight: FontWeight.w500,
+    color: primaryText,
+  );
+}
 
 /// Professional Reel Overview Screen
 /// 
@@ -23,72 +64,34 @@ class ReelOverviewScreen extends StatefulWidget {
   State<ReelOverviewScreen> createState() => _ReelOverviewScreenState();
 }
 
-class _ReelOverviewScreenState extends State<ReelOverviewScreen>
-    with TickerProviderStateMixin {
-  late AnimationController _fadeController;
-  late AnimationController _slideController;
-  late Animation<double> _fadeAnimation;
-  late Animation<Offset> _slideAnimation;
+class _ReelOverviewScreenState extends State<ReelOverviewScreen> {
   bool _isFavorited = false;
   VideoPlayerController? _videoController;
-  bool _isPlaying = false;
+  bool _isDescriptionExpanded = false;
 
   @override
   void initState() {
     super.initState();
-    _initializeAnimations();
-    _startAnimations();
-  }
-
-  void _initializeAnimations() {
-    _fadeController = AnimationController(
-      duration: const Duration(milliseconds: 800),
-      vsync: this,
-    );
-    
-    _slideController = AnimationController(
-      duration: const Duration(milliseconds: 600),
-      vsync: this,
-    );
-
-    _fadeAnimation = Tween<double>(
-      begin: 0.0,
-      end: 1.0,
-    ).animate(CurvedAnimation(
-      parent: _fadeController,
-      curve: Curves.easeOut,
-    ));
-
-    _slideAnimation = Tween<Offset>(
-      begin: const Offset(0.0, 0.3),
-      end: Offset.zero,
-    ).animate(CurvedAnimation(
-      parent: _slideController,
-      curve: Curves.easeOutBack,
-    ));
-  }
-
-  void _startAnimations() {
-    _fadeController.forward();
-    Future.delayed(const Duration(milliseconds: 200), () {
-      _slideController.forward();
-    });
   }
 
   @override
   void dispose() {
-    _fadeController.dispose();
-    _slideController.dispose();
     _videoController?.dispose();
     super.dispose();
   }
 
-  Future<void> _playVideo() async {
+  Future<void> _playVideo({Episode? episode}) async {
     try {
-      // Navigate to the professional video player screen
+      // If episode is provided, play that specific episode
+      // Otherwise, play the first episode
+      final targetEpisode = episode ?? widget.reel.episodes.first;
+      
       Navigator.of(context).push(
         MaterialPageRoute(
-          builder: (context) => VideoPlayerScreen(reel: widget.reel),
+          builder: (context) => VideoPlayerScreen(
+            reel: widget.reel,
+            episode: targetEpisode,
+          ),
         ),
       );
     } catch (e) {
@@ -142,16 +145,19 @@ class _ReelOverviewScreenState extends State<ReelOverviewScreen>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: ReelOverviewTheme.backgroundColor,
       extendBodyBehindAppBar: true,
-      appBar: _buildAppBar(),
-      body: Container(
-        decoration: AppTheme.verticalThemeGradientDecoration,
-        child: FadeTransition(
-          opacity: _fadeAnimation,
-          child: CustomScrollView(
-            slivers: [
+      body: SingleChildScrollView(
+        child: SizedBox(
+          width: double.infinity,
+          height: MediaQuery.of(context).size.height,
+          child: Stack(
+            children: [
               _buildHeroSection(),
-              _buildContentSection(),
+              _buildSynopsisCard(),
+              _buildChaptersSection(),
+              _buildTopNavigation(),
+              _buildBottomNavigationBar(),
             ],
           ),
         ),
@@ -159,117 +165,341 @@ class _ReelOverviewScreenState extends State<ReelOverviewScreen>
     );
   }
 
-  PreferredSizeWidget _buildAppBar() {
-    return AppBar(
-      backgroundColor: Colors.transparent,
-      elevation: 0,
-      leading: Container(
-        margin: const EdgeInsets.all(8),
-        decoration: BoxDecoration(
-          color: Colors.transparent,
-          borderRadius: BorderRadius.circular(20),
-          border: Border.all(
-            color: AppTheme.shottGold.withValues(alpha: 0.4),
-            width: 1,
+  Widget _buildTopNavigation() {
+    return Positioned(
+      top: 56,
+      left: 16,
+      right: 16,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          GestureDetector(
+            onTap: () => Navigator.of(context).pop(),
+            child: SizedBox(
+              width: 24,
+              height: 24,
+              child: Icon(
+                Icons.arrow_back_ios_new_rounded,
+                color: ReelOverviewTheme.primaryText,
+                size: 20,
+              ),
+            ),
           ),
-        ),
-        child: IconButton(
-          icon: const Icon(
-            Icons.arrow_back_ios_new_rounded,
-            color: AppTheme.primaryText,
-            size: 20,
+          Row(
+            children: [
+              GestureDetector(
+                onTap: _toggleFavorite,
+                child: SizedBox(
+                  width: 24,
+                  height: 24,
+                  child: Icon(
+                    _isFavorited ? Icons.favorite : Icons.favorite_border,
+                    color: _isFavorited ? Colors.red : ReelOverviewTheme.primaryText,
+                    size: 20,
+                  ),
+                ),
+              ),
+              const SizedBox(width: 16),
+              GestureDetector(
+                onTap: _shareReel,
+                child: SizedBox(
+                  width: 24,
+                  height: 24,
+                  child: Icon(
+                    Icons.share,
+                    color: ReelOverviewTheme.primaryText,
+                    size: 20,
+                  ),
+                ),
+              ),
+            ],
           ),
-          onPressed: () => Navigator.of(context).pop(),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildHeroSection() {
+    return Positioned(
+      left: 0,
+      top: 0,
+      right: 0,
+      child: SizedBox(
+        height: 307,
+        child: Image.network(
+          widget.reel.thumbnail,
+          fit: BoxFit.cover,
         ),
       ),
-      actions: [
-        Container(
-          margin: const EdgeInsets.all(8),
-          decoration: BoxDecoration(
-            color: Colors.transparent,
-            borderRadius: BorderRadius.circular(20),
-            border: Border.all(
-              color: AppTheme.shottGold.withValues(alpha: 0.4),
-              width: 1,
+    );
+  }
+
+
+
+
+
+
+  Widget _buildSynopsisCard() {
+    return Positioned(
+      top: 262,
+      left: 16,
+      right: 16,
+      child: Column(
+        children: [
+          Container(
+            padding: const EdgeInsets.all(16),
+            decoration: BoxDecoration(
+              color: ReelOverviewTheme.backgroundColor,
+              borderRadius: BorderRadius.circular(24),
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.black.withValues(alpha: 0.5),
+                  blurRadius: 4,
+                  offset: const Offset(0, 4),
+                ),
+              ],
+            ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                // Title and ratings row
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Expanded(
+                      child: Text(
+                        widget.reel.name,
+                        style: GoogleFonts.oswald(
+                          fontSize: 24,
+                          fontWeight: FontWeight.w700,
+                          color: Colors.white,
+                        ),
+                      ),
+                    ),
+                    Row(
+                      children: [
+                        _buildRating(),
+                        const SizedBox(width: 16),
+                        _buildViewCount(),
+                      ],
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 8),
+                // Synopsis section
+                Text(
+                  'Synopsis',
+                  style: GoogleFonts.oswald(
+                    fontSize: 18,
+                    fontWeight: FontWeight.w700,
+                    color: Colors.white.withValues(alpha: 0.5),
+                  ),
+                ),
+                const SizedBox(height: 4),
+                Text(
+                  widget.reel.description,
+                  style: GoogleFonts.poppins(
+                    fontSize: 11,
+                    fontWeight: FontWeight.w500,
+                    color: Colors.white.withValues(alpha: 0.5),
+                    height: 1.45,
+                  ),
+                  maxLines: _isDescriptionExpanded ? null : 4,
+                  overflow: _isDescriptionExpanded ? TextOverflow.visible : TextOverflow.ellipsis,
+                ),
+                const SizedBox(height: 16), // Space for button
+              ],
             ),
           ),
-          child: IconButton(
-            icon: Icon(
-              _isFavorited ? Icons.favorite : Icons.favorite_border,
-              color: _isFavorited ? AppTheme.accentRed : AppTheme.primaryText,
-              size: 20,
-            ),
-            onPressed: _toggleFavorite,
+          // Show More/Less Button
+          Transform.translate(
+            offset: const Offset(0, -24),
+            child: _buildShowMoreButton(),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildRating() {
+    return Row(
+      children: [
+        Container(
+          width: 18,
+          height: 18,
+          decoration: BoxDecoration(
+            color: Color(0xFFFFFF00), // Yellow star
+            shape: BoxShape.circle,
+          ),
+          child: Icon(
+            Icons.star,
+            color: Colors.black,
+            size: 12,
+          ),
+        ),
+        const SizedBox(width: 4),
+        Text(
+          '7.9',
+          style: GoogleFonts.poppins(
+            fontSize: 12,
+            fontWeight: FontWeight.w500,
+            color: Color(0xFFEDEDED),
           ),
         ),
       ],
     );
   }
 
-  Widget _buildHeroSection() {
-    return SliverToBoxAdapter(
+  Widget _buildViewCount() {
+    return Row(
+      children: [
+        Icon(
+          Icons.visibility_outlined,
+          color: Color(0xFFEDEDED),
+          size: 18,
+        ),
+        const SizedBox(width: 4),
+        Text(
+          '89,200',
+          style: GoogleFonts.poppins(
+            fontSize: 12,
+            fontWeight: FontWeight.w500,
+            color: Color(0xFFEDEDED),
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget _buildShowMoreButton() {
+    return Center(
       child: GestureDetector(
         onTap: () {
           setState(() {
-            _isPlaying = true;
-          });
-          _playVideo();
-          // Reset playing state after a short delay
-          Future.delayed(const Duration(milliseconds: 500), () {
-            if (mounted) {
-              setState(() {
-                _isPlaying = false;
-              });
-            }
+            _isDescriptionExpanded = !_isDescriptionExpanded;
           });
         },
         child: Container(
-          height: MediaQuery.of(context).size.height * 0.6,
+          width: 48,
+          height: 48,
           decoration: BoxDecoration(
-            image: DecorationImage(
-              image: NetworkImage(widget.reel.thumbnail),
-              fit: BoxFit.cover,
-              onError: (error, stackTrace) {
-                // Handle image loading error
-                debugPrint('Failed to load thumbnail: $error');
-              },
+            color: Color(0xFF033E4C),
+            shape: BoxShape.circle,
+            boxShadow: [
+              BoxShadow(
+                color: Colors.black.withValues(alpha: 0.5),
+                blurRadius: 4,
+                offset: const Offset(0, 4),
+              ),
+            ],
+          ),
+          child: Icon(
+            _isDescriptionExpanded ? Icons.keyboard_arrow_up : Icons.keyboard_arrow_down,
+            color: Color(0xFFEDEDED),
+            size: 24,
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildChaptersSection() {
+    return Positioned(
+      top: _isDescriptionExpanded ? 550 : 500,
+      left: 16,
+      right: 16,
+      bottom: 60, // Leave space for bottom navigation
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            'Chapters',
+            style: GoogleFonts.oswald(
+              fontSize: 24,
+              fontWeight: FontWeight.w700,
+              color: Colors.white,
             ),
           ),
-          child: Container(
-            decoration: BoxDecoration(
-              gradient: LinearGradient(
-                begin: Alignment.topCenter,
-                end: Alignment.bottomCenter,
-                colors: [
-                  Colors.transparent,
-                  AppTheme.primaryBackground.withValues(alpha: 0.3),
-                  AppTheme.primaryBackground.withValues(alpha: 0.8),
-                  AppTheme.primaryBackground,
-                ],
-                stops: const [0.0, 0.4, 0.7, 1.0],
-              ),
+          const SizedBox(height: 8),
+          Expanded(
+            child: ListView(
+              padding: EdgeInsets.zero,
+              children: widget.reel.episodes.map((episode) => 
+                _buildChapterCard(episode, widget.reel.episodes.indexOf(episode))
+              ).toList(),
             ),
-            child: Stack(
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildChapterCard(Episode episode, int index) {
+    return Container(
+      height: 96,
+      margin: const EdgeInsets.only(bottom: 8),
+      decoration: BoxDecoration(
+        border: Border.all(
+          color: Color(0xFF033E4C),
+          width: 1,
+        ),
+        borderRadius: BorderRadius.circular(24),
+      ),
+      child: Material(
+        color: Colors.transparent,
+        child: InkWell(
+          onTap: () => _playVideo(episode: episode),
+          borderRadius: BorderRadius.circular(24),
+          child: Padding(
+            padding: const EdgeInsets.all(8),
+            child: Row(
               children: [
-                // Play button overlay
-                Center(
-                  child: SlideTransition(
-                    position: _slideAnimation,
-                    child: _buildPlayButton(),
+                // Episode thumbnail
+                Container(
+                  width: 84,
+                  height: 80,
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(16),
+                  ),
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(16),
+                    child: Image.network(
+                      episode.thumbnail,
+                      fit: BoxFit.cover,
+                      width: 84,
+                      height: 80,
+                    ),
                   ),
                 ),
-                
-                // Bottom gradient with title
-                Positioned(
-                  bottom: 0,
-                  left: 0,
-                  right: 0,
-                  child: SlideTransition(
-                    position: _slideAnimation,
-                    child: _buildHeroTitle(),
+                const SizedBox(width: 13),
+                // Episode details
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        'Chapter ${episode.episodeNumber}',
+                        style: GoogleFonts.poppins(
+                          fontSize: 12,
+                          fontWeight: FontWeight.w500,
+                          color: Color(0xFFEDEDED),
+                        ),
+                      ),
+                      Text(
+                        episode.name,
+                        style: GoogleFonts.poppins(
+                          fontSize: 16,
+                          fontWeight: FontWeight.w700,
+                          color: Color(0xFF033E4C),
+                        ),
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                    ],
                   ),
                 ),
-                
               ],
             ),
           ),
@@ -278,318 +508,63 @@ class _ReelOverviewScreenState extends State<ReelOverviewScreen>
     );
   }
 
-  Widget _buildPlayButton() {
+  Widget _buildBottomNavigationBar() {
+    return Positioned(
+      bottom: 0,
+      left: 0,
+      right: 0,
+      child: Container(
+        height: 44,
+        decoration: BoxDecoration(
+          color: Color(0xFF033E4C),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withValues(alpha: 0.5),
+              blurRadius: 4,
+              offset: const Offset(0, 4),
+            ),
+          ],
+        ),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 38),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              _buildNavBarItem(Icons.home, true, () => _navigateToHome()),
+              _buildNavBarItem(Icons.explore, false, null),
+              _buildNavBarItem(Icons.search, false, null),
+              _buildNavBarItem(Icons.favorite_border, false, null),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildNavBarItem(IconData icon, bool isSelected, VoidCallback? onTap) {
     return GestureDetector(
-      onTap: _playVideo,
-      child: AnimatedScale(
-        scale: _isPlaying ? 0.9 : 1.0,
-        duration: const Duration(milliseconds: 150),
-        child: Container(
-          width: 80,
-          height: 80,
-          decoration: BoxDecoration(
-            color: AppTheme.shottGold.withValues(alpha: 0.9),
-            shape: BoxShape.circle,
-            boxShadow: [
-              BoxShadow(
-                color: AppTheme.shottGold.withValues(alpha: 0.3),
-                blurRadius: 20,
-                spreadRadius: 5,
-              ),
-            ],
-          ),
-          child: Stack(
-            alignment: Alignment.center,
-            children: [
-              const Icon(
-                Icons.play_arrow_rounded,
-                color: AppTheme.primaryBackground,
-                size: 40,
-              ),
-              // Subtle animation ring
-              AnimatedContainer(
-                duration: const Duration(seconds: 2),
-                width: _isPlaying ? 90 : 80,
-                height: _isPlaying ? 90 : 80,
-                decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  border: Border.all(
-                    color: AppTheme.shottGold.withValues(alpha: 0.3),
-                    width: 2,
-                  ),
-                ),
-              ),
-            ],
-          ),
+      onTap: onTap,
+      child: SizedBox(
+        width: 24,
+        height: 24,
+        child: Icon(
+          icon,
+          color: isSelected 
+            ? Color(0xFFEDEDED)
+            : Color(0xFFEDEDED).withValues(alpha: 0.75),
+          size: 24,
         ),
       ),
     );
   }
 
-
-  Widget _buildHeroTitle() {
-    return Container(
-      padding: const EdgeInsets.fromLTRB(24, 40, 24, 24),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            widget.reel.name,
-            style: AppTheme.heroTitle.copyWith(
-              fontSize: 32,
-              color: AppTheme.primaryText,
-            ),
-          ),
-          const SizedBox(height: 12),
-          Row(
-            children: [
-              _buildInfoChip(widget.reel.duration, Icons.access_time_rounded),
-              const SizedBox(width: 12),
-              _buildInfoChip(
-                _formatReleaseDate(widget.reel.releaseDate),
-                Icons.calendar_today_rounded,
-              ),
-            ],
-          ),
-        ],
-      ),
+  void _navigateToHome() {
+    Navigator.of(context).pushAndRemoveUntil(
+      MaterialPageRoute(builder: (context) => const HomeScreen()),
+      (route) => false,
     );
   }
 
-  Widget _buildInfoChip(String text, IconData icon) {
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
-      decoration: BoxDecoration(
-        color: AppTheme.surfaceBackground.withValues(alpha: 0.8),
-        borderRadius: BorderRadius.circular(20),
-        border: Border.all(
-          color: AppTheme.shottGold.withValues(alpha: 0.3),
-          width: 1,
-        ),
-      ),
-      child: Row(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Icon(
-            icon,
-            color: AppTheme.shottGold,
-            size: 16,
-          ),
-          const SizedBox(width: 6),
-          Text(
-            text,
-            style: AppTheme.metadataText.copyWith(
-              color: AppTheme.primaryText,
-            ),
-          ),
-        ],
-      ),
-    );
-  }
 
-  Widget _buildContentSection() {
-    return SliverToBoxAdapter(
-      child: SlideTransition(
-        position: _slideAnimation,
-        child: Container(
-          padding: const EdgeInsets.all(24),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              _buildActionButtons(),
-              const SizedBox(height: 32),
-              _buildDescription(),
-              const SizedBox(height: 32),
-              _buildDetails(),
-              const SizedBox(height: 40),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-
-  Widget _buildActionButtons() {
-    return Row(
-      children: [
-        Expanded(
-          flex: 2,
-          child: _buildPrimaryButton(
-            'Play Now',
-            Icons.play_arrow_rounded,
-            _playVideo,
-            isPrimary: true,
-          ),
-        ),
-        const SizedBox(width: 16),
-        Expanded(
-          child: _buildSecondaryButton(
-            'Share',
-            Icons.share_rounded,
-            _shareReel,
-          ),
-        ),
-      ],
-    );
-  }
-
-  Widget _buildPrimaryButton(
-    String text,
-    IconData icon,
-    VoidCallback onPressed, {
-    bool isPrimary = false,
-  }) {
-    return ElevatedButton.icon(
-      onPressed: onPressed,
-      icon: Icon(icon, size: 20),
-      label: Text(
-        text,
-        style: AppTheme.buttonText.copyWith(
-          color: isPrimary ? AppTheme.primaryBackground : AppTheme.primaryText,
-        ),
-      ),
-      style: ElevatedButton.styleFrom(
-        backgroundColor: isPrimary ? AppTheme.shottGold : AppTheme.surfaceBackground,
-        foregroundColor: isPrimary ? AppTheme.primaryBackground : AppTheme.primaryText,
-        padding: const EdgeInsets.symmetric(vertical: 16),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(25),
-          side: BorderSide(
-            color: isPrimary ? Colors.transparent : AppTheme.shottGold.withValues(alpha: 0.3),
-            width: 1,
-          ),
-        ),
-        elevation: isPrimary ? 8 : 0,
-        shadowColor: isPrimary ? AppTheme.shottGold.withValues(alpha: 0.3) : null,
-      ),
-    );
-  }
-
-  Widget _buildSecondaryButton(
-    String text,
-    IconData icon,
-    VoidCallback onPressed,
-  ) {
-    return OutlinedButton.icon(
-      onPressed: onPressed,
-      icon: Icon(icon, size: 18),
-      label: Text(
-        text,
-        style: AppTheme.buttonTextSecondary.copyWith(
-          color: AppTheme.primaryText,
-        ),
-      ),
-      style: OutlinedButton.styleFrom(
-        foregroundColor: AppTheme.primaryText,
-        padding: const EdgeInsets.symmetric(vertical: 16),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(25),
-        ),
-        side: BorderSide(
-          color: AppTheme.shottGold.withValues(alpha: 0.4),
-          width: 1.5,
-        ),
-      ),
-    );
-  }
-
-  Widget _buildDescription() {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          'Synopsis',
-          style: AppTheme.sectionHeader.copyWith(
-            fontSize: 20,
-            color: AppTheme.primaryText,
-          ),
-        ),
-        const SizedBox(height: 12),
-        Container(
-          padding: const EdgeInsets.all(20),
-          decoration: BoxDecoration(
-            color: AppTheme.surfaceBackground.withValues(alpha: 0.3),
-            borderRadius: BorderRadius.circular(16),
-            border: Border.all(
-              color: AppTheme.shottGold.withValues(alpha: 0.1),
-              width: 1,
-            ),
-          ),
-          child: Text(
-            widget.reel.description,
-            style: AppTheme.descriptionText.copyWith(
-              fontSize: 16,
-              color: AppTheme.secondaryText,
-            ),
-          ),
-        ),
-      ],
-    );
-  }
-
-  Widget _buildDetails() {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          'Details',
-          style: AppTheme.sectionHeader.copyWith(
-            fontSize: 20,
-            color: AppTheme.primaryText,
-          ),
-        ),
-        const SizedBox(height: 16),
-        _buildDetailRow('Duration', widget.reel.duration),
-        const SizedBox(height: 12),
-        _buildDetailRow('Release Date', _formatReleaseDate(widget.reel.releaseDate)),
-        const SizedBox(height: 12),
-        _buildDetailRow('Video ID', widget.reel.id.toUpperCase()),
-      ],
-    );
-  }
-
-  Widget _buildDetailRow(String label, String value) {
-    return Container(
-      padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
-      decoration: BoxDecoration(
-        color: AppTheme.cardBackground.withValues(alpha: 0.3),
-        borderRadius: BorderRadius.circular(12),
-        border: Border.all(
-          color: AppTheme.shottGold.withValues(alpha: 0.1),
-          width: 1,
-        ),
-      ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Text(
-            label,
-            style: AppTheme.cardSubtitle.copyWith(
-              color: AppTheme.tertiaryText,
-            ),
-          ),
-          Text(
-            value,
-            style: AppTheme.cardTitle.copyWith(
-              fontSize: 14,
-              color: AppTheme.primaryText,
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-
-  String _formatReleaseDate(String dateString) {
-    try {
-      final date = DateTime.parse(dateString);
-      final months = [
-        'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
-        'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'
-      ];
-      return '${months[date.month - 1]} ${date.day}, ${date.year}';
-    } catch (e) {
-      return dateString;
-    }
-  }
 }
+

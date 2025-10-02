@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 import '../models/category.dart';
 import '../models/reel.dart';
@@ -11,6 +12,7 @@ class ReelService {
       return ReelData.fromJson(jsonData);
     } catch (e) {
       // Return empty data if loading fails
+      debugPrint('Error loading reellist.json: $e');
       return ReelData(categories: []);
     }
   }
@@ -34,6 +36,7 @@ class ReelService {
       return featuredReels;
     } catch (e) {
       // Return empty list if loading fails
+      debugPrint('Error loading featured.json: $e');
       return [];
     }
   }

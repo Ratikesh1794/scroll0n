@@ -5,21 +5,73 @@
       "items": [
         {
           "id": "nr1",
-          "name": "The Last Signal",
-          "description": "A mysterious radio signal from space disrupts a small town.",
-          "thumbnail": "https://picsum.photos/300/500?random=1",
-          "videoUrl": "https://www.youtube.com/shorts/aqz-KE-bpKQ",
-          "releaseDate": "2025-09-10",
-          "duration": "2m 15s"
+          "name": "Oppenheimer",
+          "description": "The story of American scientist J. Robert Oppenheimer and his role in the development of the atomic bomb.",
+          "thumbnail": "https://m.media-amazon.com/images/M/MV5BMDBmYTZjNjUtN2M1MS00MTQ2LTk2ODgtNzc2M2QyZGE5NTVjXkEyXkFqcGdeQXVyNzAwMjU2MTY@._V1_.jpg",
+          "videoUrl": "https://www.youtube.com/watch?v=uYPbbksJxIg",
+          "releaseDate": "2023",
+          "duration": "3h 0m",
+          "episodes": [
+            {
+              "id": "nr1_ep1",
+              "name": "The Beginning",
+              "thumbnail": "https://m.media-amazon.com/images/M/MV5BMDBmYTZjNjUtN2M1MS00MTQ2LTk2ODgtNzc2M2QyZGE5NTVjXkEyXkFqcGdeQXVyNzAwMjU2MTY@._V1_.jpg",
+              "videoUrl": "https://www.youtube.com/watch?v=uYPbbksJxIg",
+              "duration": "1h 0m",
+              "episodeNumber": 1
+            },
+            {
+              "id": "nr1_ep2",
+              "name": "The Development",
+              "thumbnail": "https://m.media-amazon.com/images/M/MV5BMDBmYTZjNjUtN2M1MS00MTQ2LTk2ODgtNzc2M2QyZGE5NTVjXkEyXkFqcGdeQXVyNzAwMjU2MTY@._V1_.jpg",
+              "videoUrl": "https://www.youtube.com/watch?v=uYPbbksJxIg",
+              "duration": "1h 0m",
+              "episodeNumber": 2
+            },
+            {
+              "id": "nr1_ep3",
+              "name": "The Conclusion",
+              "thumbnail": "https://m.media-amazon.com/images/M/MV5BMDBmYTZjNjUtN2M1MS00MTQ2LTk2ODgtNzc2M2QyZGE5NTVjXkEyXkFqcGdeQXVyNzAwMjU2MTY@._V1_.jpg",
+              "videoUrl": "https://www.youtube.com/watch?v=uYPbbksJxIg",
+              "duration": "1h 0m",
+              "episodeNumber": 3
+            }
+          ]
         },
         {
           "id": "nr2",
-          "name": "Broken Frame",
-          "description": "A photographer finds strange things inside his camera lens.",
-          "thumbnail": "https://picsum.photos/300/500?random=2",
-          "videoUrl": "https://www.youtube.com/shorts/z0nWcWb7C5E",
-          "releaseDate": "2025-09-05",
-          "duration": "1m 42s"
+          "name": "Barbie",
+          "description": "Barbie suffers a crisis that leads her to question her world and her existence.",
+          "thumbnail": "https://m.media-amazon.com/images/M/MV5BNjU3N2QxNzYtMjk1NC00MTc4LTk1NTQtMmUxNTljM2I0NDA5XkEyXkFqcGdeQXVyODE5NzE3OTE@._V1_.jpg",
+          "videoUrl": "https://www.youtube.com/watch?v=pBk4NYhWNMM",
+          "releaseDate": "2023",
+          "duration": "1h 54m",
+          "episodes": [
+            {
+              "id": "nr2_ep1",
+              "name": "The Perfect Life",
+              "thumbnail": "https://m.media-amazon.com/images/M/MV5BNjU3N2QxNzYtMjk1NC00MTc4LTk1NTQtMmUxNTljM2I0NDA5XkEyXkFqcGdeQXVyODE5NzE3OTE@._V1_.jpg",
+              "videoUrl": "https://www.youtube.com/watch?v=pBk4NYhWNMM",
+              "duration": "45m",
+              "episodeNumber": 1
+            },
+            {
+              "id": "nr2_ep2",
+              "name": "The Real World",
+              "thumbnail": "https://m.media-amazon.com/images/M/MV5BNjU3N2QxNzYtMjk1NC00MTc4LTk1NTQtMmUxNTljM2I0NDA5XkEyXkFqcGdeQXVyODE5NzE3OTE@._V1_.jpg",
+              "videoUrl": "https://www.youtube.com/watch?v=pBk4NYhWNMM",
+              "duration": "35m",
+              "episodeNumber": 2
+            },
+            {
+              "id": "nr2_ep3",
+              "name": "The Discovery",
+              "thumbnail": "https://m.media-amazon.com/images/M/MV5BNjU3N2QxNzYtMjk1NC00MTc4LTk1NTQtMmUxNTljM2I0NDA5XkEyXkFqcGdeQXVyODE5NzE3OTE@._V1_.jpg",
+              "videoUrl": "https://www.youtube.com/watch?v=pBk4NYhWNMM",
+              "duration": "34m",
+              "episodeNumber": 3
+            }
+          ]
         }
       ]
     },
@@ -28,21 +80,73 @@
       "items": [
         {
           "id": "ac1",
-          "name": "Chase Down",
-          "description": "An undercover agent must escape a citywide manhunt.",
-          "thumbnail": "https://picsum.photos/300/500?random=3",
-          "videoUrl": "https://www.youtube.com/shorts/o-YBDTqX_ZU",
-          "releaseDate": "2025-08-28",
-          "duration": "2m 05s"
+          "name": "Mission: Impossible - Dead Reckoning",
+          "description": "Ethan Hunt and his IMF team must track down a dangerous weapon before it falls into the wrong hands.",
+          "thumbnail": "https://m.media-amazon.com/images/M/MV5BYzFiZjc1YzctMDY3Zi00NGE5LTlmNWEtN2Q3OWFjYjY1NGM2XkEyXkFqcGdeQXVyMTUyMTUzNjQ0._V1_.jpg",
+          "videoUrl": "https://www.youtube.com/watch?v=avz06PDqDbM",
+          "releaseDate": "2023",
+          "duration": "2h 43m",
+          "episodes": [
+            {
+              "id": "ac1_ep1",
+              "name": "The Hunt Begins",
+              "thumbnail": "https://m.media-amazon.com/images/M/MV5BYzFiZjc1YzctMDY3Zi00NGE5LTlmNWEtN2Q3OWFjYjY1NGM2XkEyXkFqcGdeQXVyMTUyMTUzNjQ0._V1_.jpg",
+              "videoUrl": "https://www.youtube.com/watch?v=avz06PDqDbM",
+              "duration": "55m",
+              "episodeNumber": 1
+            },
+            {
+              "id": "ac1_ep2",
+              "name": "The Chase",
+              "thumbnail": "https://m.media-amazon.com/images/M/MV5BYzFiZjc1YzctMDY3Zi00NGE5LTlmNWEtN2Q3OWFjYjY1NGM2XkEyXkFqcGdeQXVyMTUyMTUzNjQ0._V1_.jpg",
+              "videoUrl": "https://www.youtube.com/watch?v=avz06PDqDbM",
+              "duration": "54m",
+              "episodeNumber": 2
+            },
+            {
+              "id": "ac1_ep3",
+              "name": "The Confrontation",
+              "thumbnail": "https://m.media-amazon.com/images/M/MV5BYzFiZjc1YzctMDY3Zi00NGE5LTlmNWEtN2Q3OWFjYjY1NGM2XkEyXkFqcGdeQXVyMTUyMTUzNjQ0._V1_.jpg",
+              "videoUrl": "https://www.youtube.com/watch?v=avz06PDqDbM",
+              "duration": "54m",
+              "episodeNumber": 3
+            }
+          ]
         },
         {
           "id": "ac2",
-          "name": "Edge of Steel",
-          "description": "A rogue warrior battles in a futuristic arena.",
-          "thumbnail": "https://picsum.photos/300/500?random=4",
-          "videoUrl": "https://www.youtube.com/shorts/C0DPdy98e4c",
-          "releaseDate": "2025-08-20",
-          "duration": "1m 50s"
+          "name": "John Wick: Chapter 4",
+          "description": "John Wick uncovers a path to defeating The High Table.",
+          "thumbnail": "https://m.media-amazon.com/images/M/MV5BMDExZGMyOTMtMDgyYi00NGIwLWJhMTEtOTdkZGFjNmZiMTEwXkEyXkFqcGdeQXVyMjM4NTM5NDY@._V1_.jpg",
+          "videoUrl": "https://www.youtube.com/watch?v=qEVUtrk8_B4",
+          "releaseDate": "2023",
+          "duration": "2h 49m",
+          "episodes": [
+            {
+              "id": "ac2_ep1",
+              "name": "The Challenge",
+              "thumbnail": "https://m.media-amazon.com/images/M/MV5BMDExZGMyOTMtMDgyYi00NGIwLWJhMTEtOTdkZGFjNmZiMTEwXkEyXkFqcGdeQXVyMjM4NTM5NDY@._V1_.jpg",
+              "videoUrl": "https://www.youtube.com/watch?v=qEVUtrk8_B4",
+              "duration": "56m",
+              "episodeNumber": 1
+            },
+            {
+              "id": "ac2_ep2",
+              "name": "The Journey",
+              "thumbnail": "https://m.media-amazon.com/images/M/MV5BMDExZGMyOTMtMDgyYi00NGIwLWJhMTEtOTdkZGFjNmZiMTEwXkEyXkFqcGdeQXVyMjM4NTM5NDY@._V1_.jpg",
+              "videoUrl": "https://www.youtube.com/watch?v=qEVUtrk8_B4",
+              "duration": "57m",
+              "episodeNumber": 2
+            },
+            {
+              "id": "ac2_ep3",
+              "name": "The Final Duel",
+              "thumbnail": "https://m.media-amazon.com/images/M/MV5BMDExZGMyOTMtMDgyYi00NGIwLWJhMTEtOTdkZGFjNmZiMTEwXkEyXkFqcGdeQXVyMjM4NTM5NDY@._V1_.jpg",
+              "videoUrl": "https://www.youtube.com/watch?v=qEVUtrk8_B4",
+              "duration": "56m",
+              "episodeNumber": 3
+            }
+          ]
         }
       ]
     },
@@ -51,21 +155,73 @@
       "items": [
         {
           "id": "sf1",
-          "name": "Neon Skies",
-          "description": "A hacker uncovers a secret AI controlling the city.",
-          "thumbnail": "https://picsum.photos/300/500?random=5",
-          "videoUrl": "https://www.youtube.com/shorts/ScMzIvxBSi4",
-          "releaseDate": "2025-07-30",
-          "duration": "2m 30s"
+          "name": "Dune",
+          "description": "A noble family becomes embroiled in a war for control over the galaxy's most valuable asset.",
+          "thumbnail": "https://m.media-amazon.com/images/M/MV5BN2FjNmEyNWMtYzM0ZS00NjIyLTg5YzYtYThlMGVjNzE1OGViXkEyXkFqcGdeQXVyMTkxNjUyNQ@@._V1_.jpg",
+          "videoUrl": "https://www.youtube.com/watch?v=8g18jFHCLXk",
+          "releaseDate": "2021",
+          "duration": "2h 35m",
+          "episodes": [
+            {
+              "id": "sf1_ep1",
+              "name": "House Atreides",
+              "thumbnail": "https://m.media-amazon.com/images/M/MV5BN2FjNmEyNWMtYzM0ZS00NjIyLTg5YzYtYThlMGVjNzE1OGViXkEyXkFqcGdeQXVyMTkxNjUyNQ@@._V1_.jpg",
+              "videoUrl": "https://www.youtube.com/watch?v=8g18jFHCLXk",
+              "duration": "52m",
+              "episodeNumber": 1
+            },
+            {
+              "id": "sf1_ep2",
+              "name": "The Spice",
+              "thumbnail": "https://m.media-amazon.com/images/M/MV5BN2FjNmEyNWMtYzM0ZS00NjIyLTg5YzYtYThlMGVjNzE1OGViXkEyXkFqcGdeQXVyMTkxNjUyNQ@@._V1_.jpg",
+              "videoUrl": "https://www.youtube.com/watch?v=8g18jFHCLXk",
+              "duration": "51m",
+              "episodeNumber": 2
+            },
+            {
+              "id": "sf1_ep3",
+              "name": "The Desert",
+              "thumbnail": "https://m.media-amazon.com/images/M/MV5BN2FjNmEyNWMtYzM0ZS00NjIyLTg5YzYtYThlMGVjNzE1OGViXkEyXkFqcGdeQXVyMTkxNjUyNQ@@._V1_.jpg",
+              "videoUrl": "https://www.youtube.com/watch?v=8g18jFHCLXk",
+              "duration": "52m",
+              "episodeNumber": 3
+            }
+          ]
         },
         {
           "id": "sf2",
-          "name": "Orbital Drift",
-          "description": "Astronauts lost in orbit find a hidden colony ship.",
-          "thumbnail": "https://picsum.photos/300/500?random=6",
-          "videoUrl": "https://www.youtube.com/shorts/2vjPBrBU-TM",
-          "releaseDate": "2025-07-12",
-          "duration": "1m 25s"
+          "name": "Blade Runner 2049",
+          "description": "A young blade runner's discovery of a long-buried secret leads him to track down former blade runner Rick Deckard.",
+          "thumbnail": "https://m.media-amazon.com/images/M/MV5BNzA1Njg4NzYxOV5BMl5BanBnXkFtZTgwODk5NjU3MzI@._V1_.jpg",
+          "videoUrl": "https://www.youtube.com/watch?v=gCcx85zbxz4",
+          "releaseDate": "2017",
+          "duration": "2h 44m",
+          "episodes": [
+            {
+              "id": "sf2_ep1",
+              "name": "The Investigation",
+              "thumbnail": "https://m.media-amazon.com/images/M/MV5BNzA1Njg4NzYxOV5BMl5BanBnXkFtZTgwODk5NjU3MzI@._V1_.jpg",
+              "videoUrl": "https://www.youtube.com/watch?v=gCcx85zbxz4",
+              "duration": "54m",
+              "episodeNumber": 1
+            },
+            {
+              "id": "sf2_ep2",
+              "name": "The Secret",
+              "thumbnail": "https://m.media-amazon.com/images/M/MV5BNzA1Njg4NzYxOV5BMl5BanBnXkFtZTgwODk5NjU3MzI@._V1_.jpg",
+              "videoUrl": "https://www.youtube.com/watch?v=gCcx85zbxz4",
+              "duration": "55m",
+              "episodeNumber": 2
+            },
+            {
+              "id": "sf2_ep3",
+              "name": "The Truth",
+              "thumbnail": "https://m.media-amazon.com/images/M/MV5BNzA1Njg4NzYxOV5BMl5BanBnXkFtZTgwODk5NjU3MzI@._V1_.jpg",
+              "videoUrl": "https://www.youtube.com/watch?v=gCcx85zbxz4",
+              "duration": "55m",
+              "episodeNumber": 3
+            }
+          ]
         }
       ]
     },
@@ -74,21 +230,73 @@
       "items": [
         {
           "id": "dr1",
-          "name": "Silent Notes",
-          "description": "A pianist rediscovers his passion after losing everything.",
-          "thumbnail": "https://picsum.photos/300/500?random=7",
-          "videoUrl": "https://www.youtube.com/shorts/dQw4w9WgXcQ",
-          "releaseDate": "2025-06-22",
-          "duration": "2m 00s"
+          "name": "The Whale",
+          "description": "A reclusive English teacher attempts to reconnect with his estranged teenage daughter.",
+          "thumbnail": "https://m.media-amazon.com/images/M/MV5BZDQ4Njg4YTctNGZkYi00NWU1LWI4OTYtNmNjOWMyMjI1NWYzXkEyXkFqcGdeQXVyMTA3MDk2NDg2._V1_.jpg",
+          "videoUrl": "https://www.youtube.com/watch?v=6VEGzCLPJsk",
+          "releaseDate": "2022",
+          "duration": "1h 57m",
+          "episodes": [
+            {
+              "id": "dr1_ep1",
+              "name": "The Teacher",
+              "thumbnail": "https://m.media-amazon.com/images/M/MV5BZDQ4Njg4YTctNGZkYi00NWU1LWI4OTYtNmNjOWMyMjI1NWYzXkEyXkFqcGdeQXVyMTA3MDk2NDg2._V1_.jpg",
+              "videoUrl": "https://www.youtube.com/watch?v=6VEGzCLPJsk",
+              "duration": "39m",
+              "episodeNumber": 1
+            },
+            {
+              "id": "dr1_ep2",
+              "name": "The Daughter",
+              "thumbnail": "https://m.media-amazon.com/images/M/MV5BZDQ4Njg4YTctNGZkYi00NWU1LWI4OTYtNmNjOWMyMjI1NWYzXkEyXkFqcGdeQXVyMTA3MDk2NDg2._V1_.jpg",
+              "videoUrl": "https://www.youtube.com/watch?v=6VEGzCLPJsk",
+              "duration": "39m",
+              "episodeNumber": 2
+            },
+            {
+              "id": "dr1_ep3",
+              "name": "The Reconciliation",
+              "thumbnail": "https://m.media-amazon.com/images/M/MV5BZDQ4Njg4YTctNGZkYi00NWU1LWI4OTYtNmNjOWMyMjI1NWYzXkEyXkFqcGdeQXVyMTA3MDk2NDg2._V1_.jpg",
+              "videoUrl": "https://www.youtube.com/watch?v=6VEGzCLPJsk",
+              "duration": "39m",
+              "episodeNumber": 3
+            }
+          ]
         },
         {
           "id": "dr2",
-          "name": "Fading Echo",
-          "description": "A girl tries to save her fading childhood memories.",
-          "thumbnail": "https://picsum.photos/300/500?random=8",
-          "videoUrl": "https://www.youtube.com/shorts/kXYiU_JCYtU",
-          "releaseDate": "2025-06-10",
-          "duration": "1m 55s"
+          "name": "Everything Everywhere All at Once",
+          "description": "An aging Chinese immigrant is swept up in an insane adventure.",
+          "thumbnail": "https://m.media-amazon.com/images/M/MV5BYTdiOTIyZTQtNmQ1OS00NjZlLWIyMTgtYzk5Y2M3ZDVmMDk1XkEyXkFqcGdeQXVyMTAzMDg4NzU0._V1_.jpg",
+          "videoUrl": "https://www.youtube.com/watch?v=wxN1T1uxQ2g",
+          "releaseDate": "2022",
+          "duration": "2h 19m",
+          "episodes": [
+            {
+              "id": "dr2_ep1",
+              "name": "The Laundromat",
+              "thumbnail": "https://m.media-amazon.com/images/M/MV5BYTdiOTIyZTQtNmQ1OS00NjZlLWIyMTgtYzk5Y2M3ZDVmMDk1XkEyXkFqcGdeQXVyMTAzMDg4NzU0._V1_.jpg",
+              "videoUrl": "https://www.youtube.com/watch?v=wxN1T1uxQ2g",
+              "duration": "46m",
+              "episodeNumber": 1
+            },
+            {
+              "id": "dr2_ep2",
+              "name": "The Multiverse",
+              "thumbnail": "https://m.media-amazon.com/images/M/MV5BYTdiOTIyZTQtNmQ1OS00NjZlLWIyMTgtYzk5Y2M3ZDVmMDk1XkEyXkFqcGdeQXVyMTAzMDg4NzU0._V1_.jpg",
+              "videoUrl": "https://www.youtube.com/watch?v=wxN1T1uxQ2g",
+              "duration": "47m",
+              "episodeNumber": 2
+            },
+            {
+              "id": "dr2_ep3",
+              "name": "Everything, Everywhere",
+              "thumbnail": "https://m.media-amazon.com/images/M/MV5BYTdiOTIyZTQtNmQ1OS00NjZlLWIyMTgtYzk5Y2M3ZDVmMDk1XkEyXkFqcGdeQXVyMTAzMDg4NzU0._V1_.jpg",
+              "videoUrl": "https://www.youtube.com/watch?v=wxN1T1uxQ2g",
+              "duration": "46m",
+              "episodeNumber": 3
+            }
+          ]
         }
       ]
     }

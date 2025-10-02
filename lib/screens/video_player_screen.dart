@@ -14,11 +14,13 @@ import '../theme/app_theme.dart';
 /// - Full-screen immersive experience
 class VideoPlayerScreen extends StatefulWidget {
   final Reel reel;
+  final Episode? episode;
   final List<Reel>? relatedReels;
 
   const VideoPlayerScreen({
     super.key,
     required this.reel,
+    this.episode,
     this.relatedReels,
   });
 
