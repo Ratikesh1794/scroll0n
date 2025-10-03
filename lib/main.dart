@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'theme/app_theme.dart';
 import 'screens/splash_screen.dart';
+import 'screens/signin_phone_screen.dart';
 import 'screens/home_screen.dart';
 
 void main() {
@@ -41,6 +42,7 @@ class AppNavigator extends StatefulWidget {
 
 class _AppNavigatorState extends State<AppNavigator> {
   bool _showSplash = true;
+  final bool _isSignedIn = false; // For demo purposes, always start with signin flow
 
   void _onSplashComplete() {
     setState(() {
@@ -56,7 +58,9 @@ class _AppNavigatorState extends State<AppNavigator> {
           ? SplashScreen(
               onComplete: _onSplashComplete,
             )
-          : const HomeScreen(),
+          : _isSignedIn 
+              ? const HomeScreen()
+              : const SigninPhoneScreen(),
     );
   }
 }

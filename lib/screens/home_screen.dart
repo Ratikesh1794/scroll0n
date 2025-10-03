@@ -3,7 +3,9 @@ import '../models/reel.dart';
 import '../models/category.dart';
 import '../services/reel_service.dart';
 import '../theme/app_theme.dart';
+import '../widgets/bottom_navigation_bar.dart';
 import 'reel_overview_screen.dart';
+import 'profile_screen.dart';
 
 /// SHOTT Home Screen - Main content area after splash
 /// 
@@ -59,51 +61,36 @@ class _HomeScreenState extends State<HomeScreen> {
     }
   }
 
+  void _handleNavigation(int index) {
+    switch (index) {
+      case 0:
+        // Already on Home screen, do nothing
+        break;
+      case 1:
+        // Navigate to Browse/Explore
+        // TODO: Implement browse screen navigation
+        break;
+      case 2:
+        // Navigate to Search
+        // TODO: Implement search screen navigation
+        break;
+      case 3:
+        // Navigate to Watchlist
+        // TODO: Implement watchlist screen navigation
+        break;
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       extendBody: true,
       extendBodyBehindAppBar: true,
       backgroundColor: Colors.transparent,
-      bottomNavigationBar: Container(
-        height: 56,
-        decoration: BoxDecoration(
-          color: AppTheme.primary,
-          boxShadow: [
-            BoxShadow(
-              color: Colors.black.withValues(alpha: 128), // 0.5 opacity
-              offset: const Offset(0, 4),
-              blurRadius: 4,
-            ),
-          ],
-        ),
-        child: SafeArea(
-          child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [
-            IconButton(
-              icon: const Icon(Icons.home_outlined, color: Colors.white, size: 28),
-              padding: const EdgeInsets.all(8),
-              onPressed: () {},
-            ),
-            IconButton(
-              icon: const Icon(Icons.explore_outlined, color: Colors.white70, size: 28),
-              padding: const EdgeInsets.all(8),
-              onPressed: () {},
-            ),
-            IconButton(
-              icon: const Icon(Icons.search_outlined, color: Colors.white70, size: 28),
-              padding: const EdgeInsets.all(8),
-              onPressed: () {},
-            ),
-            IconButton(
-              icon: const Icon(Icons.favorite_outline, color: Colors.white70, size: 28),
-              padding: const EdgeInsets.all(8),
-              onPressed: () {},
-            ),
-          ],
-        ),
-      )),
+      bottomNavigationBar: CustomBottomNavigationBar(
+        currentIndex: 0, // Home is selected
+        onTap: _handleNavigation,
+      ),
       body: Container(
         decoration: BoxDecoration(
           gradient: LinearGradient(
@@ -124,17 +111,27 @@ class _HomeScreenState extends State<HomeScreen> {
                 child: Row(
                   children: [
                     // Profile section
-                    Container(
-                      width: 48,
-                      height: 48,
-                      decoration: BoxDecoration(
-                        color: AppTheme.primary,
-                        shape: BoxShape.circle,
-                      ),
-                      child: const Icon(
-                        Icons.person_outline,
-                        color: Colors.white70,
-                        size: 24,
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const ProfileScreen(),
+                          ),
+                        );
+                      },
+                      child: Container(
+                        width: 48,
+                        height: 48,
+                        decoration: BoxDecoration(
+                          color: AppTheme.primary,
+                          shape: BoxShape.circle,
+                        ),
+                        child: const Icon(
+                          Icons.person_outline,
+                          color: Colors.white70,
+                          size: 24,
+                        ),
                       ),
                     ),
                     const SizedBox(width: 8),

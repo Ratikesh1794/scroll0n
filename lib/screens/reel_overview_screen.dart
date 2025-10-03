@@ -405,7 +405,7 @@ class _ReelOverviewScreenState extends State<ReelOverviewScreen> {
 
   Widget _buildChaptersSection() {
     return Positioned(
-      top: _isDescriptionExpanded ? 550 : 500,
+      top: _isDescriptionExpanded ? 480 : 440,
       left: 16,
       right: 16,
       bottom: 60, // Leave space for bottom navigation
