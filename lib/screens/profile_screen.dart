@@ -4,6 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 import '../widgets/bottom_navigation_bar.dart';
 import 'home_screen.dart';
 import 'signin_phone_screen.dart';
+import 'favourites_screen.dart';
 
 /// Profile Screen
 /// 
@@ -339,8 +340,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
         // TODO: Implement search screen navigation
         break;
       case 3:
-        // Navigate to Watchlist
-        // TODO: Implement watchlist screen navigation
+        // Navigate to Favourites
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => const FavouritesScreen()),
+        );
         break;
     }
   }

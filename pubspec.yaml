@@ -74,6 +74,7 @@ flutter:
     - assets/app/
     - data/dummydata/reellist.json
     - data/dummydata/featured.json
+    - data/dummydata/favourites.json
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images

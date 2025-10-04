@@ -6,6 +6,7 @@ import '../theme/app_theme.dart';
 import '../widgets/bottom_navigation_bar.dart';
 import 'reel_overview_screen.dart';
 import 'profile_screen.dart';
+import 'favourites_screen.dart';
 
 /// SHOTT Home Screen - Main content area after splash
 /// 
@@ -75,8 +76,11 @@ class _HomeScreenState extends State<HomeScreen> {
         // TODO: Implement search screen navigation
         break;
       case 3:
-        // Navigate to Watchlist
-        // TODO: Implement watchlist screen navigation
+        // Navigate to Favourites
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => const FavouritesScreen()),
+        );
         break;
     }
   }

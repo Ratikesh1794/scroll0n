@@ -1,0 +1,258 @@
+{
+  "favourites": [
+    {
+      "id": "fav1",
+      "name": "KALKI 2898 AD",
+      "description": "The film is set in the year 2898 AD. A modern-day avatar of Hindu god Vishnu is said to have descended on Earth to protect the world from evil forces.",
+      "thumbnail": "https://m.media-amazon.com/images/M/MV5BYmRiOWJlYzItNjg2Ny00MTA1LTg0ODUtYmJkZmYwZjAxOWYxXkEyXkFqcGdeQXVyMTUyNjIwMDEw._V1_.jpg",
+      "videoUrl": "https://www.youtube.com/watch?v=example1",
+      "releaseDate": "2024",
+      "duration": "2h 51m",
+      "episodes": [
+        {
+          "id": "fav1_ep1",
+          "name": "The Beginning",
+          "thumbnail": "https://m.media-amazon.com/images/M/MV5BMDBmYTZjNjUtN2M1MS00MTQ2LTk2ODgtNzc2M2QyZGE5NTVjXkEyXkFqcGdeQXVyNzAwMjU2MTY@._V1_.jpg",
+          "videoUrl": "https://www.youtube.com/watch?v=example1",
+          "duration": "57m",
+          "episodeNumber": 1
+        },
+        {
+          "id": "fav1_ep2",
+          "name": "The Avatar",
+          "thumbnail": "https://m.media-amazon.com/images/M/MV5BMDBmYTZjNjUtN2M1MS00MTQ2LTk2ODgtNzc2M2QyZGE5NTVjXkEyXkFqcGdeQXVyNzAwMjU2MTY@._V1_.jpg",
+          "videoUrl": "https://www.youtube.com/watch?v=example1",
+          "duration": "57m",
+          "episodeNumber": 2
+        },
+        {
+          "id": "fav1_ep3",
+          "name": "The Final Battle",
+          "thumbnail": "https://m.media-amazon.com/images/M/MV5BMDBmYTZjNjUtN2M1MS00MTQ2LTk2ODgtNzc2M2QyZGE5NTVjXkEyXkFqcGdeQXVyNzAwMjU2MTY@._V1_.jpg",
+          "videoUrl": "https://www.youtube.com/watch?v=example1",
+          "duration": "57m",
+          "episodeNumber": 3
+        }
+      ]
+    },
+    {
+      "id": "fav2",
+      "name": "KGF 2",
+      "description": "The blood-soaked land of Kolar Gold Fields (KGF) has a new overlord now - Rocky, whose name strikes fear in the heart of his foes.",
+      "thumbnail": "https://m.media-amazon.com/images/M/MV5BZDNlNzBjMGUtYTA0Yy00OTI2LWJmZjMtODliYmUyYTI0OGFmXkEyXkFqcGdeQXVyODIwMDI1NjM@._V1_.jpg",
+      "videoUrl": "https://www.youtube.com/watch?v=example2",
+      "releaseDate": "2022",
+      "duration": "2h 48m",
+      "episodes": [
+        {
+          "id": "fav2_ep1",
+          "name": "Rise of Rocky",
+          "thumbnail": "https://m.media-amazon.com/images/M/MV5BNjU3N2QxNzYtMjk1NC00MTc4LTk1NTQtMmUxNTljM2I0NDA5XkEyXkFqcGdeQXVyODE5NzE3OTE@._V1_.jpg",
+          "videoUrl": "https://www.youtube.com/watch?v=example2",
+          "duration": "56m",
+          "episodeNumber": 1
+        },
+        {
+          "id": "fav2_ep2",
+          "name": "The Empire",
+          "thumbnail": "https://m.media-amazon.com/images/M/MV5BNjU3N2QxNzYtMjk1NC00MTc4LTk1NTQtMmUxNTljM2I0NDA5XkEyXkFqcGdeQXVyODE5NzE3OTE@._V1_.jpg",
+          "videoUrl": "https://www.youtube.com/watch?v=example2",
+          "duration": "56m",
+          "episodeNumber": 2
+        },
+        {
+          "id": "fav2_ep3",
+          "name": "The Legend",
+          "thumbnail": "https://m.media-amazon.com/images/M/MV5BNjU3N2QxNzYtMjk1NC00MTc4LTk1NTQtMmUxNTljM2I0NDA5XkEyXkFqcGdeQXVyODE5NzE3OTE@._V1_.jpg",
+          "videoUrl": "https://www.youtube.com/watch?v=example2",
+          "duration": "56m",
+          "episodeNumber": 3
+        }
+      ]
+    },
+    {
+      "id": "fav3",
+      "name": "Hridayam",
+      "description": "A feel-good romantic drama that follows the emotional journey of a young man from his college days to adulthood.",
+      "thumbnail": "https://m.media-amazon.com/images/M/MV5BYmY3NGJlYTAtY2QyYi00YWVhLWEzMDktZjE2NjU2Yzc1ZDk5XkEyXkFqcGdeQXVyMTEzNzg0Mjkx._V1_.jpg",
+      "videoUrl": "https://www.youtube.com/watch?v=example3",
+      "releaseDate": "2022",
+      "duration": "2h 51m",
+      "episodes": [
+        {
+          "id": "fav3_ep1",
+          "name": "College Days",
+          "thumbnail": "https://m.media-amazon.com/images/M/MV5BYzFiZjc1YzctMDY3Zi00NGE5LTlmNWEtN2Q3OWFjYjY1NGM2XkEyXkFqcGdeQXVyMTUyMTUzNjQ0._V1_.jpg",
+          "videoUrl": "https://www.youtube.com/watch?v=example3",
+          "duration": "57m",
+          "episodeNumber": 1
+        },
+        {
+          "id": "fav3_ep2",
+          "name": "Love & Loss",
+          "thumbnail": "https://m.media-amazon.com/images/M/MV5BYzFiZjc1YzctMDY3Zi00NGE5LTlmNWEtN2Q3OWFjYjY1NGM2XkEyXkFqcGdeQXVyMTUyMTUzNjQ0._V1_.jpg",
+          "videoUrl": "https://www.youtube.com/watch?v=example3",
+          "duration": "57m",
+          "episodeNumber": 2
+        },
+        {
+          "id": "fav3_ep3",
+          "name": "Finding Purpose",
+          "thumbnail": "https://m.media-amazon.com/images/M/MV5BYzFiZjc1YzctMDY3Zi00NGE5LTlmNWEtN2Q3OWFjYjY1NGM2XkEyXkFqcGdeQXVyMTUyMTUzNjQ0._V1_.jpg",
+          "videoUrl": "https://www.youtube.com/watch?v=example3",
+          "duration": "57m",
+          "episodeNumber": 3
+        }
+      ]
+    },
+    {
+      "id": "fav4",
+      "name": "Jailer",
+      "description": "A retired jailer goes on a manhunt to find his son's killers. But the road leads him to a very powerful gangster.",
+      "thumbnail": "https://m.media-amazon.com/images/M/MV5BMjMwMDgyOGQtMWZjNC00MDUwLTllZDYtZWM3NDBmN2YzNGZmXkEyXkFqcGdeQXVyMTQyMTMwOTk0._V1_.jpg",
+      "videoUrl": "https://www.youtube.com/watch?v=example4",
+      "releaseDate": "2023",
+      "duration": "2h 48m",
+      "episodes": [
+        {
+          "id": "fav4_ep1",
+          "name": "The Jailer",
+          "thumbnail": "https://m.media-amazon.com/images/M/MV5BMDExZGMyOTMtMDgyYi00NGIwLWJhMTEtOTdkZGFjNmZiMTEwXkEyXkFqcGdeQXVyMjM4NTM5NDY@._V1_.jpg",
+          "videoUrl": "https://www.youtube.com/watch?v=example4",
+          "duration": "56m",
+          "episodeNumber": 1
+        },
+        {
+          "id": "fav4_ep2",
+          "name": "The Hunt",
+          "thumbnail": "https://m.media-amazon.com/images/M/MV5BMDExZGMyOTMtMDgyYi00NGIwLWJhMTEtOTdkZGFjNmZiMTEwXkEyXkFqcGdeQXVyMjM4NTM5NDY@._V1_.jpg",
+          "videoUrl": "https://www.youtube.com/watch?v=example4",
+          "duration": "56m",
+          "episodeNumber": 2
+        },
+        {
+          "id": "fav4_ep3",
+          "name": "Vengeance",
+          "thumbnail": "https://m.media-amazon.com/images/M/MV5BMDExZGMyOTMtMDgyYi00NGIwLWJhMTEtOTdkZGFjNmZiMTEwXkEyXkFqcGdeQXVyMjM4NTM5NDY@._V1_.jpg",
+          "videoUrl": "https://www.youtube.com/watch?v=example4",
+          "duration": "56m",
+          "episodeNumber": 3
+        }
+      ]
+    }
+  ],
+  "history": [
+    {
+      "id": "hist1",
+      "name": "Hi Nanna",
+      "description": "A single father's life is complicated when his six-year-old daughter starts asking about her mother.",
+      "thumbnail": "https://m.media-amazon.com/images/M/MV5BZjZlNGRjNDctNGNhYi00NmRjLWI5NjYtYjhiNmViOTIyMGY3XkEyXkFqcGdeQXVyMTQ3Mzk2MDg4._V1_.jpg",
+      "videoUrl": "https://www.youtube.com/watch?v=example5",
+      "releaseDate": "2023",
+      "duration": "2h 38m",
+      "watchedDate": "2024-10-01",
+      "watchedPercentage": 75,
+      "episodes": [
+        {
+          "id": "hist1_ep1",
+          "name": "The Father",
+          "thumbnail": "https://m.media-amazon.com/images/M/MV5BN2FjNmEyNWMtYzM0ZS00NjIyLTg5YzYtYThlMGVjNzE1OGViXkEyXkFqcGdeQXVyMTkxNjUyNQ@@._V1_.jpg",
+          "videoUrl": "https://www.youtube.com/watch?v=example5",
+          "duration": "53m",
+          "episodeNumber": 1
+        },
+        {
+          "id": "hist1_ep2",
+          "name": "The Secret",
+          "thumbnail": "https://m.media-amazon.com/images/M/MV5BN2FjNmEyNWMtYzM0ZS00NjIyLTg5YzYtYThlMGVjNzE1OGViXkEyXkFqcGdeQXVyMTkxNjUyNQ@@._V1_.jpg",
+          "videoUrl": "https://www.youtube.com/watch?v=example5",
+          "duration": "52m",
+          "episodeNumber": 2
+        },
+        {
+          "id": "hist1_ep3",
+          "name": "The Truth",
+          "thumbnail": "https://m.media-amazon.com/images/M/MV5BN2FjNmEyNWMtYzM0ZS00NjIyLTg5YzYtYThlMGVjNzE1OGViXkEyXkFqcGdeQXVyMTkxNjUyNQ@@._V1_.jpg",
+          "videoUrl": "https://www.youtube.com/watch?v=example5",
+          "duration": "53m",
+          "episodeNumber": 3
+        }
+      ]
+    },
+    {
+      "id": "hist2",
+      "name": "Pushpa: The Rise",
+      "description": "Violence erupts between red sandalwood smugglers and the police charged with bringing down their organization.",
+      "thumbnail": "https://m.media-amazon.com/images/M/MV5BMmQ4YmM3NjgtNTExNC00ZTZhLWEwZTctYjdhOWI4ZWFlMDk2XkEyXkFqcGdeQXVyMTI1NDEyNTM5._V1_FMjpg_UX1000_.jpg",
+      "videoUrl": "https://www.youtube.com/watch?v=example6",
+      "releaseDate": "2021",
+      "duration": "2h 59m",
+      "watchedDate": "2024-09-28",
+      "watchedPercentage": 100,
+      "episodes": [
+        {
+          "id": "hist2_ep1",
+          "name": "The Laborer",
+          "thumbnail": "https://m.media-amazon.com/images/M/MV5BMmQ4YmM3NjgtNTExNC00ZTZhLWEwZTctYjdhOWI4ZWFlMDk2XkEyXkFqcGdeQXVyMTI1NDEyNTM5._V1_FMjpg_UX1000_.jpg",
+          "videoUrl": "https://www.youtube.com/watch?v=example6",
+          "duration": "60m",
+          "episodeNumber": 1
+        },
+        {
+          "id": "hist2_ep2",
+          "name": "The Syndicate",
+          "thumbnail": "https://m.media-amazon.com/images/M/MV5BMmQ4YmM3NjgtNTExNC00ZTZhLWEwZTctYjdhOWI4ZWFlMDk2XkEyXkFqcGdeQXVyMTI1NDEyNTM5._V1_FMjpg_UX1000_.jpg",
+          "videoUrl": "https://www.youtube.com/watch?v=example6",
+          "duration": "60m",
+          "episodeNumber": 2
+        },
+        {
+          "id": "hist2_ep3",
+          "name": "The Rise",
+          "thumbnail": "https://m.media-amazon.com/images/M/MV5BMmQ4YmM3NjgtNTExNC00ZTZhLWEwZTctYjdhOWI4ZWFlMDk2XkEyXkFqcGdeQXVyMTI1NDEyNTM5._V1_FMjpg_UX1000_.jpg",
+          "videoUrl": "https://www.youtube.com/watch?v=example6",
+          "duration": "59m",
+          "episodeNumber": 3
+        }
+      ]
+    },
+    {
+      "id": "hist3",
+      "name": "RRR",
+      "description": "A fictional story about two legendary revolutionaries and their journey away from home before they started fighting for their country in 1920s.",
+      "thumbnail": "https://m.media-amazon.com/images/M/MV5BOGEzYzcxYjAtZmZiNi00YzI0LWIyY2YtOTM0MDFjODU2YTZiXkEyXkFqcGdeQXVyMTQ3Mzk2MDg4._V1_.jpg",
+      "videoUrl": "https://www.youtube.com/watch?v=example7",
+      "releaseDate": "2022",
+      "duration": "3h 7m",
+      "watchedDate": "2024-09-15",
+      "watchedPercentage": 45,
+      "episodes": [
+        {
+          "id": "hist3_ep1",
+          "name": "The Warriors",
+          "thumbnail": "https://m.media-amazon.com/images/M/MV5BZWYzOGEwNTgtNWU3NS00ZTQ0LWJkODUtMmVhMjIwMjA1ZmQwXkEyXkFqcGdeQXVyMjkwOTAyMDU@._V1_.jpg",
+          "videoUrl": "https://www.youtube.com/watch?v=example7",
+          "duration": "62m",
+          "episodeNumber": 1
+        },
+        {
+          "id": "hist3_ep2",
+          "name": "Brotherhood",
+          "thumbnail": "https://m.media-amazon.com/images/M/MV5BZWYzOGEwNTgtNWU3NS00ZTQ0LWJkODUtMmVhMjIwMjA1ZmQwXkEyXkFqcGdeQXVyMjkwOTAyMDU@._V1_.jpg",
+          "videoUrl": "https://www.youtube.com/watch?v=example7",
+          "duration": "63m",
+          "episodeNumber": 2
+        },
+        {
+          "id": "hist3_ep3",
+          "name": "Revolution",
+          "thumbnail": "https://m.media-amazon.com/images/M/MV5BZWYzOGEwNTgtNWU3NS00ZTQ0LWJkODUtMmVhMjIwMjA1ZmQwXkEyXkFqcGdeQXVyMjkwOTAyMDU@._V1_.jpg",
+          "videoUrl": "https://www.youtube.com/watch?v=example7",
+          "duration": "62m",
+          "episodeNumber": 3
+        }
+      ]
+    }
+  ]
+}
+

@@ -4,7 +4,7 @@ import '../theme/app_theme.dart';
 /// Reusable Bottom Navigation Bar Component
 /// 
 /// Provides consistent navigation across all screens with
-/// Home, Browse, Search, and Watchlist options
+/// Home, Browse, Search, and Favourites options
 class CustomBottomNavigationBar extends StatelessWidget {
   final int? currentIndex; // Made nullable to allow no selection
   final Function(int) onTap;
@@ -55,7 +55,7 @@ class CustomBottomNavigationBar extends StatelessWidget {
               icon: Icons.favorite_outline,
               selectedIcon: Icons.favorite,
               index: 3,
-              label: 'Watchlist',
+              label: 'Favourites',
             ),
           ],
         ),

@@ -9,7 +9,7 @@ import '../theme/app_theme.dart';
 /// Features:
 /// - Portrait-only orientation optimized for short-form content
 /// - Tap-to-show/hide controls with auto-hide timer (3 seconds)
-/// - Side action buttons (Like, Watchlist, Episodes, Share) - always visible
+/// - Side action buttons (Like, Favourites, Episodes, Share) - always visible
 /// - Bottom info overlay showing episode/reel details - shows/hides with controls
 /// - Top navigation with back button, title, and options
 /// - Progress bar in controls overlay
@@ -38,7 +38,7 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen>
   bool _isPlaying = false;
   bool _showControls = true;
   bool _isBuffering = false;
-  bool _isInWatchlist = false;
+  bool _isInFavourites = false;
   bool _isLiked = false;
   
   // Animation controllers
@@ -185,15 +185,15 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen>
     }
   }
 
-  void _toggleWatchlist() {
+  void _toggleFavourites() {
     setState(() {
-      _isInWatchlist = !_isInWatchlist;
+      _isInFavourites = !_isInFavourites;
     });
 
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
         content: Text(
-          _isInWatchlist ? 'Added to Watchlist!' : 'Removed from Watchlist',
+          _isInFavourites ? 'Added to Favourites!' : 'Removed from Favourites',
           style: const TextStyle(color: AppTheme.primaryText),
         ),
         backgroundColor: AppTheme.surfaceBackground,
@@ -405,12 +405,12 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen>
           
           const SizedBox(height: 20),
           
-          // Watchlist button
+          // Favourites button
           _buildSideActionButton(
-            icon: _isInWatchlist ? Icons.bookmark : Icons.bookmark_border,
+            icon: _isInFavourites ? Icons.bookmark : Icons.bookmark_border,
             label: 'Save',
-            onTap: _toggleWatchlist,
-            isActive: _isInWatchlist,
+            onTap: _toggleFavourites,
+            isActive: _isInFavourites,
           ),
           
           const SizedBox(height: 20),
