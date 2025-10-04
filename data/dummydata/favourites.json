@@ -2,12 +2,12 @@
   "favourites": [
     {
       "id": "fav1",
-      "name": "KALKI 2898 AD",
-      "description": "The film is set in the year 2898 AD. A modern-day avatar of Hindu god Vishnu is said to have descended on Earth to protect the world from evil forces.",
-      "thumbnail": "https://m.media-amazon.com/images/M/MV5BYmRiOWJlYzItNjg2Ny00MTA1LTg0ODUtYmJkZmYwZjAxOWYxXkEyXkFqcGdeQXVyMTUyNjIwMDEw._V1_.jpg",
-      "videoUrl": "https://www.youtube.com/watch?v=example1",
-      "releaseDate": "2024",
-      "duration": "2h 51m",
+      "name": "Oppenheimer",
+      "description": "The story of American scientist J. Robert Oppenheimer and his role in the development of the atomic bomb.",
+      "thumbnail": "https://m.media-amazon.com/images/M/MV5BMDBmYTZjNjUtN2M1MS00MTQ2LTk2ODgtNzc2M2QyZGE5NTVjXkEyXkFqcGdeQXVyNzAwMjU2MTY@._V1_.jpg",
+      "videoUrl": "https://www.youtube.com/watch?v=uYPbbksJxIg",
+      "releaseDate": "2023",
+      "duration": "3h 0m",
       "episodes": [
         {
           "id": "fav1_ep1",
@@ -37,12 +37,12 @@
     },
     {
       "id": "fav2",
-      "name": "KGF 2",
-      "description": "The blood-soaked land of Kolar Gold Fields (KGF) has a new overlord now - Rocky, whose name strikes fear in the heart of his foes.",
-      "thumbnail": "https://m.media-amazon.com/images/M/MV5BZDNlNzBjMGUtYTA0Yy00OTI2LWJmZjMtODliYmUyYTI0OGFmXkEyXkFqcGdeQXVyODIwMDI1NjM@._V1_.jpg",
-      "videoUrl": "https://www.youtube.com/watch?v=example2",
-      "releaseDate": "2022",
-      "duration": "2h 48m",
+      "name": "Barbie",
+      "description": "Barbie suffers a crisis that leads her to question her world and her existence.",
+      "thumbnail": "https://m.media-amazon.com/images/M/MV5BNjU3N2QxNzYtMjk1NC00MTc4LTk1NTQtMmUxNTljM2I0NDA5XkEyXkFqcGdeQXVyODE5NzE3OTE@._V1_.jpg",
+      "videoUrl": "https://www.youtube.com/watch?v=pBk4NYhWNMM",
+      "releaseDate": "2023",
+      "duration": "1h 54m",
       "episodes": [
         {
           "id": "fav2_ep1",
@@ -72,69 +72,69 @@
     },
     {
       "id": "fav3",
-      "name": "Hridayam",
-      "description": "A feel-good romantic drama that follows the emotional journey of a young man from his college days to adulthood.",
-      "thumbnail": "https://m.media-amazon.com/images/M/MV5BYmY3NGJlYTAtY2QyYi00YWVhLWEzMDktZjE2NjU2Yzc1ZDk5XkEyXkFqcGdeQXVyMTEzNzg0Mjkx._V1_.jpg",
-      "videoUrl": "https://www.youtube.com/watch?v=example3",
-      "releaseDate": "2022",
-      "duration": "2h 51m",
+      "name": "Guardians of the Galaxy Vol. 3",
+      "description": "Still reeling from the loss of Gamora, Peter Quill rallies his team to defend the universe.",
+      "thumbnail": "https://m.media-amazon.com/images/M/MV5BMDgxOTdjMzYtZGQxMS00ZTAzLWI4Y2UtMTQzN2VlYjYyZWRiXkEyXkFqcGdeQXVyMTkxNjUyNQ@@._V1_.jpg",
+      "videoUrl": "https://www.youtube.com/watch?v=u3V5KDHRQvk",
+      "releaseDate": "2023",
+      "duration": "2h 30m",
       "episodes": [
         {
           "id": "fav3_ep1",
-          "name": "College Days",
-          "thumbnail": "https://m.media-amazon.com/images/M/MV5BYzFiZjc1YzctMDY3Zi00NGE5LTlmNWEtN2Q3OWFjYjY1NGM2XkEyXkFqcGdeQXVyMTUyMTUzNjQ0._V1_.jpg",
-          "videoUrl": "https://www.youtube.com/watch?v=example3",
-          "duration": "57m",
+          "name": "The Search Begins",
+          "thumbnail": "https://m.media-amazon.com/images/M/MV5BMDgxOTdjMzYtZGQxMS00ZTAzLWI4Y2UtMTQzN2VlYjYyZWRiXkEyXkFqcGdeQXVyMTkxNjUyNQ@@._V1_.jpg",
+          "videoUrl": "https://www.youtube.com/watch?v=u3V5KDHRQvk",
+          "duration": "50m",
           "episodeNumber": 1
         },
         {
           "id": "fav3_ep2",
-          "name": "Love & Loss",
-          "thumbnail": "https://m.media-amazon.com/images/M/MV5BYzFiZjc1YzctMDY3Zi00NGE5LTlmNWEtN2Q3OWFjYjY1NGM2XkEyXkFqcGdeQXVyMTUyMTUzNjQ0._V1_.jpg",
-          "videoUrl": "https://www.youtube.com/watch?v=example3",
-          "duration": "57m",
+          "name": "High Evolutionary",
+          "thumbnail": "https://m.media-amazon.com/images/M/MV5BMDgxOTdjMzYtZGQxMS00ZTAzLWI4Y2UtMTQzN2VlYjYyZWRiXkEyXkFqcGdeQXVyMTkxNjUyNQ@@._V1_.jpg",
+          "videoUrl": "https://www.youtube.com/watch?v=u3V5KDHRQvk",
+          "duration": "45m",
           "episodeNumber": 2
         },
         {
           "id": "fav3_ep3",
-          "name": "Finding Purpose",
-          "thumbnail": "https://m.media-amazon.com/images/M/MV5BYzFiZjc1YzctMDY3Zi00NGE5LTlmNWEtN2Q3OWFjYjY1NGM2XkEyXkFqcGdeQXVyMTUyMTUzNjQ0._V1_.jpg",
-          "videoUrl": "https://www.youtube.com/watch?v=example3",
-          "duration": "57m",
+          "name": "Rocket's Past",
+          "thumbnail": "https://m.media-amazon.com/images/M/MV5BMDgxOTdjMzYtZGQxMS00ZTAzLWI4Y2UtMTQzN2VlYjYyZWRiXkEyXkFqcGdeQXVyMTkxNjUyNQ@@._V1_.jpg",
+          "videoUrl": "https://www.youtube.com/watch?v=u3V5KDHRQvk",
+          "duration": "55m",
           "episodeNumber": 3
         }
       ]
     },
     {
       "id": "fav4",
-      "name": "Jailer",
-      "description": "A retired jailer goes on a manhunt to find his son's killers. But the road leads him to a very powerful gangster.",
-      "thumbnail": "https://m.media-amazon.com/images/M/MV5BMjMwMDgyOGQtMWZjNC00MDUwLTllZDYtZWM3NDBmN2YzNGZmXkEyXkFqcGdeQXVyMTQyMTMwOTk0._V1_.jpg",
-      "videoUrl": "https://www.youtube.com/watch?v=example4",
+      "name": "John Wick: Chapter 4",
+      "description": "John Wick uncovers a path to defeating The High Table.",
+      "thumbnail": "https://m.media-amazon.com/images/M/MV5BMDExZGMyOTMtMDgyYi00NGIwLWJhMTEtOTdkZGFjNmZiMTEwXkEyXkFqcGdeQXVyMjM4NTM5NDY@._V1_.jpg",
+      "videoUrl": "https://www.youtube.com/watch?v=qEVUtrk8_B4",
       "releaseDate": "2023",
-      "duration": "2h 48m",
+      "duration": "2h 49m",
       "episodes": [
         {
           "id": "fav4_ep1",
-          "name": "The Jailer",
+          "name": "The Challenge",
           "thumbnail": "https://m.media-amazon.com/images/M/MV5BMDExZGMyOTMtMDgyYi00NGIwLWJhMTEtOTdkZGFjNmZiMTEwXkEyXkFqcGdeQXVyMjM4NTM5NDY@._V1_.jpg",
-          "videoUrl": "https://www.youtube.com/watch?v=example4",
+          "videoUrl": "https://www.youtube.com/watch?v=qEVUtrk8_B4",
           "duration": "56m",
           "episodeNumber": 1
         },
         {
           "id": "fav4_ep2",
-          "name": "The Hunt",
+          "name": "The Journey",
           "thumbnail": "https://m.media-amazon.com/images/M/MV5BMDExZGMyOTMtMDgyYi00NGIwLWJhMTEtOTdkZGFjNmZiMTEwXkEyXkFqcGdeQXVyMjM4NTM5NDY@._V1_.jpg",
-          "videoUrl": "https://www.youtube.com/watch?v=example4",
-          "duration": "56m",
+          "videoUrl": "https://www.youtube.com/watch?v=qEVUtrk8_B4",
+          "duration": "57m",
           "episodeNumber": 2
         },
         {
           "id": "fav4_ep3",
-          "name": "Vengeance",
+          "name": "The Final Duel",
           "thumbnail": "https://m.media-amazon.com/images/M/MV5BMDExZGMyOTMtMDgyYi00NGIwLWJhMTEtOTdkZGFjNmZiMTEwXkEyXkFqcGdeQXVyMjM4NTM5NDY@._V1_.jpg",
-          "videoUrl": "https://www.youtube.com/watch?v=example4",
+          "videoUrl": "https://www.youtube.com/watch?v=qEVUtrk8_B4",
           "duration": "56m",
           "episodeNumber": 3
         }
@@ -144,111 +144,111 @@
   "history": [
     {
       "id": "hist1",
-      "name": "Hi Nanna",
-      "description": "A single father's life is complicated when his six-year-old daughter starts asking about her mother.",
-      "thumbnail": "https://m.media-amazon.com/images/M/MV5BZjZlNGRjNDctNGNhYi00NmRjLWI5NjYtYjhiNmViOTIyMGY3XkEyXkFqcGdeQXVyMTQ3Mzk2MDg4._V1_.jpg",
-      "videoUrl": "https://www.youtube.com/watch?v=example5",
+      "name": "The Super Mario Bros. Movie",
+      "description": "A plumber named Mario travels through an underground labyrinth with his brother, Luigi, trying to save a captured princess.",
+      "thumbnail": "https://m.media-amazon.com/images/M/MV5BOTJhNzlmNzctNTU5Yy00N2YwLThhMjQtZDM0YjEzN2Y0ZjNhXkEyXkFqcGdeQXVyMTEwMTQ4MzU5._V1_.jpg",
+      "videoUrl": "https://www.youtube.com/watch?v=TnGl01FkMMo",
       "releaseDate": "2023",
-      "duration": "2h 38m",
+      "duration": "1h 32m",
       "watchedDate": "2024-10-01",
       "watchedPercentage": 75,
       "episodes": [
         {
           "id": "hist1_ep1",
-          "name": "The Father",
-          "thumbnail": "https://m.media-amazon.com/images/M/MV5BN2FjNmEyNWMtYzM0ZS00NjIyLTg5YzYtYThlMGVjNzE1OGViXkEyXkFqcGdeQXVyMTkxNjUyNQ@@._V1_.jpg",
-          "videoUrl": "https://www.youtube.com/watch?v=example5",
-          "duration": "53m",
+          "name": "Welcome to the Mushroom Kingdom",
+          "thumbnail": "https://m.media-amazon.com/images/M/MV5BOTJhNzlmNzctNTU5Yy00N2YwLThhMjQtZDM0YjEzN2Y0ZjNhXkEyXkFqcGdeQXVyMTEwMTQ4MzU5._V1_.jpg",
+          "videoUrl": "https://www.youtube.com/watch?v=TnGl01FkMMo",
+          "duration": "30m",
           "episodeNumber": 1
         },
         {
           "id": "hist1_ep2",
-          "name": "The Secret",
-          "thumbnail": "https://m.media-amazon.com/images/M/MV5BN2FjNmEyNWMtYzM0ZS00NjIyLTg5YzYtYThlMGVjNzE1OGViXkEyXkFqcGdeQXVyMTkxNjUyNQ@@._V1_.jpg",
-          "videoUrl": "https://www.youtube.com/watch?v=example5",
-          "duration": "52m",
+          "name": "Bowser's Plan",
+          "thumbnail": "https://m.media-amazon.com/images/M/MV5BOTJhNzlmNzctNTU5Yy00N2YwLThhMjQtZDM0YjEzN2Y0ZjNhXkEyXkFqcGdeQXVyMTEwMTQ4MzU5._V1_.jpg",
+          "videoUrl": "https://www.youtube.com/watch?v=TnGl01FkMMo",
+          "duration": "32m",
           "episodeNumber": 2
         },
         {
           "id": "hist1_ep3",
-          "name": "The Truth",
-          "thumbnail": "https://m.media-amazon.com/images/M/MV5BN2FjNmEyNWMtYzM0ZS00NjIyLTg5YzYtYThlMGVjNzE1OGViXkEyXkFqcGdeQXVyMTkxNjUyNQ@@._V1_.jpg",
-          "videoUrl": "https://www.youtube.com/watch?v=example5",
-          "duration": "53m",
+          "name": "The Final Battle",
+          "thumbnail": "https://m.media-amazon.com/images/M/MV5BOTJhNzlmNzctNTU5Yy00N2YwLThhMjQtZDM0YjEzN2Y0ZjNhXkEyXkFqcGdeQXVyMTEwMTQ4MzU5._V1_.jpg",
+          "videoUrl": "https://www.youtube.com/watch?v=TnGl01FkMMo",
+          "duration": "30m",
           "episodeNumber": 3
         }
       ]
     },
     {
       "id": "hist2",
-      "name": "Pushpa: The Rise",
-      "description": "Violence erupts between red sandalwood smugglers and the police charged with bringing down their organization.",
-      "thumbnail": "https://m.media-amazon.com/images/M/MV5BMmQ4YmM3NjgtNTExNC00ZTZhLWEwZTctYjdhOWI4ZWFlMDk2XkEyXkFqcGdeQXVyMTI1NDEyNTM5._V1_FMjpg_UX1000_.jpg",
-      "videoUrl": "https://www.youtube.com/watch?v=example6",
-      "releaseDate": "2021",
-      "duration": "2h 59m",
+      "name": "Mission: Impossible - Dead Reckoning",
+      "description": "Ethan Hunt and his IMF team must track down a dangerous weapon before it falls into the wrong hands.",
+      "thumbnail": "https://m.media-amazon.com/images/M/MV5BYzFiZjc1YzctMDY3Zi00NGE5LTlmNWEtN2Q3OWFjYjY1NGM2XkEyXkFqcGdeQXVyMTUyMTUzNjQ0._V1_.jpg",
+      "videoUrl": "https://www.youtube.com/watch?v=avz06PDqDbM",
+      "releaseDate": "2023",
+      "duration": "2h 43m",
       "watchedDate": "2024-09-28",
       "watchedPercentage": 100,
       "episodes": [
         {
           "id": "hist2_ep1",
-          "name": "The Laborer",
-          "thumbnail": "https://m.media-amazon.com/images/M/MV5BMmQ4YmM3NjgtNTExNC00ZTZhLWEwZTctYjdhOWI4ZWFlMDk2XkEyXkFqcGdeQXVyMTI1NDEyNTM5._V1_FMjpg_UX1000_.jpg",
-          "videoUrl": "https://www.youtube.com/watch?v=example6",
-          "duration": "60m",
+          "name": "The Hunt Begins",
+          "thumbnail": "https://m.media-amazon.com/images/M/MV5BYzFiZjc1YzctMDY3Zi00NGE5LTlmNWEtN2Q3OWFjYjY1NGM2XkEyXkFqcGdeQXVyMTUyMTUzNjQ0._V1_.jpg",
+          "videoUrl": "https://www.youtube.com/watch?v=avz06PDqDbM",
+          "duration": "55m",
           "episodeNumber": 1
         },
         {
           "id": "hist2_ep2",
-          "name": "The Syndicate",
-          "thumbnail": "https://m.media-amazon.com/images/M/MV5BMmQ4YmM3NjgtNTExNC00ZTZhLWEwZTctYjdhOWI4ZWFlMDk2XkEyXkFqcGdeQXVyMTI1NDEyNTM5._V1_FMjpg_UX1000_.jpg",
-          "videoUrl": "https://www.youtube.com/watch?v=example6",
-          "duration": "60m",
+          "name": "The Chase",
+          "thumbnail": "https://m.media-amazon.com/images/M/MV5BYzFiZjc1YzctMDY3Zi00NGE5LTlmNWEtN2Q3OWFjYjY1NGM2XkEyXkFqcGdeQXVyMTUyMTUzNjQ0._V1_.jpg",
+          "videoUrl": "https://www.youtube.com/watch?v=avz06PDqDbM",
+          "duration": "54m",
           "episodeNumber": 2
         },
         {
           "id": "hist2_ep3",
-          "name": "The Rise",
-          "thumbnail": "https://m.media-amazon.com/images/M/MV5BMmQ4YmM3NjgtNTExNC00ZTZhLWEwZTctYjdhOWI4ZWFlMDk2XkEyXkFqcGdeQXVyMTI1NDEyNTM5._V1_FMjpg_UX1000_.jpg",
-          "videoUrl": "https://www.youtube.com/watch?v=example6",
-          "duration": "59m",
+          "name": "The Confrontation",
+          "thumbnail": "https://m.media-amazon.com/images/M/MV5BYzFiZjc1YzctMDY3Zi00NGE5LTlmNWEtN2Q3OWFjYjY1NGM2XkEyXkFqcGdeQXVyMTUyMTUzNjQ0._V1_.jpg",
+          "videoUrl": "https://www.youtube.com/watch?v=avz06PDqDbM",
+          "duration": "54m",
           "episodeNumber": 3
         }
       ]
     },
     {
       "id": "hist3",
-      "name": "RRR",
-      "description": "A fictional story about two legendary revolutionaries and their journey away from home before they started fighting for their country in 1920s.",
-      "thumbnail": "https://m.media-amazon.com/images/M/MV5BOGEzYzcxYjAtZmZiNi00YzI0LWIyY2YtOTM0MDFjODU2YTZiXkEyXkFqcGdeQXVyMTQ3Mzk2MDg4._V1_.jpg",
-      "videoUrl": "https://www.youtube.com/watch?v=example7",
+      "name": "The Batman",
+      "description": "When a sadistic serial killer begins murdering key political figures in Gotham, Batman is forced to investigate.",
+      "thumbnail": "https://m.media-amazon.com/images/M/MV5BMDdmMTBiNTYtMDIzNi00NGVlLWIzMDYtZTk3MTQ3NGQxZGEwXkEyXkFqcGdeQXVyMzMwOTU5MDk@._V1_.jpg",
+      "videoUrl": "https://www.youtube.com/watch?v=mqqft2x_Aa4",
       "releaseDate": "2022",
-      "duration": "3h 7m",
+      "duration": "2h 56m",
       "watchedDate": "2024-09-15",
       "watchedPercentage": 45,
       "episodes": [
         {
           "id": "hist3_ep1",
-          "name": "The Warriors",
-          "thumbnail": "https://m.media-amazon.com/images/M/MV5BZWYzOGEwNTgtNWU3NS00ZTQ0LWJkODUtMmVhMjIwMjA1ZmQwXkEyXkFqcGdeQXVyMjkwOTAyMDU@._V1_.jpg",
-          "videoUrl": "https://www.youtube.com/watch?v=example7",
-          "duration": "62m",
+          "name": "The Riddler's Game",
+          "thumbnail": "https://m.media-amazon.com/images/M/MV5BMDdmMTBiNTYtMDIzNi00NGVlLWIzMDYtZTk3MTQ3NGQxZGEwXkEyXkFqcGdeQXVyMzMwOTU5MDk@._V1_.jpg",
+          "videoUrl": "https://www.youtube.com/watch?v=mqqft2x_Aa4",
+          "duration": "58m",
           "episodeNumber": 1
         },
         {
           "id": "hist3_ep2",
-          "name": "Brotherhood",
-          "thumbnail": "https://m.media-amazon.com/images/M/MV5BZWYzOGEwNTgtNWU3NS00ZTQ0LWJkODUtMmVhMjIwMjA1ZmQwXkEyXkFqcGdeQXVyMjkwOTAyMDU@._V1_.jpg",
-          "videoUrl": "https://www.youtube.com/watch?v=example7",
-          "duration": "63m",
+          "name": "Vengeance",
+          "thumbnail": "https://m.media-amazon.com/images/M/MV5BMDdmMTBiNTYtMDIzNi00NGVlLWIzMDYtZTk3MTQ3NGQxZGEwXkEyXkFqcGdeQXVyMzMwOTU5MDk@._V1_.jpg",
+          "videoUrl": "https://www.youtube.com/watch?v=mqqft2x_Aa4",
+          "duration": "59m",
           "episodeNumber": 2
         },
         {
           "id": "hist3_ep3",
-          "name": "Revolution",
-          "thumbnail": "https://m.media-amazon.com/images/M/MV5BZWYzOGEwNTgtNWU3NS00ZTQ0LWJkODUtMmVhMjIwMjA1ZmQwXkEyXkFqcGdeQXVyMjkwOTAyMDU@._V1_.jpg",
-          "videoUrl": "https://www.youtube.com/watch?v=example7",
-          "duration": "62m",
+          "name": "The Dark Knight",
+          "thumbnail": "https://m.media-amazon.com/images/M/MV5BMDdmMTBiNTYtMDIzNi00NGVlLWIzMDYtZTk3MTQ3NGQxZGEwXkEyXkFqcGdeQXVyMzMwOTU5MDk@._V1_.jpg",
+          "videoUrl": "https://www.youtube.com/watch?v=mqqft2x_Aa4",
+          "duration": "59m",
           "episodeNumber": 3
         }
       ]

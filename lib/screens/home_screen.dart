@@ -8,6 +8,7 @@ import 'reel_overview_screen.dart';
 import 'profile_screen.dart';
 import 'favourites_screen.dart';
 import 'search_screen.dart';
+import 'browse_screen.dart';
 
 /// SHOTT Home Screen - Main content area after splash
 /// 
@@ -70,7 +71,10 @@ class _HomeScreenState extends State<HomeScreen> {
         break;
       case 1:
         // Navigate to Browse/Explore
-        // TODO: Implement browse screen navigation
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => const BrowseScreen()),
+        );
         break;
       case 2:
         // Navigate to Search

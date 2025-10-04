@@ -6,6 +6,7 @@ import '../theme/app_theme.dart';
 import 'home_screen.dart';
 import 'reel_overview_screen.dart';
 import 'search_screen.dart';
+import 'browse_screen.dart';
 import '../models/reel.dart';
 
 /// Favourites Screen
@@ -76,7 +77,10 @@ class _FavouritesScreenState extends State<FavouritesScreen> {
         break;
       case 1:
         // Navigate to Browse/Explore
-        // TODO: Implement browse screen navigation
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(builder: (context) => const BrowseScreen()),
+        );
         break;
       case 2:
         // Navigate to Search

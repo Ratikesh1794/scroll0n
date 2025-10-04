@@ -1,0 +1,194 @@
+{
+  "languages": [
+    {
+      "id": "lang_hi",
+      "name": "Hindi",
+      "thumbnail": "https://m.media-amazon.com/images/M/MV5BMDExZGMyOTMtMDgyYi00NGIwLWJhMTEtOTdkZGFjNmZiMTEwXkEyXkFqcGdeQXVyMjM4NTM5NDY@._V1_.jpg",
+      "count": "500+ titles"
+    },
+    {
+      "id": "lang_en",
+      "name": "English",
+      "thumbnail": "https://m.media-amazon.com/images/M/MV5BYzFiZjc1YzctMDY3Zi00NGE5LTlmNWEtN2Q3OWFjYjY1NGM2XkEyXkFqcGdeQXVyMTUyMTUzNjQ0._V1_.jpg",
+      "count": "1000+ titles"
+    },
+    {
+      "id": "lang_te",
+      "name": "Telugu",
+      "thumbnail": "https://m.media-amazon.com/images/M/MV5BMDBmYTZjNjUtN2M1MS00MTQ2LTk2ODgtNzc2M2QyZGE5NTVjXkEyXkFqcGdeQXVyNzAwMjU2MTY@._V1_.jpg",
+      "count": "300+ titles"
+    },
+    {
+      "id": "lang_kn",
+      "name": "Kannada",
+      "thumbnail": "https://m.media-amazon.com/images/M/MV5BN2FjNmEyNWMtYzM0ZS00NjIyLTg5YzYtYThlMGVjNzE1OGViXkEyXkFqcGdeQXVyMTkxNjUyNQ@@._V1_.jpg",
+      "count": "200+ titles"
+    },
+    {
+      "id": "lang_pa",
+      "name": "Punjabi",
+      "thumbnail": "https://m.media-amazon.com/images/M/MV5BNjU3N2QxNzYtMjk1NC00MTc4LTk1NTQtMmUxNTljM2I0NDA5XkEyXkFqcGdeQXVyODE5NzE3OTE@._V1_.jpg",
+      "count": "150+ titles"
+    },
+    {
+      "id": "lang_mr",
+      "name": "Marathi",
+      "thumbnail": "https://m.media-amazon.com/images/M/MV5BOTJhNzlmNzctNTU5Yy00N2YwLThhMjQtZDM0YjEzN2Y0ZjNhXkEyXkFqcGdeQXVyMTEwMTQ4MzU5._V1_.jpg",
+      "count": "100+ titles"
+    }
+  ],
+  "trending_categories": [
+    {
+      "name": "Weekly Top 10",
+      "description": "Most watched this week",
+      "icon": "trending_up",
+      "items": [
+        {
+          "id": "wt1",
+          "name": "Oppenheimer",
+          "description": "The story of American scientist J. Robert Oppenheimer and his role in the development of the atomic bomb.",
+          "thumbnail": "https://m.media-amazon.com/images/M/MV5BMDBmYTZjNjUtN2M1MS00MTQ2LTk2ODgtNzc2M2QyZGE5NTVjXkEyXkFqcGdeQXVyNzAwMjU2MTY@._V1_.jpg",
+          "videoUrl": "https://www.youtube.com/watch?v=uYPbbksJxIg",
+          "releaseDate": "2023",
+          "duration": "3h 0m"
+        },
+        {
+          "id": "wt2",
+          "name": "Mission: Impossible - Dead Reckoning",
+          "description": "Ethan Hunt and his IMF team must track down a dangerous weapon before it falls into the wrong hands.",
+          "thumbnail": "https://m.media-amazon.com/images/M/MV5BYzFiZjc1YzctMDY3Zi00NGE5LTlmNWEtN2Q3OWFjYjY1NGM2XkEyXkFqcGdeQXVyMTUyMTUzNjQ0._V1_.jpg",
+          "videoUrl": "https://www.youtube.com/watch?v=avz06PDqDbM",
+          "releaseDate": "2023",
+          "duration": "2h 43m"
+        }
+      ]
+    },
+    {
+      "name": "New Arrivals",
+      "description": "Fresh content daily",
+      "icon": "new_releases",
+      "items": [
+        {
+          "id": "na1",
+          "name": "Barbie",
+          "description": "Barbie suffers a crisis that leads her to question her world and her existence.",
+          "thumbnail": "https://m.media-amazon.com/images/M/MV5BNjU3N2QxNzYtMjk1NC00MTc4LTk1NTQtMmUxNTljM2I0NDA5XkEyXkFqcGdeQXVyODE5NzE3OTE@._V1_.jpg",
+          "videoUrl": "https://www.youtube.com/watch?v=pBk4NYhWNMM",
+          "releaseDate": "2023",
+          "duration": "1h 54m"
+        },
+        {
+          "id": "na2",
+          "name": "The Super Mario Bros. Movie",
+          "description": "A plumber named Mario travels through an underground labyrinth with his brother, Luigi, trying to save a captured princess.",
+          "thumbnail": "https://m.media-amazon.com/images/M/MV5BOTJhNzlmNzctNTU5Yy00N2YwLThhMjQtZDM0YjEzN2Y0ZjNhXkEyXkFqcGdeQXVyMTEwMTQ4MzU5._V1_.jpg",
+          "videoUrl": "https://www.youtube.com/watch?v=TnGl01FkMMo",
+          "releaseDate": "2023",
+          "duration": "1h 32m"
+        }
+      ]
+    },
+    {
+      "name": "Award Winners",
+      "description": "Critics choice picks",
+      "icon": "star",
+      "items": [
+        {
+          "id": "aw1",
+          "name": "Everything Everywhere All at Once",
+          "description": "An aging Chinese immigrant is swept up in an insane adventure.",
+          "thumbnail": "https://m.media-amazon.com/images/M/MV5BYTdiOTIyZTQtNmQ1OS00NjZlLWIyMTgtYzk5Y2M3ZDVmMDk1XkEyXkFqcGdeQXVyMTAzMDg4NzU0._V1_.jpg",
+          "videoUrl": "https://www.youtube.com/watch?v=wxN1T1uxQ2g",
+          "releaseDate": "2022",
+          "duration": "2h 19m"
+        },
+        {
+          "id": "aw2",
+          "name": "The Whale",
+          "description": "A reclusive English teacher attempts to reconnect with his estranged teenage daughter.",
+          "thumbnail": "https://m.media-amazon.com/images/M/MV5BZDQ4Njg4YTctNGZkYi00NWU1LWI4OTYtNmNjOWMyMjI1NWYzXkEyXkFqcGdeQXVyMTA3MDk2NDg2._V1_.jpg",
+          "videoUrl": "https://www.youtube.com/watch?v=6VEGzCLPJsk",
+          "releaseDate": "2022",
+          "duration": "1h 57m"
+        }
+      ]
+    }
+  ],
+  "categories": [
+    {
+      "name": "Action & Adventure",
+      "icon": "local_fire_department",
+      "count": "250+ titles",
+      "items": [
+        {
+          "id": "aa1",
+          "name": "John Wick: Chapter 4",
+          "description": "John Wick uncovers a path to defeating The High Table.",
+          "thumbnail": "https://m.media-amazon.com/images/M/MV5BMDExZGMyOTMtMDgyYi00NGIwLWJhMTEtOTdkZGFjNmZiMTEwXkEyXkFqcGdeQXVyMjM4NTM5NDY@._V1_.jpg",
+          "videoUrl": "https://www.youtube.com/watch?v=qEVUtrk8_B4",
+          "releaseDate": "2023",
+          "duration": "2h 49m"
+        },
+        {
+          "id": "aa2",
+          "name": "Top Gun: Maverick",
+          "description": "After thirty years, Maverick is still pushing the envelope as a top naval aviator.",
+          "thumbnail": "https://m.media-amazon.com/images/M/MV5BZWYzOGEwNTgtNWU3NS00ZTQ0LWJkODUtMmVhMjIwMjA1ZmQwXkEyXkFqcGdeQXVyMjkwOTAyMDU@._V1_.jpg",
+          "videoUrl": "https://www.youtube.com/watch?v=giXco2jaZ_4",
+          "releaseDate": "2022",
+          "duration": "2h 10m"
+        }
+      ]
+    },
+    {
+      "name": "Sci-Fi",
+      "icon": "science",
+      "count": "180+ titles",
+      "items": [
+        {
+          "id": "sf1",
+          "name": "Dune",
+          "description": "A noble family becomes embroiled in a war for control over the galaxy's most valuable asset.",
+          "thumbnail": "https://m.media-amazon.com/images/M/MV5BN2FjNmEyNWMtYzM0ZS00NjIyLTg5YzYtYThlMGVjNzE1OGViXkEyXkFqcGdeQXVyMTkxNjUyNQ@@._V1_.jpg",
+          "videoUrl": "https://www.youtube.com/watch?v=8g18jFHCLXk",
+          "releaseDate": "2021",
+          "duration": "2h 35m"
+        },
+        {
+          "id": "sf2",
+          "name": "Blade Runner 2049",
+          "description": "A young blade runner's discovery of a long-buried secret leads him to track down former blade runner Rick Deckard.",
+          "thumbnail": "https://m.media-amazon.com/images/M/MV5BNzA1Njg4NzYxOV5BMl5BanBnXkFtZTgwODk5NjU3MzI@._V1_.jpg",
+          "videoUrl": "https://www.youtube.com/watch?v=gCcx85zbxz4",
+          "releaseDate": "2017",
+          "duration": "2h 44m"
+        }
+      ]
+    },
+    {
+      "name": "Drama",
+      "icon": "theater_comedy",
+      "count": "200+ titles",
+      "items": [
+        {
+          "id": "dr1",
+          "name": "The Fabelmans",
+          "description": "Growing up in post-World War II era Arizona, young Sammy Fabelman aspires to become a filmmaker.",
+          "thumbnail": "https://m.media-amazon.com/images/M/MV5BZGM1MzczNmQtMjBmYS00NTRhLWI0MzctNTFkZDc4OWUyODI4XkEyXkFqcGdeQXVyMTUzMTg2ODkz._V1_.jpg",
+          "videoUrl": "https://www.youtube.com/watch?v=D1G2iLSzOe8",
+          "releaseDate": "2022",
+          "duration": "2h 31m"
+        },
+        {
+          "id": "dr2",
+          "name": "The Banshees of Inisherin",
+          "description": "Two lifelong friends find themselves at an impasse when one abruptly ends their relationship.",
+          "thumbnail": "https://m.media-amazon.com/images/M/MV5BM2NlZDI0ZDktNTg5OS00ZjQ1LWI4MDEtMDM4ZDczZThiYWUyXkEyXkFqcGdeQXVyMTY5Nzc4MDY@._V1_.jpg",
+          "videoUrl": "https://www.youtube.com/watch?v=uRu3zLOJN2c",
+          "releaseDate": "2022",
+          "duration": "1h 54m"
+        }
+      ]
+    }
+  ]
+}

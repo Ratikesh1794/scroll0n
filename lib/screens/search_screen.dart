@@ -3,6 +3,7 @@ import '../theme/app_theme.dart';
 import '../widgets/bottom_navigation_bar.dart';
 import 'home_screen.dart';
 import 'favourites_screen.dart';
+import 'browse_screen.dart';
 
 /// Search Screen
 /// 
@@ -29,7 +30,10 @@ class _SearchScreenState extends State<SearchScreen> {
         break;
       case 1:
         // Navigate to Browse/Explore
-        // TODO: Implement browse screen navigation
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(builder: (context) => const BrowseScreen()),
+        );
         break;
       case 2:
         // Already on Search screen
@@ -79,8 +83,8 @@ class _SearchScreenState extends State<SearchScreen> {
                   begin: Alignment.topCenter,
                   end: Alignment.bottomCenter,
                   colors: [
-                    Colors.black.withOpacity(0.3),
-                    Colors.black.withOpacity(0.7),
+                    Colors.black.withValues(alpha: 0.3 * 255),
+                    Colors.black.withValues(alpha: 0.7 * 255),
                   ],
                 ),
               ),
@@ -137,8 +141,8 @@ class _SearchScreenState extends State<SearchScreen> {
                   begin: Alignment.topCenter,
                   end: Alignment.bottomCenter,
                   colors: [
-                    Colors.black.withOpacity(0.3),
-                    Colors.black.withOpacity(0.7),
+                    Colors.black.withValues(alpha: 0.3 * 255),
+                    Colors.black.withValues(alpha: 0.7 * 255),
                   ],
                 ),
               ),
