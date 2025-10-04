@@ -1,8 +1,11 @@
+import 'dart:math' as math;
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import '../theme/app_theme.dart';
 
-/// SHOTT Splash Screen - Minimal Professional Design
+/// SHOTT Splash Screen - Ultra Minimal Professional Design
+/// 
+/// Features a clean, sophisticated animation with the brand name as the focal point
 class SplashScreen extends StatefulWidget {
   final VoidCallback? onComplete;
   
@@ -17,10 +20,13 @@ class SplashScreen extends StatefulWidget {
 
 class _SplashScreenState extends State<SplashScreen>
     with TickerProviderStateMixin {
-  late AnimationController _masterController;
+  late AnimationController _glowController;
+  late AnimationController _fadeController;
+  late AnimationController _letterController;
+  
+  late Animation<double> _glowAnimation;
   late Animation<double> _fadeAnimation;
-  late Animation<double> _scaleAnimation;
-  late Animation<double> _progressAnimation;
+  late Animation<double> _letterSpacingAnimation;
 
   @override
   void initState() {
@@ -30,45 +36,70 @@ class _SplashScreenState extends State<SplashScreen>
   }
 
   void _initializeAnimations() {
-    _masterController = AnimationController(
-      duration: const Duration(milliseconds: 2500),
+    // Pulsing glow effect controller
+    _glowController = AnimationController(
+      duration: const Duration(milliseconds: 2000),
+      vsync: this,
+    )..repeat(reverse: true);
+
+    // Main fade in controller
+    _fadeController = AnimationController(
+      duration: const Duration(milliseconds: 1500),
       vsync: this,
     );
 
+    // Letter spacing animation controller
+    _letterController = AnimationController(
+      duration: const Duration(milliseconds: 1200),
+      vsync: this,
+    );
+
+    // Smooth glow pulse
+    _glowAnimation = Tween<double>(
+      begin: 0.3,
+      end: 0.7,
+    ).animate(CurvedAnimation(
+      parent: _glowController,
+      curve: Curves.easeInOut,
+    ));
+
+    // Fade in animation
     _fadeAnimation = Tween<double>(
       begin: 0.0,
       end: 1.0,
     ).animate(CurvedAnimation(
-      parent: _masterController,
-      curve: const Interval(0.2, 0.6, curve: Curves.easeOut),
+      parent: _fadeController,
+      curve: Curves.easeOut,
     ));
 
-    _scaleAnimation = Tween<double>(
-      begin: 0.9,
-      end: 1.0,
+    // Letter spacing animation - from wide to normal
+    _letterSpacingAnimation = Tween<double>(
+      begin: 20.0,
+      end: 8.0,
     ).animate(CurvedAnimation(
-      parent: _masterController,
-      curve: const Interval(0.2, 0.6, curve: Curves.easeOutCubic),
-    ));
-
-    _progressAnimation = Tween<double>(
-      begin: 0.0,
-      end: 1.0,
-    ).animate(CurvedAnimation(
-      parent: _masterController,
-      curve: const Interval(0.4, 1.0, curve: Curves.easeInOut),
+      parent: _letterController,
+      curve: Curves.easeOutCubic,
     ));
   }
 
   Future<void> _startAnimationSequence() async {
+    // Set system UI style
     SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
       statusBarColor: Colors.transparent,
       statusBarIconBrightness: Brightness.light,
     ));
 
-    await _masterController.forward();
-    await Future.delayed(const Duration(milliseconds: 300));
+    // Delay before starting animations
+    await Future.delayed(const Duration(milliseconds: 200));
+    
+    // Start animations together
+    _fadeController.forward();
+    _letterController.forward();
 
+    // Wait for animations to complete
+    await Future.delayed(const Duration(milliseconds: 2000));
+
+    // Complete callback
     if (mounted && widget.onComplete != null) {
       widget.onComplete!();
     }
@@ -76,123 +107,155 @@ class _SplashScreenState extends State<SplashScreen>
 
   @override
   void dispose() {
-    _masterController.dispose();
+    _glowController.dispose();
+    _fadeController.dispose();
+    _letterController.dispose();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    final screenSize = MediaQuery.of(context).size;
-    final isLargeScreen = screenSize.width > 600;
-    
     return Scaffold(
-      backgroundColor: Colors.black,
-      body: Container(
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-            colors: [
-              Colors.black,
-              AppTheme.primary.withValues(alpha: 102), // 0.4 * 255 ≈ 102
-            ],
+      body: Stack(
+        children: [
+          // Animated gradient background
+          AnimatedBuilder(
+            animation: _glowAnimation,
+            builder: (context, child) {
+              return Container(
+                decoration: BoxDecoration(
+                  gradient: RadialGradient(
+                    center: Alignment.center,
+                    radius: 1.0,
+                    colors: [
+                      Color.lerp(
+                        const Color(0xFF0A1A1F),
+                        AppTheme.primary,
+                        _glowAnimation.value * 0.15,
+                      )!,
+                      const Color(0xFF000000),
+                    ],
+                    stops: const [0.0, 1.0],
+                  ),
+                ),
+              );
+            },
           ),
-        ),
-        child: SafeArea(
-          child: Column(
-            children: [
-              Expanded(
-                child: Center(
-                  child: AnimatedBuilder(
-                    animation: _masterController,
-                    builder: (context, child) {
-                      return FadeTransition(
-                        opacity: _fadeAnimation,
-                        child: ScaleTransition(
-                          scale: _scaleAnimation,
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              // Logo
-                              Container(
-                                width: isLargeScreen ? 120 : 100,
-                                height: isLargeScreen ? 120 : 100,
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(24),
-                                  boxShadow: [
-                                    BoxShadow(
-                                      color: AppTheme.accent.withValues(alpha: 51), // 0.2 * 255 ≈ 51
-                                      blurRadius: 20,
-                                      offset: const Offset(0, 8),
-                                    ),
-                                  ],
-                                ),
-                                child: ClipRRect(
-                                  borderRadius: BorderRadius.circular(24),
-                                  child: Image.asset(
-                                    'assets/app/shott-icon.png',
-                                    fit: BoxFit.cover,
+
+          // Subtle animated particles/orbs
+          ...List.generate(3, (index) {
+            return AnimatedBuilder(
+              animation: _glowController,
+              builder: (context, child) {
+                final offset = math.sin(_glowController.value * math.pi * 2 + index) * 0.3;
+                return Positioned(
+                  top: MediaQuery.of(context).size.height * (0.3 + offset * 0.2),
+                  left: MediaQuery.of(context).size.width * (0.2 + index * 0.3),
+                  child: Opacity(
+                    opacity: 0.05 + (_glowAnimation.value * 0.05),
+                    child: Container(
+                      width: 200,
+                      height: 200,
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        gradient: RadialGradient(
+                          colors: [
+                            AppTheme.accent.withValues(alpha: 51),
+                            Colors.transparent,
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                );
+              },
+            );
+          }),
+
+          // Main content - SHOTT title
+          Center(
+            child: AnimatedBuilder(
+              animation: Listenable.merge([_fadeAnimation, _letterSpacingAnimation, _glowAnimation]),
+              builder: (context, child) {
+                return Opacity(
+                  opacity: _fadeAnimation.value,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      // Main SHOTT title with glow
+                      Stack(
+                        children: [
+                          // Glow layer
+                          Text(
+                            'ShoTT',
+                            style: TextStyle(
+                              fontSize: 56,
+                              fontWeight: FontWeight.w700,
+                              letterSpacing: _letterSpacingAnimation.value,
+                              color: Colors.transparent,
+                              shadows: [
+                                Shadow(
+                                  color: AppTheme.accent.withValues(
+                                    alpha: _glowAnimation.value * 153, // 0.6 * 255
                                   ),
+                                  blurRadius: 40,
                                 ),
-                              ),
-                              
-                              const SizedBox(height: 32),
-                              
-                              // Brand Name
-                              Text(
-                                'SHOTT',
-                                style: TextStyle(
-                                  fontSize: isLargeScreen ? 32 : 28,
-                                  fontWeight: FontWeight.w600,
-                                  letterSpacing: 4,
-                                  color: Colors.white,
+                                Shadow(
+                                  color: AppTheme.shottGold.withValues(
+                                    alpha: _glowAnimation.value * 102, // 0.4 * 255
+                                  ),
+                                  blurRadius: 20,
                                 ),
+                              ],
+                            ),
+                          ),
+                          // Main text
+                          ShaderMask(
+                            shaderCallback: (bounds) => LinearGradient(
+                              colors: [
+                                Colors.white,
+                                Colors.white.withValues(alpha: 230),
+                                AppTheme.shottGold.withValues(alpha: 204),
+                              ],
+                              begin: Alignment.topLeft,
+                              end: Alignment.bottomRight,
+                            ).createShader(bounds),
+                            child: Text(
+                              'ShoTT',
+                              style: TextStyle(
+                                fontSize: 56,
+                                fontWeight: FontWeight.w700,
+                                letterSpacing: _letterSpacingAnimation.value,
+                                color: Colors.white,
                               ),
-                              
-                              const SizedBox(height: 12),
-                              
-                              // Tagline
-                              Text(
-                                'Premium Short Content',
-                                style: TextStyle(
-                                  fontSize: isLargeScreen ? 16 : 14,
-                                  fontWeight: FontWeight.w400,
-                                  letterSpacing: 0.5,
-                                  color: Colors.white70,
-                                ),
-                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                      
+                      const SizedBox(height: 16),
+                      
+                      // Subtle underline with animation
+                      Container(
+                        width: 80 + (_fadeAnimation.value * 40),
+                        height: 2,
+                        decoration: BoxDecoration(
+                          gradient: LinearGradient(
+                            colors: [
+                              Colors.transparent,
+                              AppTheme.accent.withValues(alpha: _fadeAnimation.value * 255),
+                              Colors.transparent,
                             ],
                           ),
                         ),
-                      );
-                    },
-                  ),
-                ),
-              ),
-              
-              // Progress Indicator
-              Padding(
-                padding: const EdgeInsets.only(bottom: 60),
-                child: AnimatedBuilder(
-                  animation: _masterController,
-                  builder: (context, child) {
-                    return Opacity(
-                      opacity: _fadeAnimation.value,
-                      child: Container(
-                        width: 32,
-                        height: 2,
-                        decoration: BoxDecoration(
-                          color: AppTheme.accent.withValues(alpha: _progressAnimation.value * 255),
-                          borderRadius: BorderRadius.circular(1),
-                        ),
                       ),
-                    );
-                  },
-                ),
-              ),
-            ],
+                    ],
+                  ),
+                );
+              },
+            ),
           ),
-        ),
+        ],
       ),
     );
   }
