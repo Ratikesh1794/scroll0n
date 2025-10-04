@@ -7,6 +7,7 @@ import '../widgets/bottom_navigation_bar.dart';
 import 'reel_overview_screen.dart';
 import 'profile_screen.dart';
 import 'favourites_screen.dart';
+import 'search_screen.dart';
 
 /// SHOTT Home Screen - Main content area after splash
 /// 
@@ -73,7 +74,10 @@ class _HomeScreenState extends State<HomeScreen> {
         break;
       case 2:
         // Navigate to Search
-        // TODO: Implement search screen navigation
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => const SearchScreen()),
+        );
         break;
       case 3:
         // Navigate to Favourites

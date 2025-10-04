@@ -5,6 +5,7 @@ import '../widgets/bottom_navigation_bar.dart';
 import '../theme/app_theme.dart';
 import 'home_screen.dart';
 import 'reel_overview_screen.dart';
+import 'search_screen.dart';
 import '../models/reel.dart';
 
 /// Favourites Screen
@@ -79,7 +80,10 @@ class _FavouritesScreenState extends State<FavouritesScreen> {
         break;
       case 2:
         // Navigate to Search
-        // TODO: Implement search screen navigation
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(builder: (context) => const SearchScreen()),
+        );
         break;
       case 3:
         // Already on Favourites screen, do nothing
