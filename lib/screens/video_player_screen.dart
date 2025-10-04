@@ -4,14 +4,17 @@ import 'package:video_player/video_player.dart';
 import '../models/reel.dart';
 import '../theme/app_theme.dart';
 
-/// Professional Video Player Screen for Reels/Shorts
+/// Professional Video Player Screen for Reels/Shorts (Instagram/YouTube Shorts Style)
 /// 
 /// Features:
-/// - Portrait-only orientation for optimal short video experience
-/// - Disappearing overlay with OTT-specific controls
-/// - Professional streaming platform design
-/// - Smooth animations and transitions
-/// - Full-screen immersive experience
+/// - Portrait-only orientation optimized for short-form content
+/// - Tap-to-show/hide controls with auto-hide timer (3 seconds)
+/// - Side action buttons (Like, Watchlist, Episodes, Share) - always visible
+/// - Bottom info overlay showing episode/reel details - shows/hides with controls
+/// - Top navigation with back button, title, and options
+/// - Progress bar in controls overlay
+/// - Professional OTT platform aesthetic with gradients and shadows
+/// - Smooth animations and immersive full-screen experience
 class VideoPlayerScreen extends StatefulWidget {
   final Reel reel;
   final Episode? episode;
@@ -35,7 +38,8 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen>
   bool _isPlaying = false;
   bool _showControls = true;
   bool _isBuffering = false;
-  bool _isSubscribed = false;
+  bool _isInWatchlist = false;
+  bool _isLiked = false;
   
   // Animation controllers
   late AnimationController _controlsAnimationController;
@@ -181,15 +185,15 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen>
     }
   }
 
-  void _toggleSubscribe() {
+  void _toggleWatchlist() {
     setState(() {
-      _isSubscribed = !_isSubscribed;
+      _isInWatchlist = !_isInWatchlist;
     });
-    
+
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
         content: Text(
-          _isSubscribed ? 'Subscribed successfully!' : 'Unsubscribed',
+          _isInWatchlist ? 'Added to Watchlist!' : 'Removed from Watchlist',
           style: const TextStyle(color: AppTheme.primaryText),
         ),
         backgroundColor: AppTheme.surfaceBackground,
@@ -198,6 +202,12 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen>
         duration: const Duration(seconds: 2),
       ),
     );
+  }
+
+  void _toggleLike() {
+    setState(() {
+      _isLiked = !_isLiked;
+    });
   }
 
   void _showEpisodes() {
@@ -267,14 +277,42 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen>
               // Video Player
               _buildVideoPlayer(),
               
-              // Controls Overlay
+              // All controls that appear/disappear together
               if (_showControls)
                 AnimatedBuilder(
                   animation: _controlsOpacity,
                   builder: (context, child) {
                     return Opacity(
                       opacity: _controlsOpacity.value,
-                      child: _buildControlsOverlay(),
+                      child: Stack(
+                        children: [
+                          // Top controls with gradient
+                          _buildTopSection(),
+                          
+                          // Side action buttons
+                          _buildSideActionButtons(),
+                          
+                          // Bottom info overlay
+                          _buildBottomInfoOverlay(),
+                          
+                          // Progress bar
+                          _buildProgressBarSection(),
+                        ],
+                      ),
+                    );
+                  },
+                ),
+              
+              // Center play/pause button (appears/disappears)
+              if (_showControls || !_isPlaying)
+                AnimatedBuilder(
+                  animation: _controlsOpacity,
+                  builder: (context, child) {
+                    return Opacity(
+                      opacity: _showControls ? _controlsOpacity.value : 1.0,
+                      child: Center(
+                        child: _buildCenterPlayButton(),
+                      ),
                     );
                   },
                 ),
@@ -325,41 +363,138 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen>
     );
   }
 
-  Widget _buildControlsOverlay() {
-    return Container(
-      decoration: BoxDecoration(
-        gradient: LinearGradient(
-          begin: Alignment.topCenter,
-          end: Alignment.bottomCenter,
-          colors: [
-            AppTheme.primaryBackground.withValues(alpha: 0.7),
-            Colors.transparent,
-            Colors.transparent,
-            AppTheme.primaryBackground.withValues(alpha: 0.8),
-          ],
-          stops: const [0.0, 0.3, 0.7, 1.0],
+  Widget _buildTopSection() {
+    return Positioned(
+      top: 0,
+      left: 0,
+      right: 0,
+      child: Container(
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+            colors: [
+              AppTheme.primaryBackground.withValues(alpha: 0.7),
+              AppTheme.primaryBackground.withValues(alpha: 0.3),
+              Colors.transparent,
+            ],
+            stops: const [0.0, 0.5, 1.0],
+          ),
+        ),
+        child: SafeArea(
+          bottom: false,
+          child: _buildTopControls(),
         ),
       ),
-      child: SafeArea(
+    );
+  }
+
+  Widget _buildSideActionButtons() {
+    return Positioned(
+      right: 16,
+      bottom: 200,
+      child: Column(
+        children: [
+          // Like button
+          _buildSideActionButton(
+            icon: _isLiked ? Icons.favorite : Icons.favorite_border,
+            label: '12.5K',
+            onTap: _toggleLike,
+            isActive: _isLiked,
+          ),
+          
+          const SizedBox(height: 20),
+          
+          // Watchlist button
+          _buildSideActionButton(
+            icon: _isInWatchlist ? Icons.bookmark : Icons.bookmark_border,
+            label: 'Save',
+            onTap: _toggleWatchlist,
+            isActive: _isInWatchlist,
+          ),
+          
+          const SizedBox(height: 20),
+          
+          // Episodes button
+          _buildSideActionButton(
+            icon: Icons.playlist_play_rounded,
+            label: 'Episodes',
+            onTap: _showEpisodes,
+          ),
+          
+          const SizedBox(height: 20),
+          
+          // Share button
+          _buildSideActionButton(
+            icon: Icons.share_rounded,
+            label: 'Share',
+            onTap: _shareVideo,
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildSideActionButton({
+    required IconData icon,
+    required String label,
+    required VoidCallback onTap,
+    bool isActive = false,
+  }) {
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+        padding: const EdgeInsets.symmetric(vertical: 4),
         child: Column(
           children: [
-            // Top controls
-            _buildTopControls(),
-            
-            // Center play/pause
-            Expanded(
-              child: Center(
-                child: _buildCenterPlayButton(),
+            Container(
+              width: 52,
+              height: 52,
+              decoration: BoxDecoration(
+                color: isActive
+                    ? AppTheme.shottGold.withValues(alpha: 0.2)
+                    : Colors.black.withValues(alpha: 0.5),
+                shape: BoxShape.circle,
+                border: isActive
+                    ? Border.all(color: AppTheme.shottGold, width: 2)
+                    : Border.all(color: Colors.white.withValues(alpha: 0.2), width: 1),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black.withValues(alpha: 0.4),
+                    blurRadius: 12,
+                    offset: const Offset(0, 4),
+                  ),
+                ],
+              ),
+              child: Icon(
+                icon,
+                color: isActive ? AppTheme.shottGold : Colors.white,
+                size: 26,
               ),
             ),
-            
-            // Bottom controls
-            _buildBottomControls(),
+            const SizedBox(height: 6),
+            Text(
+              label,
+              style: TextStyle(
+                color: isActive ? AppTheme.shottGold : Colors.white,
+                fontSize: 12,
+                fontWeight: FontWeight.w700,
+                letterSpacing: 0.3,
+                shadows: const [
+                  Shadow(
+                    color: Colors.black,
+                    blurRadius: 6,
+                    offset: Offset(0, 2),
+                  ),
+                ],
+              ),
+            ),
           ],
         ),
       ),
     );
   }
+
 
   Widget _buildTopControls() {
     return Padding(
@@ -368,19 +503,25 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen>
         children: [
           // Back button
           Container(
+            width: 40,
+            height: 40,
             decoration: BoxDecoration(
-              color: AppTheme.primaryBackground.withValues(alpha: 0.7),
-              borderRadius: BorderRadius.circular(20),
-              border: Border.all(
-                color: AppTheme.shottGold.withValues(alpha: 0.3),
-                width: 1,
-              ),
+              color: AppTheme.primaryBackground.withValues(alpha: 0.6),
+              shape: BoxShape.circle,
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.black.withValues(alpha: 0.3),
+                  blurRadius: 8,
+                  offset: const Offset(0, 2),
+                ),
+              ],
             ),
             child: IconButton(
+              padding: EdgeInsets.zero,
               icon: const Icon(
                 Icons.arrow_back_ios_new_rounded,
                 color: AppTheme.primaryText,
-                size: 20,
+                size: 18,
               ),
               onPressed: () => Navigator.of(context).pop(),
             ),
@@ -389,38 +530,54 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen>
           const Spacer(),
           
           // Video title
-          Expanded(
-            flex: 3,
+          Container(
+            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+            decoration: BoxDecoration(
+              color: AppTheme.primaryBackground.withValues(alpha: 0.6),
+              borderRadius: BorderRadius.circular(20),
+            ),
             child: Text(
               widget.reel.name,
               style: const TextStyle(
                 color: AppTheme.primaryText,
-                fontSize: 16,
+                fontSize: 14,
                 fontWeight: FontWeight.w600,
+                shadows: [
+                  Shadow(
+                    color: Colors.black54,
+                    blurRadius: 4,
+                    offset: Offset(0, 1),
+                  ),
+                ],
               ),
-              textAlign: TextAlign.center,
               maxLines: 1,
               overflow: TextOverflow.ellipsis,
             ),
           ),
           
           const Spacer(),
-          
+
           // More options
           Container(
+            width: 40,
+            height: 40,
             decoration: BoxDecoration(
-              color: AppTheme.primaryBackground.withValues(alpha: 0.7),
-              borderRadius: BorderRadius.circular(20),
-              border: Border.all(
-                color: AppTheme.shottGold.withValues(alpha: 0.3),
-                width: 1,
-              ),
+              color: AppTheme.primaryBackground.withValues(alpha: 0.6),
+              shape: BoxShape.circle,
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.black.withValues(alpha: 0.3),
+                  blurRadius: 8,
+                  offset: const Offset(0, 2),
+                ),
+              ],
             ),
             child: IconButton(
+              padding: EdgeInsets.zero,
               icon: const Icon(
                 Icons.more_vert_rounded,
                 color: AppTheme.primaryText,
-                size: 20,
+                size: 18,
               ),
               onPressed: () {
                 // TODO: Show more options
@@ -433,133 +590,236 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen>
   }
 
   Widget _buildCenterPlayButton() {
-    if (_isPlaying) return const SizedBox.shrink();
-    
     return GestureDetector(
       onTap: _togglePlayPause,
       child: Container(
-        width: 80,
-        height: 80,
+        width: 75,
+        height: 75,
         decoration: BoxDecoration(
-          color: AppTheme.shottGold.withValues(alpha: 0.9),
+          color: AppTheme.shottGold,
           shape: BoxShape.circle,
           boxShadow: [
             BoxShadow(
-              color: AppTheme.shottGold.withValues(alpha: 0.3),
-              blurRadius: 20,
-              spreadRadius: 5,
+              color: AppTheme.shottGold.withValues(alpha: 0.5),
+              blurRadius: 24,
+              spreadRadius: 8,
+            ),
+            BoxShadow(
+              color: Colors.black.withValues(alpha: 0.3),
+              blurRadius: 16,
+              offset: const Offset(0, 4),
             ),
           ],
         ),
-        child: const Icon(
-          Icons.play_arrow_rounded,
-          color: AppTheme.primaryBackground,
-          size: 40,
+        child: Icon(
+          _isPlaying ? Icons.pause_rounded : Icons.play_arrow_rounded,
+          color: Colors.black,
+          size: 42,
         ),
       ),
     );
   }
 
-  Widget _buildBottomControls() {
-    return Container(
-      padding: const EdgeInsets.all(16),
-      child: Column(
-        children: [
-          // Progress bar
-          if (_isInitialized && _controller != null)
-            _buildProgressBar(),
-          
-          const SizedBox(height: 20),
-          
-          // Action buttons
-          _buildActionButtons(),
-        ],
-      ),
-    );
-  }
+  Widget _buildProgressBarSection() {
+    if (!_isInitialized || _controller == null) {
+      return const SizedBox.shrink();
+    }
 
-  Widget _buildProgressBar() {
-    return VideoProgressIndicator(
-      _controller!,
-      allowScrubbing: true,
-      colors: const VideoProgressColors(
-        playedColor: AppTheme.shottGold,
-        bufferedColor: Colors.white24,
-        backgroundColor: Colors.white12,
-      ),
-      padding: const EdgeInsets.symmetric(horizontal: 8),
-    );
-  }
-
-  Widget _buildActionButtons() {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-      children: [
-        // Subscribe button
-        _buildActionButton(
-          icon: _isSubscribed ? Icons.notifications : Icons.notifications_none,
-          label: _isSubscribed ? 'Subscribed' : 'Subscribe',
-          onTap: _toggleSubscribe,
-          isActive: _isSubscribed,
-        ),
-        
-        // Episodes button
-        _buildActionButton(
-          icon: Icons.playlist_play_rounded,
-          label: 'Episodes',
-          onTap: _showEpisodes,
-        ),
-        
-        // Share button
-        _buildActionButton(
-          icon: Icons.share_rounded,
-          label: 'Share',
-          onTap: _shareVideo,
-        ),
-      ],
-    );
-  }
-
-  Widget _buildActionButton({
-    required IconData icon,
-    required String label,
-    required VoidCallback onTap,
-    bool isActive = false,
-  }) {
-    return GestureDetector(
-      onTap: onTap,
+    return Positioned(
+      bottom: 0,
+      left: 0,
+      right: 0,
       child: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-        decoration: BoxDecoration(
-          color: isActive 
-              ? AppTheme.shottGold.withValues(alpha: 0.2)
-              : AppTheme.surfaceBackground.withValues(alpha: 0.3),
-          borderRadius: BorderRadius.circular(20),
-          border: Border.all(
-            color: isActive 
-                ? AppTheme.shottGold
-                : AppTheme.shottGold.withValues(alpha: 0.3),
-            width: 1,
-          ),
-        ),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Icon(
-              icon,
-              color: isActive ? AppTheme.shottGold : AppTheme.primaryText,
-              size: 24,
-            ),
-            const SizedBox(height: 4),
-            Text(
-              label,
-              style: TextStyle(
-                color: isActive ? AppTheme.shottGold : AppTheme.primaryText,
-                fontSize: 12,
-                fontWeight: FontWeight.w500,
+        color: Colors.black.withValues(alpha: 0.3),
+        child: SafeArea(
+          top: false,
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 0, vertical: 0),
+            child: SizedBox(
+              height: 3,
+              child: VideoProgressIndicator(
+                _controller!,
+                allowScrubbing: true,
+                colors: const VideoProgressColors(
+                  playedColor: AppTheme.shottGold,
+                  bufferedColor: Colors.white24,
+                  backgroundColor: Colors.white12,
+                ),
+                padding: EdgeInsets.zero,
               ),
             ),
-          ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildBottomInfoOverlay() {
+    final String title = widget.episode?.name ?? widget.reel.name;
+    final String description = widget.reel.description;
+
+    return Positioned(
+      bottom: 0,
+      left: 0,
+      right: 0,
+      child: Container(
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.bottomCenter,
+            end: Alignment.topCenter,
+            colors: [
+              Colors.black.withValues(alpha: 0.95),
+              Colors.black.withValues(alpha: 0.8),
+              Colors.black.withValues(alpha: 0.6),
+              Colors.black.withValues(alpha: 0.3),
+              Colors.transparent,
+            ],
+            stops: const [0.0, 0.3, 0.5, 0.7, 1.0],
+          ),
+        ),
+        child: SafeArea(
+          top: false,
+          child: Padding(
+            padding: const EdgeInsets.fromLTRB(20, 60, 100, 20),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                // Episode/Reel title
+                Text(
+                  title,
+                  style: const TextStyle(
+                    color: Colors.white,
+                    fontSize: 22,
+                    fontWeight: FontWeight.w700,
+                    height: 1.3,
+                    letterSpacing: 0.2,
+                    shadows: [
+                      Shadow(
+                        color: Colors.black,
+                        blurRadius: 12,
+                        offset: Offset(0, 2),
+                      ),
+                    ],
+                  ),
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
+                ),
+
+                const SizedBox(height: 10),
+
+                // Episode details / Metadata row
+                Row(
+                  children: [
+                    if (widget.episode != null) ...[
+                      Container(
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 10,
+                          vertical: 5,
+                        ),
+                        decoration: BoxDecoration(
+                          color: AppTheme.shottGold,
+                          borderRadius: BorderRadius.circular(6),
+                          boxShadow: [
+                            BoxShadow(
+                              color: AppTheme.shottGold.withValues(alpha: 0.3),
+                              blurRadius: 8,
+                              offset: const Offset(0, 2),
+                            ),
+                          ],
+                        ),
+                        child: Text(
+                          'EP ${widget.episode!.episodeNumber}',
+                          style: const TextStyle(
+                            color: Colors.black,
+                            fontSize: 12,
+                            fontWeight: FontWeight.w800,
+                            letterSpacing: 0.5,
+                          ),
+                        ),
+                      ),
+                      const SizedBox(width: 10),
+                    ],
+                    
+                    const Icon(
+                      Icons.access_time_rounded,
+                      color: Color(0xFFB0B0B0),
+                      size: 16,
+                    ),
+                    const SizedBox(width: 6),
+                    Text(
+                      widget.episode?.duration ?? widget.reel.duration,
+                      style: const TextStyle(
+                        color: Color(0xFFB0B0B0),
+                        fontSize: 14,
+                        fontWeight: FontWeight.w600,
+                        shadows: [
+                          Shadow(
+                            color: Colors.black,
+                            blurRadius: 4,
+                            offset: Offset(0, 1),
+                          ),
+                        ],
+                      ),
+                    ),
+                    
+                    if (widget.episode == null) ...[
+                      const SizedBox(width: 12),
+                      Container(
+                        width: 3,
+                        height: 3,
+                        decoration: const BoxDecoration(
+                          color: Color(0xFFB0B0B0),
+                          shape: BoxShape.circle,
+                        ),
+                      ),
+                      const SizedBox(width: 12),
+                      Text(
+                        widget.reel.releaseDate,
+                        style: const TextStyle(
+                          color: Color(0xFFB0B0B0),
+                          fontSize: 14,
+                          fontWeight: FontWeight.w600,
+                          shadows: [
+                            Shadow(
+                              color: Colors.black,
+                              blurRadius: 4,
+                              offset: Offset(0, 1),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ],
+                ),
+
+                // Description
+                if (description.isNotEmpty) ...[
+                  const SizedBox(height: 10),
+                  Text(
+                    description,
+                    style: const TextStyle(
+                      color: Color(0xFFCCCCCC),
+                      fontSize: 13,
+                      height: 1.5,
+                      letterSpacing: 0.1,
+                      shadows: [
+                        Shadow(
+                          color: Colors.black,
+                          blurRadius: 6,
+                          offset: Offset(0, 1),
+                        ),
+                      ],
+                    ),
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                ],
+                
+                const SizedBox(height: 12),
+              ],
+            ),
+          ),
         ),
       ),
     );
@@ -583,9 +843,9 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen>
               ),
             ),
           ),
-          
+
           const SizedBox(height: 20),
-          
+
           // Title
           const Text(
             'More Episodes',
@@ -595,9 +855,9 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen>
               color: AppTheme.primaryText,
             ),
           ),
-          
+
           const SizedBox(height: 16),
-          
+
           // Episodes list (placeholder)
           SizedBox(
             height: 200,
