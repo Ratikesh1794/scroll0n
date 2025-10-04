@@ -4,6 +4,8 @@ import '../widgets/bottom_navigation_bar.dart';
 import 'home_screen.dart';
 import 'favourites_screen.dart';
 import 'browse_screen.dart';
+import 'profile_screen.dart';
+import 'notification_screen.dart';
 
 /// Search Screen
 /// 
@@ -194,17 +196,25 @@ class _SearchScreenState extends State<SearchScreen> {
                 padding: const EdgeInsets.symmetric(horizontal: 16),
                 child: Row(
                   children: [
-                    Container(
-                      width: 48,
-                      height: 48,
-                      decoration: BoxDecoration(
-                        color: AppTheme.primary,
-                        shape: BoxShape.circle,
-                      ),
-                      child: const Icon(
-                        Icons.person_outline,
-                        color: Colors.white70,
-                        size: 24,
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => const ProfileScreen()),
+                        );
+                      },
+                      child: Container(
+                        width: 48,
+                        height: 48,
+                        decoration: BoxDecoration(
+                          color: AppTheme.primary,
+                          shape: BoxShape.circle,
+                        ),
+                        child: const Icon(
+                          Icons.person_outline,
+                          color: Colors.white70,
+                          size: 24,
+                        ),
                       ),
                     ),
                     const SizedBox(width: 16),
@@ -219,7 +229,12 @@ class _SearchScreenState extends State<SearchScreen> {
                         color: Colors.white70,
                         size: 24,
                       ),
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => const NotificationScreen()),
+                        );
+                      },
                     ),
                   ],
                 ),

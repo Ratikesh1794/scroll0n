@@ -5,6 +5,8 @@ import '../widgets/bottom_navigation_bar.dart';
 import 'home_screen.dart';
 import 'signin_phone_screen.dart';
 import 'favourites_screen.dart';
+import 'browse_screen.dart';
+import 'search_screen.dart';
 
 /// Profile Screen
 /// 
@@ -317,33 +319,34 @@ class _ProfileScreenState extends State<ProfileScreen> {
     );
   }
 
-
-  void _navigateToHome() {
-    Navigator.of(context).pushAndRemoveUntil(
-      MaterialPageRoute(builder: (context) => const HomeScreen()),
-      (route) => false,
-    );
-  }
-
   void _handleNavigation(int index) {
     switch (index) {
       case 0:
         // Navigate to Home
-        _navigateToHome();
+        Navigator.of(context).pushAndRemoveUntil(
+          MaterialPageRoute(builder: (context) => const HomeScreen()),
+          (route) => false,
+        );
         break;
       case 1:
         // Navigate to Browse/Explore
-        // TODO: Implement browse screen navigation
+        Navigator.of(context).pushAndRemoveUntil(
+          MaterialPageRoute(builder: (context) => const BrowseScreen()),
+          (route) => false,
+        );
         break;
       case 2:
         // Navigate to Search
-        // TODO: Implement search screen navigation
+        Navigator.of(context).pushAndRemoveUntil(
+          MaterialPageRoute(builder: (context) => const SearchScreen()),
+          (route) => false,
+        );
         break;
       case 3:
         // Navigate to Favourites
-        Navigator.push(
-          context,
+        Navigator.of(context).pushAndRemoveUntil(
           MaterialPageRoute(builder: (context) => const FavouritesScreen()),
+          (route) => false,
         );
         break;
     }

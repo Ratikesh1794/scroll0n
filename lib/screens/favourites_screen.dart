@@ -7,6 +7,8 @@ import 'home_screen.dart';
 import 'reel_overview_screen.dart';
 import 'search_screen.dart';
 import 'browse_screen.dart';
+import 'profile_screen.dart';
+import 'notification_screen.dart';
 import '../models/reel.dart';
 
 /// Favourites Screen
@@ -162,17 +164,25 @@ class _FavouritesScreenState extends State<FavouritesScreen> {
       child: Row(
         children: [
           // Profile icon - matching home screen style
-          Container(
-            width: 48,
-            height: 48,
-            decoration: BoxDecoration(
-              color: AppTheme.primary,
-              shape: BoxShape.circle,
-            ),
-            child: const Icon(
-              Icons.person_outline,
-              color: Colors.white70,
-              size: 24,
+          GestureDetector(
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const ProfileScreen()),
+              );
+            },
+            child: Container(
+              width: 48,
+              height: 48,
+              decoration: BoxDecoration(
+                color: AppTheme.primary,
+                shape: BoxShape.circle,
+              ),
+              child: const Icon(
+                Icons.person_outline,
+                color: Colors.white70,
+                size: 24,
+              ),
             ),
           ),
           
@@ -182,6 +192,23 @@ class _FavouritesScreenState extends State<FavouritesScreen> {
           Text(
             'Favourites',
             style: Theme.of(context).textTheme.headlineMedium,
+          ),
+          
+          const Spacer(),
+          
+          // Notification icon
+          IconButton(
+            icon: const Icon(
+              Icons.notifications_outlined,
+              color: Colors.white70,
+              size: 24,
+            ),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const NotificationScreen()),
+              );
+            },
           ),
         ],
       ),

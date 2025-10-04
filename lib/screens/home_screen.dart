@@ -9,6 +9,7 @@ import 'profile_screen.dart';
 import 'favourites_screen.dart';
 import 'search_screen.dart';
 import 'browse_screen.dart';
+import 'notification_screen.dart';
 
 /// SHOTT Home Screen - Main content area after splash
 /// 
@@ -167,7 +168,12 @@ class _HomeScreenState extends State<HomeScreen> {
                         color: Colors.white70,
                         size: 24,
                       ),
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => const NotificationScreen()),
+                        );
+                      },
                     ),
                   ],
                 ),

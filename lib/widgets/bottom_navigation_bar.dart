@@ -30,6 +30,7 @@ class CustomBottomNavigationBar extends StatelessWidget {
         ],
       ),
       child: SafeArea(
+        bottom: false,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
