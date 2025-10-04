@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import '../models/reel.dart';
 import '../models/category.dart';
 import '../services/reel_service.dart';
+import '../services/user_service.dart';
 import '../theme/app_theme.dart';
 import '../widgets/bottom_navigation_bar.dart';
 import 'reel_overview_screen.dart';
@@ -26,11 +27,20 @@ class _HomeScreenState extends State<HomeScreen> {
   List<Reel> _featuredReels = [];
   List<Reel> _recentReleases = [];
   List<Reel> _comingSoon = [];
+  String _userFirstName = 'Guest';
 
   @override
   void initState() {
     super.initState();
     _loadData();
+    _loadUserName();
+  }
+  
+  Future<void> _loadUserName() async {
+    final firstName = await UserService.getFirstName();
+    setState(() {
+      _userFirstName = firstName;
+    });
   }
 
   Future<void> _loadData() async {
@@ -96,6 +106,13 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final screenWidth = MediaQuery.of(context).size.width;
+    final screenHeight = MediaQuery.of(context).size.height;
+    
+    // Responsive sizing
+    final profileIconSize = (screenWidth * 0.14).clamp(50.0, 64.0);
+    final iconSize = (screenWidth * 0.07).clamp(26.0, 32.0);
+    
     return Scaffold(
       extendBody: true,
       extendBodyBehindAppBar: true,
@@ -120,7 +137,7 @@ class _HomeScreenState extends State<HomeScreen> {
             children: [
               // Header
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 16),
+                padding: EdgeInsets.symmetric(horizontal: screenWidth * 0.04),
                 child: Row(
                   children: [
                     // Profile section
@@ -134,20 +151,20 @@ class _HomeScreenState extends State<HomeScreen> {
                         );
                       },
                       child: Container(
-                        width: 48,
-                        height: 48,
+                        width: profileIconSize,
+                        height: profileIconSize,
                         decoration: BoxDecoration(
                           color: AppTheme.primary,
                           shape: BoxShape.circle,
                         ),
-                        child: const Icon(
+                        child: Icon(
                           Icons.person_outline,
                           color: Colors.white70,
-                          size: 24,
+                          size: iconSize * 0.9,
                         ),
                       ),
                     ),
-                    const SizedBox(width: 8),
+                    SizedBox(width: screenWidth * 0.03),
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -156,18 +173,19 @@ class _HomeScreenState extends State<HomeScreen> {
                           style: Theme.of(context).textTheme.bodySmall,
                         ),
                         Text(
-                          'taibanana',
+                          _userFirstName,
                           style: Theme.of(context).textTheme.titleMedium,
                         ),
                       ],
                     ),
                     const Spacer(),
                     IconButton(
-                      icon: const Icon(
+                      icon: Icon(
                         Icons.notifications_outlined,
                         color: Colors.white70,
-                        size: 24,
+                        size: iconSize,
                       ),
+                      padding: EdgeInsets.all(screenWidth * 0.03),
                       onPressed: () {
                         Navigator.push(
                           context,
@@ -178,7 +196,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   ],
                 ),
               ),
-              const SizedBox(height: 24),
+              SizedBox(height: screenHeight * 0.03),
             
               // Main content
               Expanded(
@@ -188,18 +206,18 @@ class _HomeScreenState extends State<HomeScreen> {
                     children: [
                       // Most Popular Section
                       Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 16),
+                        padding: EdgeInsets.symmetric(horizontal: screenWidth * 0.04),
                         child: Text(
                           'Most Popular',
                           style: Theme.of(context).textTheme.headlineMedium,
                         ),
                       ),
-                      const SizedBox(height: 8),
+                      SizedBox(height: screenHeight * 0.01),
                       SizedBox(
-                        height: 200,
+                        height: screenHeight * 0.25,
                         child: ListView.builder(
                           scrollDirection: Axis.horizontal,
-                          padding: const EdgeInsets.symmetric(horizontal: 16),
+                          padding: EdgeInsets.symmetric(horizontal: screenWidth * 0.04),
                           itemCount: _featuredReels.length,
                           itemBuilder: (context, index) {
                             final reel = _featuredReels[index];
@@ -213,9 +231,9 @@ class _HomeScreenState extends State<HomeScreen> {
                                 );
                               },
                               child: Container(
-                                width: 296,
-                                height: 200,
-                                margin: EdgeInsets.only(right: index < _featuredReels.length - 1 ? 16 : 0),
+                                width: screenWidth * 0.75,
+                                height: screenHeight * 0.25,
+                                margin: EdgeInsets.only(right: index < _featuredReels.length - 1 ? screenWidth * 0.04 : 0),
                                 decoration: BoxDecoration(
                                   color: Colors.black12,
                                   borderRadius: BorderRadius.circular(16),
@@ -313,11 +331,11 @@ class _HomeScreenState extends State<HomeScreen> {
                           },
                         ),
                       ),
-                      const SizedBox(height: 24),
+                      SizedBox(height: screenHeight * 0.03),
 
                       // Recent Release Section
                       Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 16),
+                        padding: EdgeInsets.symmetric(horizontal: screenWidth * 0.04),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
@@ -334,12 +352,12 @@ class _HomeScreenState extends State<HomeScreen> {
                           ],
                         ),
                       ),
-                      const SizedBox(height: 8),
+                      SizedBox(height: screenHeight * 0.01),
                       SizedBox(
-                        height: 216,
+                        height: screenHeight * 0.27,
                         child: ListView.builder(
                           scrollDirection: Axis.horizontal,
-                          padding: const EdgeInsets.symmetric(horizontal: 16),
+                          padding: EdgeInsets.symmetric(horizontal: screenWidth * 0.04),
                           itemCount: _recentReleases.length,
                           itemBuilder: (context, index) {
                             final reel = _recentReleases[index];
@@ -353,13 +371,13 @@ class _HomeScreenState extends State<HomeScreen> {
                                 );
                               },
                               child: Container(
-                                width: 128,
-                                margin: EdgeInsets.only(right: index < _recentReleases.length - 1 ? 16 : 0),
+                                width: screenWidth * 0.32,
+                                margin: EdgeInsets.only(right: index < _recentReleases.length - 1 ? screenWidth * 0.04 : 0),
                                 child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.stretch,
                                 children: [
                                   Container(
-                                    height: 190,
+                                    height: screenWidth * 0.48,
                                     decoration: BoxDecoration(
                                       color: Colors.black12,
                                       borderRadius: BorderRadius.circular(16),
@@ -393,7 +411,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                       ),
                                     ),
                                   ),
-                                  const SizedBox(height: 8),
+                                  SizedBox(height: screenHeight * 0.01),
                                   Expanded(
                                     child: Text(
                                       reel.name,
@@ -410,11 +428,11 @@ class _HomeScreenState extends State<HomeScreen> {
                           },
                         ),
                       ),
-                      const SizedBox(height: 24),
+                      SizedBox(height: screenHeight * 0.03),
 
                       // Coming Soon Section
                       Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 16),
+                        padding: EdgeInsets.symmetric(horizontal: screenWidth * 0.04),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
@@ -431,14 +449,14 @@ class _HomeScreenState extends State<HomeScreen> {
                           ],
                         ),
                       ),
-                      const SizedBox(height: 8),
+                      SizedBox(height: screenHeight * 0.01),
                       Padding(
-                        padding: const EdgeInsets.only(bottom: 80), // Add padding for nav bar
+                        padding: EdgeInsets.only(bottom: screenHeight * 0.1), // Add padding for nav bar
                         child: SizedBox(
-                          height: 216,
+                          height: screenHeight * 0.27,
                           child: ListView.builder(
                             scrollDirection: Axis.horizontal,
-                            padding: const EdgeInsets.symmetric(horizontal: 16),
+                            padding: EdgeInsets.symmetric(horizontal: screenWidth * 0.04),
                             itemCount: _comingSoon.length,
                             itemBuilder: (context, index) {
                             final reel = _comingSoon[index];
@@ -452,13 +470,13 @@ class _HomeScreenState extends State<HomeScreen> {
                                 );
                               },
                               child: Container(
-                                width: 128,
-                                margin: EdgeInsets.only(right: index < _comingSoon.length - 1 ? 16 : 0),
+                                width: screenWidth * 0.32,
+                                margin: EdgeInsets.only(right: index < _comingSoon.length - 1 ? screenWidth * 0.04 : 0),
                                 child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.stretch,
                                 children: [
                                   Container(
-                                    height: 190,
+                                    height: screenWidth * 0.48,
                                     decoration: BoxDecoration(
                                       color: Colors.black12,
                                       borderRadius: BorderRadius.circular(16),
@@ -492,7 +510,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                       ),
                                     ),
                                   ),
-                                  const SizedBox(height: 8),
+                                  SizedBox(height: screenHeight * 0.01),
                                   Expanded(
                                     child: Text(
                                       reel.name,

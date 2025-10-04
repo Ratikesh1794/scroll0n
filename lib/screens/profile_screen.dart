@@ -2,6 +2,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../widgets/bottom_navigation_bar.dart';
+import '../services/user_service.dart';
 import 'home_screen.dart';
 import 'signin_phone_screen.dart';
 import 'favourites_screen.dart';
@@ -20,6 +21,21 @@ class ProfileScreen extends StatefulWidget {
 }
 
 class _ProfileScreenState extends State<ProfileScreen> {
+  String _userFirstName = 'Guest';
+  
+  @override
+  void initState() {
+    super.initState();
+    _loadUserName();
+  }
+  
+  Future<void> _loadUserName() async {
+    final firstName = await UserService.getFirstName();
+    setState(() {
+      _userFirstName = firstName;
+    });
+  }
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -188,7 +204,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 ),
               ),
               Text(
-                'Taibanana',
+                _userFirstName,
                 style: GoogleFonts.poppins(
                   fontSize: 32,
                   fontWeight: FontWeight.w700,

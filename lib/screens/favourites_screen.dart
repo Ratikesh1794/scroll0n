@@ -99,6 +99,8 @@ class _FavouritesScreenState extends State<FavouritesScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final screenHeight = MediaQuery.of(context).size.height;
+    
     return Scaffold(
       extendBody: true,
       extendBodyBehindAppBar: true,
@@ -124,7 +126,7 @@ class _FavouritesScreenState extends State<FavouritesScreen> {
               // Header with profile icon and title
               _buildHeader(),
               
-              const SizedBox(height: 24),
+              SizedBox(height: screenHeight * 0.03),
               
               // Main content
               Expanded(
@@ -146,7 +148,7 @@ class _FavouritesScreenState extends State<FavouritesScreen> {
                             // My History section
                             if (_history.isNotEmpty) _buildHistorySection(),
                             
-                            const SizedBox(height: 80), // Space for bottom navigation
+                            SizedBox(height: MediaQuery.of(context).size.height * 0.1), // Space for bottom navigation
                           ],
                         ),
                       ),
@@ -159,8 +161,12 @@ class _FavouritesScreenState extends State<FavouritesScreen> {
   }
 
   Widget _buildHeader() {
+    final screenWidth = MediaQuery.of(context).size.width;
+    final profileIconSize = (screenWidth * 0.14).clamp(50.0, 64.0);
+    final iconSize = (screenWidth * 0.07).clamp(26.0, 32.0);
+    
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 16),
+      padding: EdgeInsets.symmetric(horizontal: screenWidth * 0.04),
       child: Row(
         children: [
           // Profile icon - matching home screen style
@@ -172,21 +178,21 @@ class _FavouritesScreenState extends State<FavouritesScreen> {
               );
             },
             child: Container(
-              width: 48,
-              height: 48,
+              width: profileIconSize,
+              height: profileIconSize,
               decoration: BoxDecoration(
                 color: AppTheme.primary,
                 shape: BoxShape.circle,
               ),
-              child: const Icon(
+              child: Icon(
                 Icons.person_outline,
                 color: Colors.white70,
-                size: 24,
+                size: iconSize * 0.9,
               ),
             ),
           ),
           
-          const SizedBox(width: 8),
+          SizedBox(width: screenWidth * 0.02),
           
           // Favourites title - matching home screen typography
           Text(
@@ -198,11 +204,12 @@ class _FavouritesScreenState extends State<FavouritesScreen> {
           
           // Notification icon
           IconButton(
-            icon: const Icon(
+            icon: Icon(
               Icons.notifications_outlined,
               color: Colors.white70,
-              size: 24,
+              size: iconSize,
             ),
+            padding: EdgeInsets.all(screenWidth * 0.03),
             onPressed: () {
               Navigator.push(
                 context,
@@ -216,9 +223,11 @@ class _FavouritesScreenState extends State<FavouritesScreen> {
   }
 
   Widget _buildFavouritesSection() {
+    final screenWidth = MediaQuery.of(context).size.width;
+    
     if (_favourites.isEmpty) {
       return Padding(
-        padding: const EdgeInsets.all(48),
+        padding: EdgeInsets.all(screenWidth * 0.12),
         child: Center(
           child: Column(
             children: [
@@ -241,10 +250,10 @@ class _FavouritesScreenState extends State<FavouritesScreen> {
     }
 
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 16),
+      padding: EdgeInsets.symmetric(horizontal: screenWidth * 0.04),
       child: Wrap(
-        spacing: 16, // Horizontal spacing between cards
-        runSpacing: 16, // Vertical spacing between rows
+        spacing: screenWidth * 0.04, // Horizontal spacing between cards (matches calculation)
+        runSpacing: screenWidth * 0.04, // Vertical spacing between rows
         children: _favourites.map((reel) => _buildFavouriteCard(reel)).toList(),
       ),
     );
@@ -252,7 +261,9 @@ class _FavouritesScreenState extends State<FavouritesScreen> {
 
   Widget _buildFavouriteCard(Reel reel) {
     final screenWidth = MediaQuery.of(context).size.width;
-    final cardWidth = (screenWidth - 48) / 2; // 16 padding on each side + 16 gap
+    
+    // Calculate responsive width accounting for padding and spacing (same as browse_screen languages)
+    final cardWidth = (screenWidth - (screenWidth * 0.04 * 2) - (screenWidth * 0.04)) / 2;
     
     return GestureDetector(
       onTap: () {
@@ -271,7 +282,7 @@ class _FavouritesScreenState extends State<FavouritesScreen> {
             // Movie poster - matching home screen card style
             Container(
               width: cardWidth,
-              height: cardWidth * 1.48, // 128:190 ratio
+              height: cardWidth * 1.48, // 128:190 ratio (poster aspect ratio)
               decoration: BoxDecoration(
                 color: Colors.black12,
                 borderRadius: BorderRadius.circular(16),
@@ -345,12 +356,15 @@ class _FavouritesScreenState extends State<FavouritesScreen> {
   }
 
   Widget _buildHistorySection() {
+    final screenWidth = MediaQuery.of(context).size.width;
+    final screenHeight = MediaQuery.of(context).size.height;
+    
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         // Section header - matching home screen style
         Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16),
+          padding: EdgeInsets.symmetric(horizontal: screenWidth * 0.04),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -389,13 +403,13 @@ class _FavouritesScreenState extends State<FavouritesScreen> {
                   );
                 },
                 child: Container(
-                  width: 128,
-                  margin: EdgeInsets.only(right: index < _history.length - 1 ? 16 : 0),
+                  width: screenWidth * 0.32,
+                  margin: EdgeInsets.only(right: index < _history.length - 1 ? screenWidth * 0.04 : 0),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
                       Container(
-                        height: 190,
+                        height: screenWidth * 0.48,
                         decoration: BoxDecoration(
                           color: Colors.black12,
                           borderRadius: BorderRadius.circular(16),
@@ -454,7 +468,7 @@ class _FavouritesScreenState extends State<FavouritesScreen> {
                           ),
                         ),
                       ),
-                      const SizedBox(height: 8),
+                      SizedBox(height: screenHeight * 0.01),
                       Expanded(
                         child: Text(
                           reel.name,

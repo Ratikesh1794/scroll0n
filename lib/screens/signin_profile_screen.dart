@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import '../theme/app_theme.dart';
+import '../services/user_service.dart';
 import 'home_screen.dart';
 
 /// Professional Profile Setup Screen
@@ -56,16 +57,31 @@ class _SigninProfileScreenState extends State<SigninProfileScreen> {
     
     setState(() => _isLoading = true);
     
-    // Simulate API call to create profile
-    await Future.delayed(const Duration(milliseconds: 1200));
-    
-    if (mounted) {
-      // Navigate to home screen and clear navigation stack
-      Navigator.pushAndRemoveUntil(
-        context,
-        MaterialPageRoute(builder: (context) => const HomeScreen()),
-        (route) => false,
-      );
+    try {
+      // Save user's name to local storage
+      final fullName = _nameController.text.trim();
+      await UserService.saveUserName(fullName);
+      await UserService.saveUserPhone(widget.phoneNumber);
+      
+      // Simulate API call to create profile
+      await Future.delayed(const Duration(milliseconds: 1200));
+      
+      if (mounted) {
+        // Navigate to home screen and clear navigation stack
+        Navigator.pushAndRemoveUntil(
+          context,
+          MaterialPageRoute(builder: (context) => const HomeScreen()),
+          (route) => false,
+        );
+      }
+    } catch (e) {
+      debugPrint('Error saving user data: $e');
+      setState(() => _isLoading = false);
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text('Failed to save profile. Please try again.')),
+        );
+      }
     }
   }
 

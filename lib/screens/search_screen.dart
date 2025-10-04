@@ -51,9 +51,16 @@ class _SearchScreenState extends State<SearchScreen> {
   }
 
   Widget _buildGenreCard(String title, String imagePath) {
+    final screenWidth = MediaQuery.of(context).size.width;
+    final screenHeight = MediaQuery.of(context).size.height;
+    
+    // Calculate responsive width accounting for padding and spacing (same as browse_screen languages)
+    final cardWidth = (screenWidth - (screenWidth * 0.04 * 2) - (screenWidth * 0.04)) / 2;
+    final cardHeight = (screenHeight * 0.085).clamp(65.0, 90.0);
+    
     return Container(
-      width: (MediaQuery.of(context).size.width - 48) / 2, // Account for padding and gap
-      height: 68,
+      width: cardWidth,
+      height: cardHeight,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(16),
         color: Colors.black12,
@@ -70,10 +77,10 @@ class _SearchScreenState extends State<SearchScreen> {
               errorBuilder: (context, error, stackTrace) {
                 return Container(
                   color: Colors.black26,
-                  child: const Icon(
+                  child: Icon(
                     Icons.movie_outlined,
                     color: Colors.white54,
-                    size: 32,
+                    size: screenWidth * 0.08,
                   ),
                 );
               },
@@ -95,9 +102,9 @@ class _SearchScreenState extends State<SearchScreen> {
             Center(
               child: Text(
                 title,
-                style: const TextStyle(
+                style: TextStyle(
                   fontFamily: 'Oswald',
-                  fontSize: 20,
+                  fontSize: (screenWidth * 0.05).clamp(18.0, 22.0),
                   fontWeight: FontWeight.bold,
                   color: Colors.white,
                   letterSpacing: -0.5,
@@ -111,9 +118,16 @@ class _SearchScreenState extends State<SearchScreen> {
   }
 
   Widget _buildLanguageCard(String title, String imagePath) {
+    final screenWidth = MediaQuery.of(context).size.width;
+    final screenHeight = MediaQuery.of(context).size.height;
+    
+    // Calculate responsive width accounting for padding and spacing (same as browse_screen languages)
+    final cardWidth = (screenWidth - (screenWidth * 0.04 * 2) - (screenWidth * 0.04)) / 2;
+    final cardHeight = (screenHeight * 0.085).clamp(65.0, 90.0);
+    
     return Container(
-      width: (MediaQuery.of(context).size.width - 48) / 2,
-      height: 68,
+      width: cardWidth,
+      height: cardHeight,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(16),
         color: Colors.black12,
@@ -129,10 +143,10 @@ class _SearchScreenState extends State<SearchScreen> {
               errorBuilder: (context, error, stackTrace) {
                 return Container(
                   color: Colors.black26,
-                  child: const Icon(
+                  child: Icon(
                     Icons.language,
                     color: Colors.white54,
-                    size: 32,
+                    size: screenWidth * 0.08,
                   ),
                 );
               },
@@ -152,9 +166,9 @@ class _SearchScreenState extends State<SearchScreen> {
             Center(
               child: Text(
                 title,
-                style: const TextStyle(
+                style: TextStyle(
                   fontFamily: 'Oswald',
-                  fontSize: 20,
+                  fontSize: (screenWidth * 0.05).clamp(18.0, 22.0),
                   fontWeight: FontWeight.bold,
                   color: Colors.white,
                   letterSpacing: -0.5,
@@ -169,6 +183,13 @@ class _SearchScreenState extends State<SearchScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final screenWidth = MediaQuery.of(context).size.width;
+    final screenHeight = MediaQuery.of(context).size.height;
+    
+    // Responsive sizing
+    final profileIconSize = (screenWidth * 0.14).clamp(50.0, 64.0);
+    final iconSize = (screenWidth * 0.07).clamp(26.0, 32.0);
+    
     return Scaffold(
       extendBody: true,
       extendBodyBehindAppBar: true,
@@ -193,7 +214,7 @@ class _SearchScreenState extends State<SearchScreen> {
             children: [
               // Header with profile icon and title
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 16),
+                padding: EdgeInsets.symmetric(horizontal: screenWidth * 0.04),
                 child: Row(
                   children: [
                     GestureDetector(
@@ -204,31 +225,32 @@ class _SearchScreenState extends State<SearchScreen> {
                         );
                       },
                       child: Container(
-                        width: 48,
-                        height: 48,
+                        width: profileIconSize,
+                        height: profileIconSize,
                         decoration: BoxDecoration(
                           color: AppTheme.primary,
                           shape: BoxShape.circle,
                         ),
-                        child: const Icon(
+                        child: Icon(
                           Icons.person_outline,
                           color: Colors.white70,
-                          size: 24,
+                          size: iconSize * 0.9,
                         ),
                       ),
                     ),
-                    const SizedBox(width: 16),
+                    SizedBox(width: screenWidth * 0.04),
                     Text(
                       'Search',
                       style: Theme.of(context).textTheme.headlineMedium,
                     ),
                     const Spacer(),
                     IconButton(
-                      icon: const Icon(
+                      icon: Icon(
                         Icons.notifications_outlined,
                         color: Colors.white70,
-                        size: 24,
+                        size: iconSize,
                       ),
+                      padding: EdgeInsets.all(screenWidth * 0.03),
                       onPressed: () {
                         Navigator.push(
                           context,
@@ -239,11 +261,11 @@ class _SearchScreenState extends State<SearchScreen> {
                   ],
                 ),
               ),
-              const SizedBox(height: 16),
+              SizedBox(height: screenHeight * 0.02),
 
               // Search Bar
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 16),
+                padding: EdgeInsets.symmetric(horizontal: screenWidth * 0.04),
                 child: TextField(
                   controller: _searchController,
                   style: const TextStyle(color: Colors.black87),
@@ -270,13 +292,13 @@ class _SearchScreenState extends State<SearchScreen> {
                   ),
                 ),
               ),
-              const SizedBox(height: 24),
+              SizedBox(height: screenHeight * 0.03),
 
               // Main content
               Expanded(
                 child: SingleChildScrollView(
                   child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 16),
+                    padding: EdgeInsets.symmetric(horizontal: screenWidth * 0.04),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -296,10 +318,10 @@ class _SearchScreenState extends State<SearchScreen> {
                             ),
                           ],
                         ),
-                        const SizedBox(height: 16),
+                        SizedBox(height: screenHeight * 0.02),
                         Wrap(
-                          spacing: 16,
-                          runSpacing: 16,
+                          spacing: screenWidth * 0.04, // Must match the card width calculation gap
+                          runSpacing: screenWidth * 0.04,
                           children: [
                             _buildGenreCard('ROMANCE', 'https://example.com/romance.jpg'),
                             _buildGenreCard('ACTION', 'https://example.com/action.jpg'),
@@ -307,7 +329,7 @@ class _SearchScreenState extends State<SearchScreen> {
                             _buildGenreCard('COMEDY', 'https://example.com/comedy.jpg'),
                           ],
                         ),
-                        const SizedBox(height: 32),
+                        SizedBox(height: screenHeight * 0.04),
 
                         // Languages Section
                         Row(
@@ -325,10 +347,10 @@ class _SearchScreenState extends State<SearchScreen> {
                             ),
                           ],
                         ),
-                        const SizedBox(height: 16),
+                        SizedBox(height: screenHeight * 0.02),
                         Wrap(
-                          spacing: 16,
-                          runSpacing: 16,
+                          spacing: screenWidth * 0.04, // Must match the card width calculation gap
+                          runSpacing: screenWidth * 0.04,
                           children: [
                             _buildLanguageCard('TELUGU', 'https://example.com/telugu.jpg'),
                             _buildLanguageCard('TAMIL', 'https://example.com/tamil.jpg'),
@@ -336,7 +358,7 @@ class _SearchScreenState extends State<SearchScreen> {
                             _buildLanguageCard('KANNADA', 'https://example.com/kannada.jpg'),
                           ],
                         ),
-                        const SizedBox(height: 80), // Space for bottom navigation
+                        SizedBox(height: screenHeight * 0.1), // Space for bottom navigation
                       ],
                     ),
                   ),

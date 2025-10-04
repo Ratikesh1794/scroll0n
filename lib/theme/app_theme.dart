@@ -171,7 +171,7 @@ class AppTheme {
       // Icon Theme
       iconTheme: const IconThemeData(
         color: primaryText,
-        size: 24,
+        size: 28,
       ),
       
       // Bottom Navigation Bar Theme
@@ -346,14 +346,14 @@ class AppTheme {
     return TextTheme(
       // Section Headers (Most Popular, Recent Release, Coming Soon)
       headlineMedium: GoogleFonts.oswald(
-        fontSize: 24,
+        fontSize: 28,
         fontWeight: FontWeight.w700,
         color: primaryText,
         letterSpacing: -0.333333,
       ),
       // Movie titles in cards
       titleLarge: GoogleFonts.oswald(
-        fontSize: 24,
+        fontSize: 26,
         fontWeight: FontWeight.w700,
         color: primaryText,
         letterSpacing: -0.333333,
@@ -367,21 +367,21 @@ class AppTheme {
       ),
       // Good Morning text
       bodySmall: GoogleFonts.poppins(
-        fontSize: 12,
+        fontSize: 14,
         fontWeight: FontWeight.w400,
         color: secondaryText,
         letterSpacing: -0.333333,
       ),
       // Username text
       titleMedium: GoogleFonts.poppins(
-        fontSize: 16,
+        fontSize: 18,
         fontWeight: FontWeight.w700,
         color: accent,
         letterSpacing: -0.333333,
       ),
       // Movie details, See more
       labelMedium: GoogleFonts.poppins(
-        fontSize: 12,
+        fontSize: 14,
         fontWeight: FontWeight.w500,
         color: primaryText,
         letterSpacing: -0.333333,

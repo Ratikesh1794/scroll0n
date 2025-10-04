@@ -89,9 +89,16 @@ class _BrowseScreenState extends State<BrowseScreen> {
   }
 
   Widget _buildLanguageCard(Map<String, dynamic> language) {
+    final screenWidth = MediaQuery.of(context).size.width;
+    final screenHeight = MediaQuery.of(context).size.height;
+    
+    // Calculate responsive width accounting for padding and spacing
+    final cardWidth = (screenWidth - (screenWidth * 0.04 * 2) - (screenWidth * 0.04)) / 2;
+    final cardHeight = (screenHeight * 0.085).clamp(65.0, 90.0);
+    
     return Container(
-      width: (MediaQuery.of(context).size.width - 48) / 2,
-      height: 68,
+      width: cardWidth,
+      height: cardHeight,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(16),
         color: Colors.black12,
@@ -107,10 +114,10 @@ class _BrowseScreenState extends State<BrowseScreen> {
               errorBuilder: (context, error, stackTrace) {
                 return Container(
                   color: Colors.black26,
-                  child: const Icon(
+                  child: Icon(
                     Icons.language,
                     color: Colors.white54,
-                    size: 32,
+                    size: screenWidth * 0.08,
                   ),
                 );
               },
@@ -128,22 +135,22 @@ class _BrowseScreenState extends State<BrowseScreen> {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.all(8),
+              padding: EdgeInsets.all(screenWidth * 0.02),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
                     language['name'] as String,
-                    style: const TextStyle(
+                    style: TextStyle(
                       fontFamily: 'Oswald',
-                      fontSize: 20,
+                      fontSize: (screenWidth * 0.05).clamp(18.0, 22.0),
                       fontWeight: FontWeight.bold,
                       color: Colors.white,
                       letterSpacing: -0.5,
                     ),
                     textAlign: TextAlign.center,
                   ),
-                  const SizedBox(height: 4),
+                  SizedBox(height: screenHeight * 0.005),
                   Text(
                     language['count'] as String,
                     style: Theme.of(context).textTheme.bodySmall?.copyWith(
@@ -160,12 +167,15 @@ class _BrowseScreenState extends State<BrowseScreen> {
   }
 
   Widget _buildTrendingSection(Map<String, dynamic> category) {
+    final screenWidth = MediaQuery.of(context).size.width;
+    final screenHeight = MediaQuery.of(context).size.height;
     final items = category['items'] as List;
+    
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16),
+          padding: EdgeInsets.symmetric(horizontal: screenWidth * 0.04),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -196,12 +206,12 @@ class _BrowseScreenState extends State<BrowseScreen> {
             ],
           ),
         ),
-        const SizedBox(height: 16),
+        SizedBox(height: screenHeight * 0.02),
         SizedBox(
-                        height: 200, // Match home screen height
+                        height: screenHeight * 0.25,
                         child: ListView.builder(
                           scrollDirection: Axis.horizontal,
-                          padding: const EdgeInsets.symmetric(horizontal: 16),
+                          padding: EdgeInsets.symmetric(horizontal: screenWidth * 0.04),
                           itemCount: items.length,
                           itemBuilder: (context, index) {
                             final item = items[index] as Map<String, dynamic>;
@@ -226,8 +236,8 @@ class _BrowseScreenState extends State<BrowseScreen> {
                                 );
                               },
                               child: Container(
-                                width: 296,
-                                margin: EdgeInsets.only(right: index < items.length - 1 ? 16 : 0),
+                                width: screenWidth * 0.75,
+                                margin: EdgeInsets.only(right: index < items.length - 1 ? screenWidth * 0.04 : 0),
                                 decoration: BoxDecoration(
                                   color: Colors.black12,
                                   borderRadius: BorderRadius.circular(16),
@@ -352,15 +362,18 @@ class _BrowseScreenState extends State<BrowseScreen> {
   }
 
   Widget _buildCategoryCard(Map<String, dynamic> category) {
+    final screenHeight = MediaQuery.of(context).size.height;
+    final screenWidth = MediaQuery.of(context).size.width;
+    
     return Container(
-      margin: const EdgeInsets.only(bottom: 12),
+      margin: EdgeInsets.only(bottom: screenHeight * 0.015),
       decoration: BoxDecoration(
         color: Colors.black.withValues(alpha: 0.3 * 255),
         borderRadius: BorderRadius.circular(12),
       ),
       child: ListTile(
         leading: Container(
-          padding: const EdgeInsets.all(8),
+          padding: EdgeInsets.all(screenWidth * 0.02),
           decoration: BoxDecoration(
             color: AppTheme.primary.withValues(alpha: 0.2 * 255),
             borderRadius: BorderRadius.circular(8),
@@ -396,6 +409,13 @@ class _BrowseScreenState extends State<BrowseScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final screenWidth = MediaQuery.of(context).size.width;
+    final screenHeight = MediaQuery.of(context).size.height;
+    
+    // Responsive sizing
+    final profileIconSize = (screenWidth * 0.14).clamp(50.0, 64.0);
+    final iconSize = (screenWidth * 0.07).clamp(26.0, 32.0);
+    
     return Scaffold(
       extendBody: true,
       extendBodyBehindAppBar: true,
@@ -421,7 +441,7 @@ class _BrowseScreenState extends State<BrowseScreen> {
             children: [
               // Header
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 16),
+                padding: EdgeInsets.symmetric(horizontal: screenWidth * 0.04),
                 child: Row(
                   children: [
                     GestureDetector(
@@ -432,31 +452,32 @@ class _BrowseScreenState extends State<BrowseScreen> {
                         );
                       },
                       child: Container(
-                        width: 48,
-                        height: 48,
+                        width: profileIconSize,
+                        height: profileIconSize,
                         decoration: BoxDecoration(
                           color: AppTheme.primary,
                           shape: BoxShape.circle,
                         ),
-                        child: const Icon(
+                        child: Icon(
                           Icons.person_outline,
                           color: Colors.white70,
-                          size: 24,
+                          size: iconSize * 0.9,
                         ),
                       ),
                     ),
-                    const SizedBox(width: 16),
+                    SizedBox(width: screenWidth * 0.04),
                     Text(
                       'Browse',
                       style: Theme.of(context).textTheme.headlineMedium,
                     ),
                     const Spacer(),
                     IconButton(
-                      icon: const Icon(
+                      icon: Icon(
                         Icons.notifications_outlined,
                         color: Colors.white70,
-                        size: 24,
+                        size: iconSize,
                       ),
+                      padding: EdgeInsets.all(screenWidth * 0.03),
                       onPressed: () {
                         Navigator.push(
                           context,
@@ -467,7 +488,7 @@ class _BrowseScreenState extends State<BrowseScreen> {
                   ],
                 ),
               ),
-              const SizedBox(height: 24),
+              SizedBox(height: screenHeight * 0.03),
 
               // Main content
               Expanded(
@@ -487,7 +508,7 @@ class _BrowseScreenState extends State<BrowseScreen> {
                                   color: Colors.white70,
                                   size: 48,
                                 ),
-                                const SizedBox(height: 16),
+                                SizedBox(height: screenHeight * 0.02),
                                 Text(
                                   _error!,
                                   style: Theme.of(context).textTheme.bodyLarge?.copyWith(
@@ -495,7 +516,7 @@ class _BrowseScreenState extends State<BrowseScreen> {
                                   ),
                                   textAlign: TextAlign.center,
                                 ),
-                                const SizedBox(height: 24),
+                                SizedBox(height: screenHeight * 0.03),
                                 OutlinedButton(
                                   onPressed: () {
                                     setState(() {
@@ -519,7 +540,7 @@ class _BrowseScreenState extends State<BrowseScreen> {
                           children: [
                             // Languages Section
                             Padding(
-                              padding: const EdgeInsets.symmetric(horizontal: 16),
+                              padding: EdgeInsets.symmetric(horizontal: screenWidth * 0.04),
                               child: Row(
                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                 children: [
@@ -536,30 +557,30 @@ class _BrowseScreenState extends State<BrowseScreen> {
                                 ],
                               ),
                             ),
-                            const SizedBox(height: 16),
+                            SizedBox(height: screenHeight * 0.02),
                             Padding(
-                              padding: const EdgeInsets.symmetric(horizontal: 16),
+                              padding: EdgeInsets.symmetric(horizontal: screenWidth * 0.04),
                               child: Wrap(
-                                spacing: 16,
-                                runSpacing: 16,
+                                spacing: screenWidth * 0.04,
+                                runSpacing: screenWidth * 0.04,
                                 children: _languages
                                     .map((lang) => _buildLanguageCard(lang as Map<String, dynamic>))
                                     .toList(),
                               ),
                             ),
-                            const SizedBox(height: 32),
+                            SizedBox(height: screenHeight * 0.04),
 
                             // Trending Categories
                             ..._trendingCategories.map((category) => Column(
                               children: [
                                 _buildTrendingSection(category as Map<String, dynamic>),
-                                const SizedBox(height: 32),
+                                SizedBox(height: screenHeight * 0.04),
                               ],
                             )),
 
                             // Categories Section
                             Padding(
-                              padding: const EdgeInsets.symmetric(horizontal: 16),
+                              padding: EdgeInsets.symmetric(horizontal: screenWidth * 0.04),
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
@@ -567,12 +588,12 @@ class _BrowseScreenState extends State<BrowseScreen> {
                                     'Categories',
                                     style: Theme.of(context).textTheme.headlineMedium,
                                   ),
-                                  const SizedBox(height: 16),
+                                  SizedBox(height: screenHeight * 0.02),
                                   ..._categories.map((category) => _buildCategoryCard(category as Map<String, dynamic>)),
                                 ],
                               ),
                             ),
-                            const SizedBox(height: 80), // Space for bottom navigation
+                            SizedBox(height: screenHeight * 0.1), // Space for bottom navigation
                           ],
                         ),
                       ),
