@@ -3,8 +3,12 @@ import 'package:video_player/video_player.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../models/reel.dart';
 import '../theme/app_theme.dart';
+import '../widgets/bottom_navigation_bar.dart';
 import 'video_player_screen.dart';
 import 'home_screen.dart';
+import 'browse_screen.dart';
+import 'search_screen.dart';
+import 'favourites_screen.dart';
 
 // Custom theme constants based on Figma design
 class ReelOverviewTheme {
@@ -142,22 +146,61 @@ class _ReelOverviewScreenState extends State<ReelOverviewScreen> {
     );
   }
 
+  void _handleNavigation(int index) {
+    switch (index) {
+      case 0:
+        // Navigate to Home
+        Navigator.of(context).pushAndRemoveUntil(
+          MaterialPageRoute(builder: (context) => const HomeScreen()),
+          (route) => false,
+        );
+        break;
+      case 1:
+        // Navigate to Browse
+        Navigator.of(context).pushAndRemoveUntil(
+          MaterialPageRoute(builder: (context) => const BrowseScreen()),
+          (route) => false,
+        );
+        break;
+      case 2:
+        // Navigate to Search
+        Navigator.of(context).pushAndRemoveUntil(
+          MaterialPageRoute(builder: (context) => const SearchScreen()),
+          (route) => false,
+        );
+        break;
+      case 3:
+        // Navigate to Favourites
+        Navigator.of(context).pushAndRemoveUntil(
+          MaterialPageRoute(builder: (context) => const FavouritesScreen()),
+          (route) => false,
+        );
+        break;
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
+    final screenHeight = MediaQuery.of(context).size.height;
+    
     return Scaffold(
       backgroundColor: ReelOverviewTheme.backgroundColor,
       extendBodyBehindAppBar: true,
+      extendBody: true,
+      bottomNavigationBar: CustomBottomNavigationBar(
+        currentIndex: null, // No tab is selected on overview screen
+        onTap: _handleNavigation,
+      ),
       body: SingleChildScrollView(
         child: SizedBox(
           width: double.infinity,
-          height: MediaQuery.of(context).size.height,
+          height: screenHeight,
           child: Stack(
             children: [
               _buildHeroSection(),
               _buildSynopsisCard(),
               _buildChaptersSection(),
               _buildTopNavigation(),
-              _buildBottomNavigationBar(),
             ],
           ),
         ),
@@ -166,50 +209,42 @@ class _ReelOverviewScreenState extends State<ReelOverviewScreen> {
   }
 
   Widget _buildTopNavigation() {
+    final screenWidth = MediaQuery.of(context).size.width;
+    final screenHeight = MediaQuery.of(context).size.height;
+    final iconSize = (screenWidth * 0.055).clamp(20.0, 24.0);
+    
     return Positioned(
-      top: 56,
-      left: 16,
-      right: 16,
+      top: screenHeight * 0.07,
+      left: screenWidth * 0.04,
+      right: screenWidth * 0.04,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           GestureDetector(
             onTap: () => Navigator.of(context).pop(),
-            child: SizedBox(
-              width: 24,
-              height: 24,
-              child: Icon(
-                Icons.arrow_back_ios_new_rounded,
-                color: ReelOverviewTheme.primaryText,
-                size: 20,
-              ),
+            child: Icon(
+              Icons.arrow_back_ios_new_rounded,
+              color: ReelOverviewTheme.primaryText,
+              size: iconSize,
             ),
           ),
           Row(
             children: [
               GestureDetector(
                 onTap: _toggleFavorite,
-                child: SizedBox(
-                  width: 24,
-                  height: 24,
-                  child: Icon(
-                    _isFavorited ? Icons.favorite : Icons.favorite_border,
-                    color: _isFavorited ? Colors.red : ReelOverviewTheme.primaryText,
-                    size: 20,
-                  ),
+                child: Icon(
+                  _isFavorited ? Icons.favorite : Icons.favorite_border,
+                  color: _isFavorited ? Colors.red : ReelOverviewTheme.primaryText,
+                  size: iconSize,
                 ),
               ),
-              const SizedBox(width: 16),
+              SizedBox(width: screenWidth * 0.04),
               GestureDetector(
                 onTap: _shareReel,
-                child: SizedBox(
-                  width: 24,
-                  height: 24,
-                  child: Icon(
-                    Icons.share,
-                    color: ReelOverviewTheme.primaryText,
-                    size: 20,
-                  ),
+                child: Icon(
+                  Icons.share,
+                  color: ReelOverviewTheme.primaryText,
+                  size: iconSize,
                 ),
               ),
             ],
@@ -220,12 +255,14 @@ class _ReelOverviewScreenState extends State<ReelOverviewScreen> {
   }
 
   Widget _buildHeroSection() {
+    final screenHeight = MediaQuery.of(context).size.height;
+    
     return Positioned(
       left: 0,
       top: 0,
       right: 0,
       child: SizedBox(
-        height: 307,
+        height: screenHeight * 0.38,
         child: Image.network(
           widget.reel.thumbnail,
           fit: BoxFit.cover,
@@ -240,14 +277,17 @@ class _ReelOverviewScreenState extends State<ReelOverviewScreen> {
 
 
   Widget _buildSynopsisCard() {
+    final screenWidth = MediaQuery.of(context).size.width;
+    final screenHeight = MediaQuery.of(context).size.height;
+    
     return Positioned(
-      top: 262,
-      left: 16,
-      right: 16,
+      top: screenHeight * 0.325,
+      left: screenWidth * 0.04,
+      right: screenWidth * 0.04,
       child: Column(
         children: [
           Container(
-            padding: const EdgeInsets.all(16),
+            padding: EdgeInsets.all(screenWidth * 0.04),
             decoration: BoxDecoration(
               color: ReelOverviewTheme.backgroundColor,
               borderRadius: BorderRadius.circular(24),
@@ -270,7 +310,7 @@ class _ReelOverviewScreenState extends State<ReelOverviewScreen> {
                       child: Text(
                         widget.reel.name,
                         style: GoogleFonts.oswald(
-                          fontSize: 24,
+                          fontSize: (screenWidth * 0.06).clamp(20.0, 26.0),
                           fontWeight: FontWeight.w700,
                           color: Colors.white,
                         ),
@@ -279,27 +319,27 @@ class _ReelOverviewScreenState extends State<ReelOverviewScreen> {
                     Row(
                       children: [
                         _buildRating(),
-                        const SizedBox(width: 16),
+                        SizedBox(width: screenWidth * 0.04),
                         _buildViewCount(),
                       ],
                     ),
                   ],
                 ),
-                const SizedBox(height: 8),
+                SizedBox(height: screenHeight * 0.01),
                 // Synopsis section
                 Text(
                   'Synopsis',
                   style: GoogleFonts.oswald(
-                    fontSize: 18,
+                    fontSize: (screenWidth * 0.045).clamp(16.0, 20.0),
                     fontWeight: FontWeight.w700,
                     color: Colors.white.withValues(alpha: 0.5),
                   ),
                 ),
-                const SizedBox(height: 4),
+                SizedBox(height: screenHeight * 0.005),
                 Text(
                   widget.reel.description,
                   style: GoogleFonts.poppins(
-                    fontSize: 11,
+                    fontSize: (screenWidth * 0.028).clamp(10.0, 12.0),
                     fontWeight: FontWeight.w500,
                     color: Colors.white.withValues(alpha: 0.5),
                     height: 1.45,
@@ -307,13 +347,13 @@ class _ReelOverviewScreenState extends State<ReelOverviewScreen> {
                   maxLines: _isDescriptionExpanded ? null : 4,
                   overflow: _isDescriptionExpanded ? TextOverflow.visible : TextOverflow.ellipsis,
                 ),
-                const SizedBox(height: 16), // Space for button
+                SizedBox(height: screenHeight * 0.02),
               ],
             ),
           ),
           // Show More/Less Button
           Transform.translate(
-            offset: const Offset(0, -24),
+            offset: Offset(0, -screenHeight * 0.03),
             child: _buildShowMoreButton(),
           ),
         ],
@@ -322,11 +362,14 @@ class _ReelOverviewScreenState extends State<ReelOverviewScreen> {
   }
 
   Widget _buildRating() {
+    final screenWidth = MediaQuery.of(context).size.width;
+    final starSize = (screenWidth * 0.045).clamp(16.0, 20.0);
+    
     return Row(
       children: [
         Container(
-          width: 18,
-          height: 18,
+          width: starSize,
+          height: starSize,
           decoration: BoxDecoration(
             color: Color(0xFFFFFF00), // Yellow star
             shape: BoxShape.circle,
@@ -334,14 +377,14 @@ class _ReelOverviewScreenState extends State<ReelOverviewScreen> {
           child: Icon(
             Icons.star,
             color: Colors.black,
-            size: 12,
+            size: starSize * 0.65,
           ),
         ),
-        const SizedBox(width: 4),
+        SizedBox(width: screenWidth * 0.01),
         Text(
           '7.9',
           style: GoogleFonts.poppins(
-            fontSize: 12,
+            fontSize: (screenWidth * 0.03).clamp(11.0, 13.0),
             fontWeight: FontWeight.w500,
             color: Color(0xFFEDEDED),
           ),
@@ -351,18 +394,20 @@ class _ReelOverviewScreenState extends State<ReelOverviewScreen> {
   }
 
   Widget _buildViewCount() {
+    final screenWidth = MediaQuery.of(context).size.width;
+    
     return Row(
       children: [
         Icon(
           Icons.visibility_outlined,
           color: Color(0xFFEDEDED),
-          size: 18,
+          size: (screenWidth * 0.045).clamp(16.0, 20.0),
         ),
-        const SizedBox(width: 4),
+        SizedBox(width: screenWidth * 0.01),
         Text(
           '89,200',
           style: GoogleFonts.poppins(
-            fontSize: 12,
+            fontSize: (screenWidth * 0.03).clamp(11.0, 13.0),
             fontWeight: FontWeight.w500,
             color: Color(0xFFEDEDED),
           ),
@@ -372,6 +417,9 @@ class _ReelOverviewScreenState extends State<ReelOverviewScreen> {
   }
 
   Widget _buildShowMoreButton() {
+    final screenWidth = MediaQuery.of(context).size.width;
+    final buttonSize = (screenWidth * 0.12).clamp(44.0, 52.0);
+    
     return Center(
       child: GestureDetector(
         onTap: () {
@@ -380,8 +428,8 @@ class _ReelOverviewScreenState extends State<ReelOverviewScreen> {
           });
         },
         child: Container(
-          width: 48,
-          height: 48,
+          width: buttonSize,
+          height: buttonSize,
           decoration: BoxDecoration(
             color: Color(0xFF033E4C),
             shape: BoxShape.circle,
@@ -396,7 +444,7 @@ class _ReelOverviewScreenState extends State<ReelOverviewScreen> {
           child: Icon(
             _isDescriptionExpanded ? Icons.keyboard_arrow_up : Icons.keyboard_arrow_down,
             color: Color(0xFFEDEDED),
-            size: 24,
+            size: buttonSize * 0.5,
           ),
         ),
       ),
@@ -404,23 +452,26 @@ class _ReelOverviewScreenState extends State<ReelOverviewScreen> {
   }
 
   Widget _buildChaptersSection() {
+    final screenWidth = MediaQuery.of(context).size.width;
+    final screenHeight = MediaQuery.of(context).size.height;
+    
     return Positioned(
-      top: _isDescriptionExpanded ? 480 : 440,
-      left: 16,
-      right: 16,
-      bottom: 60, // Leave space for bottom navigation
+      top: _isDescriptionExpanded ? screenHeight * 0.595 : screenHeight * 0.545,
+      left: screenWidth * 0.04,
+      right: screenWidth * 0.04,
+      bottom: screenHeight * 0.1, // Leave space for bottom navigation bar
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
             'Chapters',
             style: GoogleFonts.oswald(
-              fontSize: 24,
+              fontSize: (screenWidth * 0.06).clamp(20.0, 26.0),
               fontWeight: FontWeight.w700,
               color: Colors.white,
             ),
           ),
-          const SizedBox(height: 8),
+          SizedBox(height: screenHeight * 0.01),
           Expanded(
             child: ListView(
               padding: EdgeInsets.zero,
@@ -435,9 +486,13 @@ class _ReelOverviewScreenState extends State<ReelOverviewScreen> {
   }
 
   Widget _buildChapterCard(Episode episode, int index) {
+    final screenWidth = MediaQuery.of(context).size.width;
+    final screenHeight = MediaQuery.of(context).size.height;
+    final thumbnailSize = (screenWidth * 0.21).clamp(70.0, 90.0);
+    
     return Container(
-      height: 96,
-      margin: const EdgeInsets.only(bottom: 8),
+      height: (screenHeight * 0.12).clamp(85.0, 105.0),
+      margin: EdgeInsets.only(bottom: screenHeight * 0.01),
       decoration: BoxDecoration(
         border: Border.all(
           color: Color(0xFF033E4C),
@@ -451,13 +506,13 @@ class _ReelOverviewScreenState extends State<ReelOverviewScreen> {
           onTap: () => _playVideo(episode: episode),
           borderRadius: BorderRadius.circular(24),
           child: Padding(
-            padding: const EdgeInsets.all(8),
+            padding: EdgeInsets.all(screenWidth * 0.02),
             child: Row(
               children: [
                 // Episode thumbnail
                 Container(
-                  width: 84,
-                  height: 80,
+                  width: thumbnailSize,
+                  height: thumbnailSize * 0.95,
                   decoration: BoxDecoration(
                     color: Colors.white,
                     borderRadius: BorderRadius.circular(16),
@@ -467,12 +522,12 @@ class _ReelOverviewScreenState extends State<ReelOverviewScreen> {
                     child: Image.network(
                       episode.thumbnail,
                       fit: BoxFit.cover,
-                      width: 84,
-                      height: 80,
+                      width: thumbnailSize,
+                      height: thumbnailSize * 0.95,
                     ),
                   ),
                 ),
-                const SizedBox(width: 13),
+                SizedBox(width: screenWidth * 0.035),
                 // Episode details
                 Expanded(
                   child: Column(
@@ -482,7 +537,7 @@ class _ReelOverviewScreenState extends State<ReelOverviewScreen> {
                       Text(
                         'Chapter ${episode.episodeNumber}',
                         style: GoogleFonts.poppins(
-                          fontSize: 12,
+                          fontSize: (screenWidth * 0.03).clamp(11.0, 13.0),
                           fontWeight: FontWeight.w500,
                           color: Color(0xFFEDEDED),
                         ),
@@ -490,7 +545,7 @@ class _ReelOverviewScreenState extends State<ReelOverviewScreen> {
                       Text(
                         episode.name,
                         style: GoogleFonts.poppins(
-                          fontSize: 16,
+                          fontSize: (screenWidth * 0.04).clamp(14.0, 17.0),
                           fontWeight: FontWeight.w700,
                           color: Color(0xFF033E4C),
                         ),
@@ -508,62 +563,6 @@ class _ReelOverviewScreenState extends State<ReelOverviewScreen> {
     );
   }
 
-  Widget _buildBottomNavigationBar() {
-    return Positioned(
-      bottom: 0,
-      left: 0,
-      right: 0,
-      child: Container(
-        height: 44,
-        decoration: BoxDecoration(
-          color: Color(0xFF033E4C),
-          boxShadow: [
-            BoxShadow(
-              color: Colors.black.withValues(alpha: 0.5),
-              blurRadius: 4,
-              offset: const Offset(0, 4),
-            ),
-          ],
-        ),
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 38),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              _buildNavBarItem(Icons.home, true, () => _navigateToHome()),
-              _buildNavBarItem(Icons.explore, false, null),
-              _buildNavBarItem(Icons.search, false, null),
-              _buildNavBarItem(Icons.favorite_border, false, null),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-
-  Widget _buildNavBarItem(IconData icon, bool isSelected, VoidCallback? onTap) {
-    return GestureDetector(
-      onTap: onTap,
-      child: SizedBox(
-        width: 24,
-        height: 24,
-        child: Icon(
-          icon,
-          color: isSelected 
-            ? Color(0xFFEDEDED)
-            : Color(0xFFEDEDED).withValues(alpha: 0.75),
-          size: 24,
-        ),
-      ),
-    );
-  }
-
-  void _navigateToHome() {
-    Navigator.of(context).pushAndRemoveUntil(
-      MaterialPageRoute(builder: (context) => const HomeScreen()),
-      (route) => false,
-    );
-  }
 
 
 }
